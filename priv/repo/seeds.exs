@@ -9,3 +9,22 @@
 #
 # We recommend using the bang functions (`insert!`, `update!`
 # and so on) as they will fail if something goes wrong.
+
+alias Pelnance.Currencies
+alias Pelnance.Types
+
+currencies = [
+  %{name: "Euro", symbol: "€"},
+  %{name: "Dollar", symbol: "$"},
+  %{name: "Pound", symbol: "£"},
+  %{name: "Yen", symbol: "¥"}
+]
+
+Enum.each(currencies, fn currency -> Currencies.create_currency(currency) end)
+
+types = [
+  %{name: "Expense"},
+  %{name: "Income"}
+]
+
+Enum.each(types, fn type -> Types.create_type(type) end)
