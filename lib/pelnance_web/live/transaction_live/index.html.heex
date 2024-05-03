@@ -7,33 +7,38 @@
   </:actions>
 </.header>
 
-<.table
-  id="transactions"
-  rows={@streams.transactions}
-  row_click={fn {_id, transaction} -> JS.navigate(~p"/transactions/#{transaction}") end}
->
-  <:col :let={{_id, transaction}} label="Date"><%= transaction.date %></:col>
+<.table id="transactions" rows={@streams.transactions}>
   <:col :let={{_id, transaction}} label="Amount"><%= transaction.amount %></:col>
+  <:col :let={{_id, transaction}} label="Date"><%= transaction.date %></:col>
   <:col :let={{_id, transaction}} label="Description"><%= transaction.description %></:col>
-  <:col :let={{_id, transaction}} label="Type"><%= Pelnance.Types.get_type!(transaction.type_id).name %></:col>
-  <:col :let={{_id, transaction}} label="Category"><%= Pelnance.Categories.get_category!(transaction.category_id).name %></:col>
-  <:action :let={{_id, transaction}}>
-    <div class="sr-only">
-      <.link navigate={~p"/transactions/#{transaction}"}>Show</.link>
-    </div>
-    <.link patch={~p"/transactions/#{transaction}/edit"}>Edit</.link>
-  </:action>
+  <:col :let={{_id, transaction}} label="Type">
+    <%= Pelnance.Types.get_type!(transaction.type_id).name %>
+  </:col>
+  <:col :let={{_id, transaction}} label="Category">
+    <%= Pelnance.Categories.get_category!(transaction.category_id).name %>
+  </:col>
   <:action :let={{id, transaction}}>
+    <.link navigate={~p"/transactions/#{transaction}"}>
+      <.icon name="hero-eye" />
+    </.link>
+    <.link patch={~p"/transactions/#{transaction}/edit"}>
+      <.icon name="hero-pencil-square" />
+    </.link>
     <.link
       phx-click={JS.push("delete", value: %{id: transaction.id}) |> hide("##{id}")}
       data-confirm="Are you sure?"
     >
-      Delete
+      <.icon name="hero-trash" class="text-red-700" />
     </.link>
   </:action>
 </.table>
 
-<.modal :if={@live_action in [:new, :edit]} id="transaction-modal" show on_cancel={JS.patch(~p"/transactions")}>
+<.modal
+  :if={@live_action in [:new, :edit]}
+  id="transaction-modal"
+  show
+  on_cancel={JS.patch(~p"/transactions")}
+>
   <.live_component
     module={PelnanceWeb.TransactionLive.FormComponent}
     id={@transaction.id || :new}

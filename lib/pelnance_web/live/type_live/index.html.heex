@@ -7,24 +7,20 @@
   </:actions>
 </.header>
 
-<.table
-  id="types"
-  rows={@streams.types}
-  row_click={fn {_id, type} -> JS.navigate(~p"/types/#{type}") end}
->
+<.table id="types" rows={@streams.types}>
   <:col :let={{_id, type}} label="Name"><%= type.name %></:col>
-  <:action :let={{_id, type}}>
-    <div class="sr-only">
-      <.link navigate={~p"/types/#{type}"}>Show</.link>
-    </div>
-    <.link patch={~p"/types/#{type}/edit"}>Edit</.link>
-  </:action>
   <:action :let={{id, type}}>
+    <.link navigate={~p"/types/#{type}"}>
+      <.icon name="hero-eye" />
+    </.link>
+    <.link patch={~p"/types/#{type}/edit"}>
+      <.icon name="hero-pencil-square" />
+    </.link>
     <.link
       phx-click={JS.push("delete", value: %{id: type.id}) |> hide("##{id}")}
       data-confirm="Are you sure?"
     >
-      Delete
+      <.icon name="hero-trash" class="text-red-700" />
     </.link>
   </:action>
 </.table>
