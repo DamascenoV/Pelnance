@@ -75,6 +75,13 @@ defmodule PelnanceWeb.Router do
       live "/currencies/:id/edit", CurrencyLive.Index, :edit
       live "/currencies/:id", CurrencyLive.Show, :show
       live "/currencies/:id/show/edit", CurrencyLive.Show, :edit
+
+      # TYPES ROUTES
+      live "/types", TypeLive.Index, :index
+      live "/types/new", TypeLive.Index, :new
+      live "/types/:id/edit", TypeLive.Index, :edit
+      live "/types/:id", TypeLive.Show, :show
+      live "/types/:id/show/edit", TypeLive.Show, :edit
     end
   end
 
