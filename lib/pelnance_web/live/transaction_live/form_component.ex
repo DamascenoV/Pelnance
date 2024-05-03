@@ -27,7 +27,15 @@ defmodule PelnanceWeb.TransactionLive.FormComponent do
           type="select"
           label="Type"
           options={@types |> Enum.map(&{&1.name, &1.id})}
+          phx-change="change_category"
         />
+        <.input
+          field={@form[:category_id]}
+          type="select"
+          label="Categories"
+          options={@categories |> Enum.map(&{&1.name, &1.id})}
+        />
+
         <.input
           field={@form[:account_id]}
           type="select"
@@ -60,6 +68,16 @@ defmodule PelnanceWeb.TransactionLive.FormComponent do
       |> Map.put(:action, :validate)
 
     {:noreply, assign_form(socket, changeset)}
+  end
+
+  @impl true
+  def handle_event("change_category", %{"transaction" => %{"type_id" => type_id}}, socket) do
+    categories = Pelnance.Categories.list_categories(socket.assigns.current_user)
+    |> Enum.filter(&(&1.type_id == type_id))
+
+    socket = assign(socket, :categories, categories)
+
+    {:noreply, socket}
   end
 
   def handle_event("save", %{"transaction" => transaction_params}, socket) do

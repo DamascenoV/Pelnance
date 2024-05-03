@@ -9,6 +9,7 @@ defmodule Pelnance.Users.User do
     field :hashed_password, :string, redact: true
     field :confirmed_at, :naive_datetime
     has_many :accounts, Pelnance.Accounts.Account
+    has_many :categories, Pelnance.Categories.Category
 
     timestamps(type: :utc_datetime)
   end

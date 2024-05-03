@@ -90,6 +90,13 @@ defmodule PelnanceWeb.Router do
       live "/accounts/:id", AccountLive.Show, :show
       live "/accounts/:id/show/edit", AccountLive.Show, :edit
 
+      # CATEGORIES ROUTES
+      live "/categories", CategoryLive.Index, :index
+      live "/categories/new", CategoryLive.Index, :new
+      live "/categories/:id/edit", CategoryLive.Index, :edit
+      live "/categories/:id", CategoryLive.Show, :show
+      live "/categories/:id/show/edit", CategoryLive.Show, :edit
+
       # TRANSACTIONS ROUTES
       live "/transactions", TransactionLive.Index, :index
       live "/transactions/new", TransactionLive.Index, :new

@@ -4,15 +4,23 @@ defmodule PelnanceWeb.TransactionLive.Index do
   alias Pelnance.Transactions
   alias Pelnance.Accounts
   alias Pelnance.Types
+  alias Pelnance.Categories
   alias Pelnance.Transactions.Transaction
 
   @impl true
   def mount(_params, _session, socket) do
-    {:ok, socket 
-      |> stream(:transactions, Transactions.list_transactions())
-      |> assign(:accounts, Accounts.list_accounts(socket.assigns.current_user))
-      |> assign(:types, Types.list_types())
-    }
+    types = Types.list_types()
+
+    {:ok,
+     socket
+     |> stream(:transactions, Transactions.list_transactions())
+     |> assign(:accounts, Accounts.list_accounts(socket.assigns.current_user))
+     |> assign(:types, types)
+     |> assign(
+       :categories,
+       Categories.list_categories(socket.assigns.current_user)
+       |> Enum.filter(&(&1.type_id == hd(types).id))
+     )}
   end
 
   @impl true
