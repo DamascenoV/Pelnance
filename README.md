@@ -16,3 +16,15 @@ Ready to run in production? Please [check our deployment guides](https://hexdocs
   * Docs: https://hexdocs.pm/phoenix
   * Forum: https://elixirforum.com/c/phoenix-forum
   * Source: https://github.com/phoenixframework/phoenix
+
+### TO DO
+
+  [] - Tests
+  [] - Improve layout
+  [] - When creating a transaction change the difference in accounts balance
+  [] - In the page of the Account show the transactions
+  [] - Dashboard
+  [] - Goals
+  [] - Transfer amount from one account to another
+  [] - Recurrent transactions
+  [] - Settings page

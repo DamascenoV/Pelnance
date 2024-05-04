@@ -5,6 +5,7 @@ defmodule Pelnance.Repo.Migrations.CreateTypes do
     create table(:types, primary_key: false) do
       add :id, :binary_id, primary_key: true
       add :name, :string
+      add :icon, :string
 
       timestamps(type: :utc_datetime)
     end

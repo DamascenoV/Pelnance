@@ -10,20 +10,21 @@
 </.header>
 
 <.table id="transactions" rows={@streams.transactions}>
-  <:col :let={{_id, transaction}} label="Amount"><%= transaction.amount %></:col>
-  <:col :let={{_id, transaction}} label="Date"><%= transaction.date %></:col>
-  <:col :let={{_id, transaction}} label="Description"><%= transaction.description %></:col>
   <:col :let={{_id, transaction}} label="Type">
-    <%= Pelnance.Types.get_type!(transaction.type_id).name %>
+    <.icon name={Pelnance.Types.get_type!(transaction.type_id).icon} />
+    - <%= Pelnance.Types.get_type!(transaction.type_id).name %>
   </:col>
   <:col :let={{_id, transaction}} label="Category">
     <%= Pelnance.Categories.get_category!(transaction.category_id).name %>
   </:col>
+  <:col :let={{_id, transaction}} label="Description"><%= transaction.description %></:col>
+  <:col :let={{_id, transaction}} label="Amount"><%= transaction.amount %></:col>
+  <:col :let={{_id, transaction}} label="Date"><%= transaction.date %></:col>
   <:action :let={{id, transaction}}>
     <.link navigate={~p"/transactions/#{transaction}"}>
       <.icon name="hero-eye" />
     </.link>
-    <.link patch={~p"/transactions/#{transaction}/edit"}>
+    <.link patch={~p"/transactions/#{transaction}/edit?type=#{transaction.type_id}"}>
       <.icon name="hero-pencil-square" />
     </.link>
     <.link

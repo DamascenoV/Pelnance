@@ -19,6 +19,7 @@ defmodule PelnanceWeb.TransactionLive.Index do
   end
 
   defp apply_action(socket, :edit, params) do
+    IO.inspect(params)
     socket
     |> assign(:page_title, "Edit Transaction")
     |> assign(:transaction, Transactions.get_transaction!(params["id"]))
