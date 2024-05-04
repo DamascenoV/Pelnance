@@ -69,6 +69,9 @@ defmodule PelnanceWeb.Router do
       live "/users/settings", UserSettingsLive, :edit
       live "/users/settings/confirm_email/:token", UserSettingsLive, :confirm_email
 
+      # DASHBOARD ROUTES
+      live "/dashboard", DashboardLive.Index, :index
+
       # CURRENCIES ROUTES
       live "/currencies", CurrencyLive.Index, :index
       live "/currencies/new", CurrencyLive.Index, :new
@@ -78,7 +81,6 @@ defmodule PelnanceWeb.Router do
 
       # TYPES ROUTES
       live "/types", TypeLive.Index, :index
-      live "/types/new", TypeLive.Index, :new
       live "/types/:id/edit", TypeLive.Index, :edit
       live "/types/:id", TypeLive.Show, :show
       live "/types/:id/show/edit", TypeLive.Show, :edit
@@ -89,6 +91,13 @@ defmodule PelnanceWeb.Router do
       live "/accounts/:id/edit", AccountLive.Index, :edit
       live "/accounts/:id", AccountLive.Show, :show
       live "/accounts/:id/show/edit", AccountLive.Show, :edit
+
+      # CATEGORIES ROUTES
+      live "/categories", CategoryLive.Index, :index
+      live "/categories/new", CategoryLive.Index, :new
+      live "/categories/:id/edit", CategoryLive.Index, :edit
+      live "/categories/:id", CategoryLive.Show, :show
+      live "/categories/:id/show/edit", CategoryLive.Show, :edit
 
       # TRANSACTIONS ROUTES
       live "/transactions", TransactionLive.Index, :index

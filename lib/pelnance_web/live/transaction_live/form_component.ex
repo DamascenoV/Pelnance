@@ -22,12 +22,14 @@ defmodule PelnanceWeb.TransactionLive.FormComponent do
         <.input field={@form[:date]} type="date" label="Date" />
         <.input field={@form[:amount]} type="number" label="Amount" step="any" />
         <.input field={@form[:description]} type="text" label="Description" />
+        <.input field={@form[:type_id]} type="hidden" value={@type_id} />
         <.input
-          field={@form[:type_id]}
+          field={@form[:category_id]}
           type="select"
-          label="Type"
-          options={@types |> Enum.map(&{&1.name, &1.id})}
+          label="Categories"
+          options={@categories |> Enum.map(&{&1.name, &1.id})}
         />
+
         <.input
           field={@form[:account_id]}
           type="select"

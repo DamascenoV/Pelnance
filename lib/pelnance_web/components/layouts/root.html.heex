@@ -53,6 +53,78 @@
         </li>
       <% end %>
     </ul>
-    <%= @inner_content %>
+    <div
+      id="sidebar"
+      class="fixed top-0 left-0 h-screen w-full overflow-y-auto backdrop-blur-md bg-white/30 border flex flex-col justify-between p-4 transition duration-300 lg:w-64 md:w-64 hidden rounded-lg z-10"
+      phx-click-away={JS.hide(to: "#sidebar")}
+    >
+      <div>
+        <div class="flex items-center justify-between mb-4">
+          <h1 class="text-xl font-bold">
+            Pelnance
+          </h1>
+          <button class="align-right" phx-click={JS.hide(to: "#sidebar")}>
+            <.icon name="hero-x-mark" class="w-6 h-6" />
+          </button>
+        </div>
+        <nav>
+          <.link href={~p"/dashboard"} class="flex items-center p-2 rounded-lg hover:bg-gray-200 py-2">
+            <.icon name="hero-home" class="w-6 h-6 mr-2" /> Dashboard
+          </.link>
+          <.link
+            href={~p"/accounts"}
+            class="flex items-center p-2 rounded-lg hover:bg-gray-200 py-2"
+          >
+            <.icon name="hero-wallet" class="w-6 h-6 mr-2" /> Accounts
+          </.link>
+          <.link
+            href={~p"/transactions"}
+            class="flex items-center p-2 rounded-lg hover:bg-gray-200 py-2"
+          >
+            <.icon name="hero-arrows-right-left" class="w-6 h-6 mr-2" /> Transactions
+          </.link>
+          <.link href={~p"/types"} class="flex items-center p-2 rounded-lg hover:bg-gray-200 py-2">
+            <.icon name="hero-banknotes" class="w-6 h-6 mr-2" /> Types
+          </.link>
+          <.link
+            href={~p"/categories"}
+            class="flex items-center p-2 rounded-lg hover:bg-gray-200 py-2"
+          >
+            <.icon name="hero-tag" class="w-6 h-6 mr-2" /> Categories
+          </.link>
+          <.link
+            href={~p"/currencies"}
+            class="flex items-center p-2 rounded-lg hover:bg-gray-200 py-2"
+          >
+            <.icon name="hero-currency-euro" class="w-6 h-6 mr-2" /> Currencies
+          </.link>
+          <.link
+            href={~p"/users/settings"}
+            class="flex items-center p-2 rounded-lg hover:bg-gray-200 py-2"
+          >
+            <.icon name="hero-cog-8-tooth" class="w-6 h-6 mr-2" /> Settings
+          </.link>
+          <div class="absolute bottom-4">
+            <.link
+              href={~p"/users/settings"}
+              class="flex items-center p-2 rounded-lg hover:bg-gray-200 py-2"
+            >
+              <.icon name="hero-user" class="w-6 h-6 mr-2" /> Profile
+            </.link>
+            <.link
+              href={~p"/users/log_out"}
+              method="delete"
+              class="flex items-center p-2 rounded-lg hover:bg-gray-200 py-2"
+            >
+              <.icon name="hero-arrow-left-start-on-rectangle" class="w-6 h-6 mr-2" /> Log out
+            </.link>
+          </div>
+        </nav>
+      </div>
+    </div>
+
+    <div class="flex-1 p-4">
+      <%= @inner_content %>
+    </div>
   </body>
 </html>

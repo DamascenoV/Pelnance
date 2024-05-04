@@ -23,8 +23,8 @@ currencies = [
 Enum.each(currencies, fn currency -> Currencies.create_currency(currency) end)
 
 types = [
-  %{name: "Expense"},
-  %{name: "Income"}
+  %{name: "Income", icon: "hero-arrow-trending-up"},
+  %{name: "Expense", icon: "hero-arrow-trending-down"}
 ]
 
 Enum.each(types, fn type -> Types.create_type(type) end)
