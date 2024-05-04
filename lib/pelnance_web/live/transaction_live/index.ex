@@ -3,24 +3,14 @@ defmodule PelnanceWeb.TransactionLive.Index do
 
   alias Pelnance.Transactions
   alias Pelnance.Accounts
-  alias Pelnance.Types
   alias Pelnance.Categories
   alias Pelnance.Transactions.Transaction
 
   @impl true
   def mount(_params, _session, socket) do
-    types = Types.list_types()
-
     {:ok,
      socket
-     |> stream(:transactions, Transactions.list_transactions())
-     |> assign(:accounts, Accounts.list_accounts(socket.assigns.current_user))
-     |> assign(:types, types)
-     |> assign(
-       :categories,
-       Categories.list_categories(socket.assigns.current_user)
-       |> Enum.filter(&(&1.type_id == hd(types).id))
-     )}
+     |> stream(:transactions, Transactions.list_transactions())}
   end
 
   @impl true
@@ -28,16 +18,30 @@ defmodule PelnanceWeb.TransactionLive.Index do
     {:noreply, apply_action(socket, socket.assigns.live_action, params)}
   end
 
-  defp apply_action(socket, :edit, %{"id" => id}) do
+  defp apply_action(socket, :edit, params) do
     socket
     |> assign(:page_title, "Edit Transaction")
-    |> assign(:transaction, Transactions.get_transaction!(id))
+    |> assign(:transaction, Transactions.get_transaction!(params["id"]))
+    |> assign(:accounts, Accounts.list_accounts(socket.assigns.current_user))
+    |> assign(
+      :categories,
+      Categories.list_categories(socket.assigns.current_user)
+      |> Enum.filter(&(&1.type_id == params["type"]))
+    )
+    |> assign(:type_id, params["type"])
   end
 
-  defp apply_action(socket, :new, _params) do
+  defp apply_action(socket, :new, params) do
     socket
     |> assign(:page_title, "New Transaction")
     |> assign(:transaction, %Transaction{})
+    |> assign(:accounts, Accounts.list_accounts(socket.assigns.current_user))
+    |> assign(
+      :categories,
+      Categories.list_categories(socket.assigns.current_user)
+      |> Enum.filter(&(&1.type_id == params["type"]))
+    )
+    |> assign(:type_id, params["type"])
   end
 
   defp apply_action(socket, :index, _params) do

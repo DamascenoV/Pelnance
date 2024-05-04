@@ -67,21 +67,6 @@ defmodule PelnanceWeb.TypeLive.FormComponent do
     end
   end
 
-  defp save_type(socket, :new, type_params) do
-    case Types.create_type(type_params) do
-      {:ok, type} ->
-        notify_parent({:saved, type})
-
-        {:noreply,
-         socket
-         |> put_flash(:info, "Type created successfully")
-         |> push_patch(to: socket.assigns.patch)}
-
-      {:error, %Ecto.Changeset{} = changeset} ->
-        {:noreply, assign_form(socket, changeset)}
-    end
-  end
-
   defp assign_form(socket, %Ecto.Changeset{} = changeset) do
     assign(socket, :form, to_form(changeset))
   end

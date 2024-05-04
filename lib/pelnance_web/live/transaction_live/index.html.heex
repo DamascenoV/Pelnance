@@ -1,9 +1,11 @@
 <.header>
   Listing Transactions
   <:actions>
-    <.link patch={~p"/transactions/new"}>
-      <.button>New Transaction</.button>
-    </.link>
+    <%= for type <- Pelnance.Types.list_types() do %>
+      <.link patch={~p"/transactions/new?type=#{type.id}"}>
+        <.button>New <%= type.name %></.button>
+      </.link>
+    <% end %>
   </:actions>
 </.header>
 
@@ -45,7 +47,7 @@
     title={@page_title}
     action={@live_action}
     transaction={@transaction}
-    types={@types}
+    type_id={@type_id}
     categories={@categories}
     current_user={@current_user}
     accounts={@accounts}
