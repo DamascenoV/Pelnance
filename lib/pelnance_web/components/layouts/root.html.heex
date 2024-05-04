@@ -68,7 +68,7 @@
           </button>
         </div>
         <nav>
-          <.link href={~p"/"} class="flex items-center p-2 rounded-lg hover:bg-gray-200 py-2">
+          <.link href={~p"/dashboard"} class="flex items-center p-2 rounded-lg hover:bg-gray-200 py-2">
             <.icon name="hero-home" class="w-6 h-6 mr-2" /> Dashboard
           </.link>
           <.link
@@ -113,6 +113,7 @@
             </.link>
             <.link
               href={~p"/users/log_out"}
+              method="delete"
               class="flex items-center p-2 rounded-lg hover:bg-gray-200 py-2"
             >
               <.icon name="hero-arrow-left-start-on-rectangle" class="w-6 h-6 mr-2" /> Log out

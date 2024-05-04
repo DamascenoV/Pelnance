@@ -69,6 +69,9 @@ defmodule PelnanceWeb.Router do
       live "/users/settings", UserSettingsLive, :edit
       live "/users/settings/confirm_email/:token", UserSettingsLive, :confirm_email
 
+      # DASHBOARD ROUTES
+      live "/dashboard", DashboardLive.Index, :index
+
       # CURRENCIES ROUTES
       live "/currencies", CurrencyLive.Index, :index
       live "/currencies/new", CurrencyLive.Index, :new
