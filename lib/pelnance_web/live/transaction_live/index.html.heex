@@ -1,5 +1,5 @@
 <.header>
-  Listing Transactions
+  Listing Transactions <.icon name="hero-arrows-right-left" />
   <:actions>
     <%= for type <- Pelnance.Types.list_types() do %>
       <.link patch={~p"/transactions/new?type=#{type.id}"}>

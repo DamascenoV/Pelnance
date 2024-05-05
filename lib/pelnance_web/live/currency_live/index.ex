@@ -24,6 +24,7 @@ defmodule PelnanceWeb.CurrencyLive.Index do
     socket
     |> assign(:page_title, "New Currency")
     |> assign(:currency, %Currency{})
+    |> assign(:current_user, socket.assigns.current_user)
   end
 
   defp apply_action(socket, :index, _params) do

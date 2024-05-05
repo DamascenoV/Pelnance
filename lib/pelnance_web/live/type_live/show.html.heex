@@ -1,6 +1,5 @@
 <.header>
-  Type <%= @type.id %>
-  <:subtitle>This is a type record from your database.</:subtitle>
+  Type <%= @type.name %>
   <:actions>
     <.link patch={~p"/types/#{@type}/show/edit"} phx-click={JS.push_focus()}>
       <.button>Edit type</.button>

@@ -9,7 +9,6 @@ defmodule PelnanceWeb.CurrencyLive.FormComponent do
     <div>
       <.header>
         <%= @title %>
-        <:subtitle>Use this form to manage currency records in your database.</:subtitle>
       </.header>
 
       <.simple_form
@@ -69,7 +68,7 @@ defmodule PelnanceWeb.CurrencyLive.FormComponent do
   end
 
   defp save_currency(socket, :new, currency_params) do
-    case Currencies.create_currency(currency_params) do
+    case Currencies.create_currency(socket.assigns.current_user, currency_params) do
       {:ok, currency} ->
         notify_parent({:saved, currency})
 

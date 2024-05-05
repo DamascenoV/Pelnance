@@ -8,6 +8,8 @@ defmodule Pelnance.Users.User do
     field :password, :string, virtual: true, redact: true
     field :hashed_password, :string, redact: true
     field :confirmed_at, :naive_datetime
+    has_many :currencies, Pelnance.Currencies.Currency
+    has_many :types, Pelnance.Types.Type
     has_many :accounts, Pelnance.Accounts.Account
     has_many :categories, Pelnance.Categories.Category
 

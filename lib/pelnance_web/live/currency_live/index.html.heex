@@ -1,5 +1,5 @@
 <.header>
-  Listing Currencies
+  Listing Currencies <.icon name="hero-currency-euro " />
   <:actions>
     <.link patch={~p"/currencies/new"}>
       <.button>New Currency</.button>
@@ -38,6 +38,7 @@
     title={@page_title}
     action={@live_action}
     currency={@currency}
+    current_user={@current_user}
     patch={~p"/currencies"}
   />
 </.modal>

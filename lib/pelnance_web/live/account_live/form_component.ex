@@ -9,7 +9,6 @@ defmodule PelnanceWeb.AccountLive.FormComponent do
     <div>
       <.header>
         <%= @title %>
-        <:subtitle>Use this form to manage account records in your database.</:subtitle>
       </.header>
 
       <.simple_form

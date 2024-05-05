@@ -1,6 +1,5 @@
 <.header>
-  Account <%= @account.id %>
-  <:subtitle>This is a account record from your database.</:subtitle>
+  Account <%= @account.name %>
   <:actions>
     <.link patch={~p"/accounts/#{@account}/show/edit"} phx-click={JS.push_focus()}>
       <.button>Edit account</.button>
@@ -15,6 +14,8 @@
 </.list>
 
 <.back navigate={~p"/accounts"}>Back to accounts</.back>
+
+<hr class="my-5">
 
 <.header class="mt-5">
   Transactions
