@@ -22,6 +22,19 @@ defmodule Pelnance.Transactions do
   end
 
   @doc """
+  Returns the list of transactions from account.
+
+  ## Examples
+
+      iex> list_transactions_from_account(account_id)
+      [%Transaction{}, ...]
+
+  """
+  def list_transactions_from_account(account_id) do
+    Repo.all(from t in Transaction, where: t.account_id == ^account_id, order_by: [desc: t.date])
+  end
+
+  @doc """
   Gets a single transaction.
 
   Raises `Ecto.NoResultsError` if the Transaction does not exist.

@@ -2,10 +2,16 @@ defmodule PelnanceWeb.AccountLive.Show do
   use PelnanceWeb, :live_view
 
   alias Pelnance.Accounts
+  alias Pelnance.Transactions
+  alias Pelnance.Currencies
 
   @impl true
-  def mount(_params, _session, socket) do
-    {:ok, socket}
+  def mount(params, _session, socket) do
+    IO.inspect(params)
+    {:ok, socket
+    |> stream(:transactions, Transactions.list_transactions_from_account(params["id"]), at: 0, limit: 2)
+    |> assign(:currencies, Currencies.list_currencies())
+    }
   end
 
   @impl true
