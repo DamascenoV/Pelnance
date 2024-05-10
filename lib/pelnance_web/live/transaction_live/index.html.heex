@@ -1,7 +1,7 @@
 <.header>
   Listing Transactions <.icon name="hero-arrows-right-left" />
   <:actions>
-    <%= for type <- Pelnance.Types.list_types() do %>
+    <%= for type <- Pelnance.Types.list_types(@current_user) do %>
       <.link patch={~p"/transactions/new?type=#{type.id}"}>
         <.button class="text-xs">New <%= type.name %></.button>
       </.link>

@@ -10,7 +10,7 @@ defmodule PelnanceWeb.CategoryLive.Index do
     {:ok,
      socket
      |> stream(:categories, Categories.list_categories(socket.assigns.current_user))
-     |> assign(:types, Types.list_types())}
+     |> assign(:types, Types.list_types(socket.assigns.current_user))}
   end
 
   @impl true

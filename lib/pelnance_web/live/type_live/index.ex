@@ -5,7 +5,7 @@ defmodule PelnanceWeb.TypeLive.Index do
 
   @impl true
   def mount(_params, _session, socket) do
-    {:ok, stream(socket, :types, Types.list_types())}
+    {:ok, stream(socket, :types, Types.list_types(socket.assigns.current_user))}
   end
 
   @impl true

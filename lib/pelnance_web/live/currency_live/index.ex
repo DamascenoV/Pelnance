@@ -6,7 +6,7 @@ defmodule PelnanceWeb.CurrencyLive.Index do
 
   @impl true
   def mount(_params, _session, socket) do
-    {:ok, stream(socket, :currencies, Currencies.list_currencies())}
+    {:ok, stream(socket, :currencies, Currencies.list_currencies(socket.assigns.current_user))}
   end
 
   @impl true

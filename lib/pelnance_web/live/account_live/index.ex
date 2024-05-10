@@ -10,7 +10,7 @@ defmodule PelnanceWeb.AccountLive.Index do
     {:ok,
      socket
      |> stream(:accounts, Accounts.list_accounts(socket.assigns.current_user))
-     |> assign(:currencies, Currencies.list_currencies())
+     |> assign(:currencies, Currencies.list_currencies(socket.assigns.current_user))
      |> assign(:user, socket.assigns.current_user)}
   end
 

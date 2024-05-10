@@ -10,7 +10,7 @@ defmodule PelnanceWeb.AccountLive.Show do
     IO.inspect(params)
     {:ok, socket
     |> stream(:transactions, Transactions.list_transactions_from_account(params["id"]), at: 0, limit: 2)
-    |> assign(:currencies, Currencies.list_currencies())
+    |> assign(:currencies, Currencies.list_currencies(socket.assigns.current_user))
     }
   end
 

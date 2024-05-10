@@ -113,6 +113,9 @@ defmodule PelnanceWeb.Router do
       live "/goals/:id/edit", GoalLive.Index, :edit
       live "/goals/:id", GoalLive.Show, :show
       live "/goals/:id/show/edit", GoalLive.Show, :edit
+
+      # SETTINGS ROUTES
+      live "/settings", SettingLive.Index, :index
     end
   end
 
