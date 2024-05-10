@@ -7,6 +7,7 @@ defmodule Pelnance.Currencies.Currency do
   schema "currencies" do
     field :name, :string
     field :symbol, :string
+    belongs_to :user, Pelnance.Users.User
 
     timestamps(type: :utc_datetime)
   end
@@ -14,7 +15,7 @@ defmodule Pelnance.Currencies.Currency do
   @doc false
   def changeset(currency, attrs) do
     currency
-    |> cast(attrs, [:name, :symbol])
-    |> validate_required([:name, :symbol])
+    |> cast(attrs, [:name, :symbol, :user_id])
+    |> validate_required([:name, :symbol, :user_id])
   end
 end

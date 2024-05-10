@@ -9,7 +9,6 @@ defmodule PelnanceWeb.TypeLive.FormComponent do
     <div>
       <.header>
         <%= @title %>
-        <:subtitle>Use this form to manage type records in your database.</:subtitle>
       </.header>
 
       <.simple_form
@@ -20,6 +19,8 @@ defmodule PelnanceWeb.TypeLive.FormComponent do
         phx-submit="save"
       >
         <.input field={@form[:name]} type="text" label="Name" />
+        <.input field={@form[:icon]} type="text" label="Icon" />
+        <.input field={@form[:subtraction]} type="checkbox" label="Subtraction" />
         <:actions>
           <.button phx-disable-with="Saving...">Save Type</.button>
         </:actions>
@@ -60,6 +61,21 @@ defmodule PelnanceWeb.TypeLive.FormComponent do
         {:noreply,
          socket
          |> put_flash(:info, "Type updated successfully")
+         |> push_patch(to: socket.assigns.patch)}
+
+      {:error, %Ecto.Changeset{} = changeset} ->
+        {:noreply, assign_form(socket, changeset)}
+    end
+  end
+
+  defp save_type(socket, :new, type_params) do
+    case Types.create_type(socket.assigns.current_user, type_params) do
+      {:ok, type} ->
+        notify_parent({:saved, type})
+
+        {:noreply,
+         socket
+         |> put_flash(:info, "Type created successfully")
          |> push_patch(to: socket.assigns.patch)}
 
       {:error, %Ecto.Changeset{} = changeset} ->

@@ -1,7 +1,7 @@
-defmodule PelnanceWeb.CurrencyLive.FormComponent do
+defmodule PelnanceWeb.GoalLive.FormComponent do
   use PelnanceWeb, :live_component
 
-  alias Pelnance.Currencies
+  alias Pelnance.Goals
 
   @impl true
   def render(assigns) do
@@ -9,19 +9,21 @@ defmodule PelnanceWeb.CurrencyLive.FormComponent do
     <div>
       <.header>
         <%= @title %>
+        <:subtitle>Use this form to manage goal records in your database.</:subtitle>
       </.header>
 
       <.simple_form
         for={@form}
-        id="currency-form"
+        id="goal-form"
         phx-target={@myself}
         phx-change="validate"
         phx-submit="save"
       >
         <.input field={@form[:name]} type="text" label="Name" />
-        <.input field={@form[:symbol]} type="text" label="Symbol" />
+        <.input field={@form[:description]} type="text" label="Description" />
+        <.input field={@form[:done]} type="checkbox" label="Done" />
         <:actions>
-          <.button phx-disable-with="Saving...">Save Currency</.button>
+          <.button phx-disable-with="Saving...">Save Goal</.button>
         </:actions>
       </.simple_form>
     </div>
@@ -29,8 +31,8 @@ defmodule PelnanceWeb.CurrencyLive.FormComponent do
   end
 
   @impl true
-  def update(%{currency: currency} = assigns, socket) do
-    changeset = Currencies.change_currency(currency)
+  def update(%{goal: goal} = assigns, socket) do
+    changeset = Goals.change_goal(goal)
 
     {:ok,
      socket
@@ -39,27 +41,27 @@ defmodule PelnanceWeb.CurrencyLive.FormComponent do
   end
 
   @impl true
-  def handle_event("validate", %{"currency" => currency_params}, socket) do
+  def handle_event("validate", %{"goal" => goal_params}, socket) do
     changeset =
-      socket.assigns.currency
-      |> Currencies.change_currency(currency_params)
+      socket.assigns.goal
+      |> Goals.change_goal(goal_params)
       |> Map.put(:action, :validate)
 
     {:noreply, assign_form(socket, changeset)}
   end
 
-  def handle_event("save", %{"currency" => currency_params}, socket) do
-    save_currency(socket, socket.assigns.action, currency_params)
+  def handle_event("save", %{"goal" => goal_params}, socket) do
+    save_goal(socket, socket.assigns.action, goal_params)
   end
 
-  defp save_currency(socket, :edit, currency_params) do
-    case Currencies.update_currency(socket.assigns.currency, currency_params) do
-      {:ok, currency} ->
-        notify_parent({:saved, currency})
+  defp save_goal(socket, :edit, goal_params) do
+    case Goals.update_goal(socket.assigns.goal, goal_params) do
+      {:ok, goal} ->
+        notify_parent({:saved, goal})
 
         {:noreply,
          socket
-         |> put_flash(:info, "Currency updated successfully")
+         |> put_flash(:info, "Goal updated successfully")
          |> push_patch(to: socket.assigns.patch)}
 
       {:error, %Ecto.Changeset{} = changeset} ->
@@ -67,14 +69,14 @@ defmodule PelnanceWeb.CurrencyLive.FormComponent do
     end
   end
 
-  defp save_currency(socket, :new, currency_params) do
-    case Currencies.create_currency(socket.assigns.current_user, currency_params) do
-      {:ok, currency} ->
-        notify_parent({:saved, currency})
+  defp save_goal(socket, :new, goal_params) do
+    case Goals.create_goal(socket.assigns.current_user, goal_params) do
+      {:ok, goal} ->
+        notify_parent({:saved, goal})
 
         {:noreply,
          socket
-         |> put_flash(:info, "Currency created successfully")
+         |> put_flash(:info, "Goal created successfully")
          |> push_patch(to: socket.assigns.patch)}
 
       {:error, %Ecto.Changeset{} = changeset} ->

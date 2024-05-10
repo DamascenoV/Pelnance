@@ -7,6 +7,7 @@ defmodule Pelnance.Types do
   alias Pelnance.Repo
 
   alias Pelnance.Types.Type
+  alias Pelnance.Users.User
 
   @doc """
   Returns the list of types.
@@ -42,15 +43,16 @@ defmodule Pelnance.Types do
 
   ## Examples
 
-      iex> create_type(%{field: value})
+      iex> create_type(%User{}, %{field: value})
       {:ok, %Type{}}
 
-      iex> create_type(%{field: bad_value})
+      iex> create_type(%User{}, %{field: bad_value})
       {:error, %Ecto.Changeset{}}
 
   """
-  def create_type(attrs \\ %{}) do
-    %Type{}
+  def create_type(user = %User{}, attrs \\ %{}) do
+    user
+    |> Ecto.build_assoc(:types)
     |> Type.changeset(attrs)
     |> Repo.insert()
   end

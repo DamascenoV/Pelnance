@@ -19,12 +19,12 @@ Ready to run in production? Please [check our deployment guides](https://hexdocs
 
 ### TO DO
 
-  [] - Tests
-  [] - Improve layout
-  [] - When creating a transaction change the difference in accounts balance
-  [] - In the page of the Account show the transactions
-  [] - Dashboard
-  [] - Goals
-  [] - Transfer amount from one account to another
-  [] - Recurrent transactions
-  [] - Settings page
+ * [] - Tests
+ * [] - Improve layout
+ * [] - When creating a transaction change the difference in accounts balance
+ * [] - In the page of the Account show the transactions
+ * [] - Dashboard
+ * [] - Goals
+ * [] - Transfer amount from one account to another
+ * [] - Recurrent transactions
+ * [] - Settings page

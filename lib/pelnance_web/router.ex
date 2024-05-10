@@ -81,6 +81,7 @@ defmodule PelnanceWeb.Router do
 
       # TYPES ROUTES
       live "/types", TypeLive.Index, :index
+      live "/types/new", TypeLive.Index, :new
       live "/types/:id/edit", TypeLive.Index, :edit
       live "/types/:id", TypeLive.Show, :show
       live "/types/:id/show/edit", TypeLive.Show, :edit
@@ -105,6 +106,13 @@ defmodule PelnanceWeb.Router do
       live "/transactions/:id/edit", TransactionLive.Index, :edit
       live "/transactions/:id", TransactionLive.Show, :show
       live "/transactions/:id/show/edit", TransactionLive.Show, :edit
+
+      # GOALS ROUTES
+      live "/goals", GoalLive.Index, :index
+      live "/goals/new", GoalLive.Index, :new
+      live "/goals/:id/edit", GoalLive.Index, :edit
+      live "/goals/:id", GoalLive.Show, :show
+      live "/goals/:id/show/edit", GoalLive.Show, :edit
     end
   end
 

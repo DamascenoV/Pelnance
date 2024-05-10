@@ -9,6 +9,7 @@ defmodule Pelnance.Accounts.Account do
     field :balance, :decimal
     belongs_to :currency, Pelnance.Currencies.Currency
     belongs_to :user, Pelnance.Users.User
+    has_many :transactions, Pelnance.Transactions.Transaction
 
     timestamps(type: :utc_datetime)
   end

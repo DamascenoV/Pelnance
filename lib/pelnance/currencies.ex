@@ -7,6 +7,7 @@ defmodule Pelnance.Currencies do
   alias Pelnance.Repo
 
   alias Pelnance.Currencies.Currency
+  alias Pelnance.Users.User
 
   @doc """
   Returns the list of currencies.
@@ -42,15 +43,16 @@ defmodule Pelnance.Currencies do
 
   ## Examples
 
-      iex> create_currency(%{field: value})
+      iex> create_currency(%User{}, %{field: value})
       {:ok, %Currency{}}
 
-      iex> create_currency(%{field: bad_value})
+      iex> create_currency(%User{}, %{field: bad_value})
       {:error, %Ecto.Changeset{}}
 
   """
-  def create_currency(attrs \\ %{}) do
-    %Currency{}
+  def create_currency(user = %User{}, attrs \\ %{}) do
+    user
+    |> Ecto.build_assoc(:currencies)
     |> Currency.changeset(attrs)
     |> Repo.insert()
   end

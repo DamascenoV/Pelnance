@@ -7,6 +7,7 @@ defmodule Pelnance.Accounts do
   alias Pelnance.Repo
 
   alias Pelnance.Accounts.Account
+  alias Pelnance.Transactions.Transaction
   alias Pelnance.Users.User
 
   @doc """
@@ -102,5 +103,31 @@ defmodule Pelnance.Accounts do
   """
   def change_account(%Account{} = account, attrs \\ %{}) do
     Account.changeset(account, attrs)
+  end
+
+  def get_balance_from_transactions!(account = %Account{}) do
+    transactions = load_transactions(account.id)
+    {expenses, income} = calculate_expenses_and_income(transactions)
+
+    calculate_total(account.balance, expenses, income)
+    |> :erlang.float_to_binary(decimals: 2)
+  end
+
+  defp load_transactions(account_id) do
+    Repo.all(from t in Transaction, where: t.account_id == ^account_id)
+    |> Repo.preload(:type)
+  end
+
+  defp calculate_expenses_and_income(transactions) do
+    Enum.reduce(transactions, {0, 0}, fn t, {acc_expenses, acc_income} ->
+      case t.type.subtraction do
+        false -> {acc_expenses, acc_income + Decimal.to_float(t.amount)}
+        true -> {acc_expenses - Decimal.to_float(t.amount), acc_income}
+      end
+    end)
+  end
+
+  defp calculate_total(balance, expenses, income) do
+    Decimal.to_float(balance) + income + expenses
   end
 end
