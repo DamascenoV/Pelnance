@@ -12,6 +12,7 @@ defmodule Pelnance.Users.User do
     has_many :types, Pelnance.Types.Type
     has_many :accounts, Pelnance.Accounts.Account
     has_many :categories, Pelnance.Categories.Category
+    has_many :goals, Pelnance.Goals.Goal
 
     timestamps(type: :utc_datetime)
   end

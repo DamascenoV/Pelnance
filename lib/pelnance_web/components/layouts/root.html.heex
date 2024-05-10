@@ -68,7 +68,10 @@
           </button>
         </div>
         <nav>
-          <.link href={~p"/dashboard"} class="flex items-center p-2 rounded-lg hover:bg-gray-200 py-2">
+          <.link
+            href={~p"/dashboard"}
+            class="flex items-center p-2 rounded-lg hover:bg-gray-200 py-2"
+          >
             <.icon name="hero-home" class="w-6 h-6 mr-2" /> Dashboard
           </.link>
           <.link
@@ -82,6 +85,9 @@
             class="flex items-center p-2 rounded-lg hover:bg-gray-200 py-2"
           >
             <.icon name="hero-arrows-right-left" class="w-6 h-6 mr-2" /> Transactions
+          </.link>
+          <.link href={~p"/goals"} class="flex items-center p-2 rounded-lg hover:bg-gray-200 py-2">
+            <.icon name="hero-clipboard-document-check" class="w-6 h-6 mr-2" /> Goals
           </.link>
           <.link href={~p"/types"} class="flex items-center p-2 rounded-lg hover:bg-gray-200 py-2">
             <.icon name="hero-banknotes" class="w-6 h-6 mr-2" /> Types
