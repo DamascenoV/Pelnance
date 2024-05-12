@@ -8,8 +8,8 @@
 </.header>
 
 <.table id="currencies" rows={@streams.currencies}>
-  <:col :let={{_id, currency}} label="Name"><%= currency.name %></:col>
-  <:col :let={{_id, currency}} label="Symbol"><%= currency.symbol %></:col>
+  <:col :let={{_id, currency}} label={gettext("Name")}><%= currency.name %></:col>
+  <:col :let={{_id, currency}} label={gettext("Symbol")}><%= currency.symbol %></:col>
   <:action :let={{id, currency}}>
     <.link navigate={~p"/currencies/#{currency}"}>
       <.icon name="hero-eye" />

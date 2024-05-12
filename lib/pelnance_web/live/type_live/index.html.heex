@@ -8,9 +8,11 @@
 </.header>
 
 <.table id="types" rows={@streams.types}>
-  <:col :let={{_id, type}} label="Name"><%= type.name %></:col>
-  <:col :let={{_id, type}} label="Icon"><%= type.icon %> - <.icon name={type.icon} /></:col>
-  <:col :let={{_id, type}} label="Subtraction"><%= type.subtraction %></:col>
+  <:col :let={{_id, type}} label={gettext("Name")}><%= type.name %></:col>
+  <:col :let={{_id, type}} label={gettext("Icon")}>
+    <%= type.icon %> - <.icon name={type.icon} />
+  </:col>
+  <:col :let={{_id, type}} label={gettext("Subtraction")}><%= type.subtraction %></:col>
   <:action :let={{id, type}}>
     <.link navigate={~p"/types/#{type}"}>
       <.icon name="hero-eye" />

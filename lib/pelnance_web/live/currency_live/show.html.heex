@@ -9,13 +9,18 @@
 </.header>
 
 <.list>
-  <:item title="Name"><%= @currency.name %></:item>
-  <:item title="Symbol"><%= @currency.symbol %></:item>
+  <:item title={gettext("Name")}><%= @currency.name %></:item>
+  <:item title={gettext("Symbol")}><%= @currency.symbol %></:item>
 </.list>
 
 <.back navigate={~p"/currencies"}>Back to currencies</.back>
 
-<.modal :if={@live_action == :edit} id="currency-modal" show on_cancel={JS.patch(~p"/currencies/#{@currency}")}>
+<.modal
+  :if={@live_action == :edit}
+  id="currency-modal"
+  show
+  on_cancel={JS.patch(~p"/currencies/#{@currency}")}
+>
   <.live_component
     module={PelnanceWeb.CurrencyLive.FormComponent}
     id={@currency.id}

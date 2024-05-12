@@ -8,9 +8,9 @@
 </.header>
 
 <.table id="accounts" rows={@streams.accounts}>
-  <:col :let={{_id, account}} label="Name"><%= account.name %></:col>
-  <:col :let={{_id, account}} label="Initial Balance"><%= account.balance %></:col>
-  <:col :let={{_id, account}} label="Balance">
+  <:col :let={{_id, account}} label={gettext("Name")}><%= account.name %></:col>
+  <:col :let={{_id, account}} label={gettext("Initial Balance")}><%= account.balance %></:col>
+  <:col :let={{_id, account}} label={gettext("Balance")}>
     <%= if Accounts.get_balance_from_transactions!(account) >= account.balance do %>
       <.icon name="hero-arrow-trending-up" class="text-green-700" />
     <% else %>
@@ -20,7 +20,7 @@
       account.currency_id
     ).symbol %>
   </:col>
-  <:col :let={{_id, account}} label="Currency">
+  <:col :let={{_id, account}} label={gettext("Currency")}>
     <%= Pelnance.Currencies.get_currency!(account.currency_id).name %>
   </:col>
   <:action :let={{id, account}}>

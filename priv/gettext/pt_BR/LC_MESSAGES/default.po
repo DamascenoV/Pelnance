@@ -1,0 +1,128 @@
+## "msgid"s in this file come from POT (.pot) files.
+###
+### Do not add, change, or remove "msgid"s manually here as
+### they're tied to the ones in the corresponding POT file
+### (with the same domain).
+###
+### Use "mix gettext.extract --merge" or "mix gettext.merge"
+### to merge POT files into PO files.
+msgid ""
+msgstr ""
+"Language: pt_BR\n"
+"Plural-Forms: nplurals=2; plural=(n>1);\n"
+
+#: lib/pelnance_web/components/core_components.ex:487
+#, elixir-autogen, elixir-format
+msgid "Actions"
+msgstr "Ações"
+
+#: lib/pelnance_web/components/core_components.ex:164
+#, elixir-autogen, elixir-format
+msgid "Attempting to reconnect"
+msgstr "Tentando reconectar"
+
+#: lib/pelnance_web/components/core_components.ex:155
+#, elixir-autogen, elixir-format
+msgid "Error!"
+msgstr "Erro!"
+
+#: lib/pelnance_web/components/core_components.ex:176
+#, elixir-autogen, elixir-format
+msgid "Hang in there while we get back on track"
+msgstr "Vamos aguardar enquanto recuperamos o controle"
+
+#: lib/pelnance_web/live/account_live/index.html.heex:11
+#: lib/pelnance_web/live/category_live/index.html.heex:11
+#: lib/pelnance_web/live/currency_live/index.html.heex:11
+#: lib/pelnance_web/live/currency_live/show.html.heex:12
+#: lib/pelnance_web/live/goal_live/index.html.heex:11
+#: lib/pelnance_web/live/goal_live/show.html.heex:12
+#: lib/pelnance_web/live/type_live/index.html.heex:11
+#, elixir-autogen, elixir-format
+msgid "Name"
+msgstr "Nome"
+
+#: lib/pelnance_web/components/core_components.ex:171
+#, elixir-autogen, elixir-format
+msgid "Something went wrong!"
+msgstr "Algo deu errado!"
+
+#: lib/pelnance_web/components/core_components.ex:154
+#, elixir-autogen, elixir-format
+msgid "Success!"
+msgstr "Sucesso!"
+
+#: lib/pelnance_web/components/core_components.ex:159
+#, elixir-autogen, elixir-format
+msgid "We can't find the internet"
+msgstr "Não conseguimos encontrar a internet"
+
+#: lib/pelnance_web/components/core_components.ex:80
+#: lib/pelnance_web/components/core_components.ex:134
+#, elixir-autogen, elixir-format
+msgid "close"
+msgstr "fechar"
+
+#: lib/pelnance_web/live/transaction_live/index.html.heex:23
+#, elixir-autogen, elixir-format
+msgid "Amount"
+msgstr "Quantidade"
+
+#: lib/pelnance_web/live/account_live/index.html.heex:13
+#, elixir-autogen, elixir-format
+msgid "Balance"
+msgstr "Saldo"
+
+#: lib/pelnance_web/live/transaction_live/index.html.heex:17
+#, elixir-autogen, elixir-format
+msgid "Category"
+msgstr "Categoria"
+
+#: lib/pelnance_web/live/account_live/index.html.heex:23
+#, elixir-autogen, elixir-format
+msgid "Currency"
+msgstr "Moeda"
+
+#: lib/pelnance_web/live/transaction_live/index.html.heex:24
+#, elixir-autogen, elixir-format
+msgid "Date"
+msgstr "Data"
+
+#: lib/pelnance_web/live/goal_live/index.html.heex:12
+#: lib/pelnance_web/live/transaction_live/index.html.heex:20
+#, elixir-autogen, elixir-format
+msgid "Description"
+msgstr "Descricão"
+
+#: lib/pelnance_web/live/goal_live/index.html.heex:13
+#: lib/pelnance_web/live/goal_live/show.html.heex:13
+#, elixir-autogen, elixir-format
+msgid "Done"
+msgstr "Concluído"
+
+#: lib/pelnance_web/live/type_live/index.html.heex:12
+#, elixir-autogen, elixir-format
+msgid "Icon"
+msgstr "Icone"
+
+#: lib/pelnance_web/live/account_live/index.html.heex:12
+#, elixir-autogen, elixir-format
+msgid "Initial Balance"
+msgstr "Saldo Inicial"
+
+#: lib/pelnance_web/live/type_live/index.html.heex:15
+#, elixir-autogen, elixir-format
+msgid "Subtraction"
+msgstr "Subtração"
+
+#: lib/pelnance_web/live/currency_live/index.html.heex:12
+#: lib/pelnance_web/live/currency_live/show.html.heex:13
+#, elixir-autogen, elixir-format
+msgid "Symbol"
+msgstr "Simbolo"
+
+#: lib/pelnance_web/live/category_live/index.html.heex:12
+#: lib/pelnance_web/live/transaction_live/index.html.heex:13
+#, elixir-autogen, elixir-format
+msgid "Type"
+msgstr "Tipo"

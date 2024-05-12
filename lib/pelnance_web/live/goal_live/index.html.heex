@@ -7,26 +7,28 @@
   </:actions>
 </.header>
 
-<.table
-  id="goals"
-  rows={@streams.goals}
-  row_click={fn {_id, goal} -> JS.navigate(~p"/goals/#{goal}") end}
->
-  <:col :let={{_id, goal}} label="Name"><%= goal.name %></:col>
-  <:col :let={{_id, goal}} label="Description"><%= goal.description %></:col>
-  <:col :let={{_id, goal}} label="Done"><%= goal.done %></:col>
-  <:action :let={{_id, goal}}>
-    <div class="sr-only">
-      <.link navigate={~p"/goals/#{goal}"}>Show</.link>
-    </div>
-    <.link patch={~p"/goals/#{goal}/edit"}>Edit</.link>
-  </:action>
+<.table id="goals" rows={@streams.goals}>
+  <:col :let={{_id, goal}} label={gettext("Name")}><%= goal.name %></:col>
+  <:col :let={{_id, goal}} label= {gettext("Description")}><%= goal.description %></:col>
+  <:col :let={{_id, goal}} label={gettext("Done")}>
+    <%= if goal.done do %>
+      <div class="h-2.5 w-2.5 rounded-full bg-green-500 me-2"></div>
+    <% else %>
+      <div class="h-2.5 w-2.5 rounded-full bg-red-500 me-2"></div>
+    <% end %>
+  </:col>
   <:action :let={{id, goal}}>
+    <.link navigate={~p"/goals/#{goal}"}>
+      <.icon name="hero-eye" />
+    </.link>
+    <.link patch={~p"/goals/#{goal}/edit"}>
+      <.icon name="hero-pencil-square" />
+    </.link>
     <.link
       phx-click={JS.push("delete", value: %{id: goal.id}) |> hide("##{id}")}
       data-confirm="Are you sure?"
     >
-      Delete
+      <.icon name="hero-trash" class="text-red-700" />
     </.link>
   </:action>
 </.table>

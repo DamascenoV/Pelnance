@@ -9,8 +9,8 @@
 </.header>
 
 <.list>
-  <:item title="Name"><%= @goal.name %></:item>
-  <:item title="Done"><%= @goal.done %></:item>
+  <:item title={gettext("Name")}><%= @goal.name %></:item>
+  <:item title={gettext("Done")}><%= @goal.done %></:item>
 </.list>
 
 <.back navigate={~p"/goals"}>Back to goals</.back>

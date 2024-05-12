@@ -8,8 +8,8 @@
 </.header>
 
 <.table id="categories" rows={@streams.categories}>
-  <:col :let={{_id, category}} label="Name"><%= category.name %></:col>
-  <:col :let={{_id, category}} label="Type">
+  <:col :let={{_id, category}} label={gettext("Name")}><%= category.name %></:col>
+  <:col :let={{_id, category}} label={gettext("Type")}>
     <%= Pelnance.Types.get_type!(category.type_id).name %>
   </:col>
   <:action :let={{id, category}}>
