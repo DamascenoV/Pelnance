@@ -8,6 +8,7 @@ defmodule Pelnance.Users.User do
     field :password, :string, virtual: true, redact: true
     field :hashed_password, :string, redact: true
     field :confirmed_at, :naive_datetime
+    field :locale, :string, default: "en"
     has_many :currencies, Pelnance.Currencies.Currency
     has_many :types, Pelnance.Types.Type
     has_many :accounts, Pelnance.Accounts.Account
@@ -160,5 +161,11 @@ defmodule Pelnance.Users.User do
     else
       add_error(changeset, :current_password, "is not valid")
     end
+  end
+
+  def locale_changeset(user, attrs) do
+    user
+    |> cast(attrs, [:locale])
+    |> validate_inclusion(:locale, Gettext.known_locales(PelnanceWeb.Gettext))
   end
 end

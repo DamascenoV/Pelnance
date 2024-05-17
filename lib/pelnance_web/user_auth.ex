@@ -152,6 +152,9 @@ defmodule PelnanceWeb.UserAuth do
     socket = mount_current_user(socket, session)
 
     if socket.assigns.current_user do
+      PelnanceWeb.Gettext
+      |> Gettext.put_locale(socket.assigns.current_user.locale)
+
       {:cont, socket}
     else
       socket =

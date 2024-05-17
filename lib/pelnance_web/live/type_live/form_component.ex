@@ -9,6 +9,9 @@ defmodule PelnanceWeb.TypeLive.FormComponent do
     <div>
       <.header>
         <%= @title %>
+        <:subtitle>
+          You can find icons here: <a href="https://heroicons.com/" target="_blank">Heroicons</a>.
+        </:subtitle>
       </.header>
 
       <.simple_form
@@ -19,7 +22,7 @@ defmodule PelnanceWeb.TypeLive.FormComponent do
         phx-submit="save"
       >
         <.input field={@form[:name]} type="text" label="Name" />
-        <.input field={@form[:icon]} type="text" label="Icon" />
+        <.input field={@form[:icon]} type="text" label="Icon" placeholder="hero-arrow-path" />
         <.input field={@form[:subtraction]} type="checkbox" label="Subtraction" />
         <:actions>
           <.button phx-disable-with="Saving...">Save Type</.button>
