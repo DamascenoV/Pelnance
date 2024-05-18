@@ -16,6 +16,6 @@ defmodule PelnanceWeb.CategoryLive.Show do
      |> assign(:category, Categories.get_category!(id))}
   end
 
-  defp page_title(:show), do: "Show Category"
-  defp page_title(:edit), do: "Edit Category"
+  defp page_title(:show), do: gettext("Show Category")
+  defp page_title(:edit), do: gettext("Edit Category")
 end

@@ -34,7 +34,9 @@ msgstr "Vamos aguardar enquanto recuperamos o controle"
 #: lib/pelnance_web/live/account_live/form_component.ex:21
 #: lib/pelnance_web/live/account_live/index.html.heex:11
 #: lib/pelnance_web/live/account_live/show.html.heex:11
+#: lib/pelnance_web/live/category_live/form_component.ex:21
 #: lib/pelnance_web/live/category_live/index.html.heex:11
+#: lib/pelnance_web/live/category_live/show.html.heex:11
 #: lib/pelnance_web/live/currency_live/index.html.heex:11
 #: lib/pelnance_web/live/currency_live/show.html.heex:12
 #: lib/pelnance_web/live/goal_live/index.html.heex:11
@@ -79,6 +81,7 @@ msgid "Balance"
 msgstr "Saldo"
 
 #: lib/pelnance_web/live/account_live/show.html.heex:31
+#: lib/pelnance_web/live/category_live/show.html.heex:2
 #: lib/pelnance_web/live/transaction_live/index.html.heex:17
 #, elixir-autogen, elixir-format
 msgid "Category"
@@ -132,6 +135,7 @@ msgid "Symbol"
 msgstr "Simbolo"
 
 #: lib/pelnance_web/live/account_live/show.html.heex:27
+#: lib/pelnance_web/live/category_live/form_component.ex:25
 #: lib/pelnance_web/live/category_live/index.html.heex:12
 #: lib/pelnance_web/live/transaction_live/index.html.heex:13
 #, elixir-autogen, elixir-format
@@ -146,7 +150,7 @@ msgstr "Contas"
 #: lib/pelnance_web/components/layouts/root.html.heex:99
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Categories"
-msgstr "Categoria"
+msgstr "Categorias"
 
 #: lib/pelnance_web/components/layouts/root.html.heex:105
 #, elixir-autogen, elixir-format, fuzzy
@@ -225,3 +229,41 @@ msgstr "Salvar Conta"
 #, elixir-autogen, elixir-format
 msgid "Show Account"
 msgstr "Exibir Conta"
+
+#: lib/pelnance_web/live/category_live/form_component.ex:82
+#, elixir-autogen, elixir-format
+msgid "Category created successfully"
+msgstr "Categoria criada com sucesso"
+
+#: lib/pelnance_web/live/category_live/form_component.ex:67
+#, elixir-autogen, elixir-format
+msgid "Category updated successfully"
+msgstr "Categoria atualizada com sucesso"
+
+#: lib/pelnance_web/live/category_live/index.ex:23
+#: lib/pelnance_web/live/category_live/show.ex:20
+#, elixir-autogen, elixir-format, fuzzy
+msgid "Edit Category"
+msgstr "Editar Categoria"
+
+#: lib/pelnance_web/live/category_live/index.ex:35
+#: lib/pelnance_web/live/category_live/index.html.heex:2
+#, elixir-autogen, elixir-format
+msgid "Listing Categories"
+msgstr "Lista Categorias"
+
+#: lib/pelnance_web/live/category_live/index.ex:29
+#: lib/pelnance_web/live/category_live/index.html.heex:5
+#, elixir-autogen, elixir-format, fuzzy
+msgid "New Category"
+msgstr "Nova Categoria"
+
+#: lib/pelnance_web/live/category_live/form_component.ex:29
+#, elixir-autogen, elixir-format
+msgid "Save Category"
+msgstr "Salvar Categoria"
+
+#: lib/pelnance_web/live/category_live/show.ex:19
+#, elixir-autogen, elixir-format, fuzzy
+msgid "Show Category"
+msgstr "Exibir Categoria"

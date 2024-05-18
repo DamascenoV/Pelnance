@@ -20,19 +20,19 @@ defmodule PelnanceWeb.CategoryLive.Index do
 
   defp apply_action(socket, :edit, %{"id" => id}) do
     socket
-    |> assign(:page_title, "Edit Category")
+    |> assign(:page_title, gettext("Edit Category"))
     |> assign(:category, Categories.get_category!(id))
   end
 
   defp apply_action(socket, :new, _params) do
     socket
-    |> assign(:page_title, "New Category")
+    |> assign(:page_title, gettext("New Category"))
     |> assign(:category, %Category{})
   end
 
   defp apply_action(socket, :index, _params) do
     socket
-    |> assign(:page_title, "Listing Categories")
+    |> assign(:page_title, gettext("Listing Categories"))
     |> assign(:category, nil)
   end
 
