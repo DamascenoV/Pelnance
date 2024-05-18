@@ -1,8 +1,8 @@
 <.header>
-  Listing Currencies <.icon name="hero-currency-euro " />
+  <%= gettext("Listing Currencies") %> <.icon name="hero-currency-euro " />
   <:actions>
     <.link patch={~p"/currencies/new"}>
-      <.button>New Currency</.button>
+      <.button><%= gettext("New Currency") %></.button>
     </.link>
   </:actions>
 </.header>

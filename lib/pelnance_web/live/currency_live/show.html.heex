@@ -1,9 +1,8 @@
 <.header>
-  Currency <%= @currency.id %>
-  <:subtitle>This is a currency record from your database.</:subtitle>
+  <%= gettext("Currency") %> Currency <%= @currency.id %>
   <:actions>
     <.link patch={~p"/currencies/#{@currency}/show/edit"} phx-click={JS.push_focus()}>
-      <.button>Edit currency</.button>
+      <.button><%= "Edit currency" %></.button>
     </.link>
   </:actions>
 </.header>
@@ -13,7 +12,7 @@
   <:item title={gettext("Symbol")}><%= @currency.symbol %></:item>
 </.list>
 
-<.back navigate={~p"/currencies"}>Back to currencies</.back>
+<.back navigate={~p"/currencies"}><%= gettext("Back to currencies") %></.back>
 
 <.modal
   :if={@live_action == :edit}

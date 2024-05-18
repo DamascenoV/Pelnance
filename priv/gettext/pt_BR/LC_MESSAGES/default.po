@@ -37,8 +37,9 @@ msgstr "Vamos aguardar enquanto recuperamos o controle"
 #: lib/pelnance_web/live/category_live/form_component.ex:21
 #: lib/pelnance_web/live/category_live/index.html.heex:11
 #: lib/pelnance_web/live/category_live/show.html.heex:11
+#: lib/pelnance_web/live/currency_live/form_component.ex:21
 #: lib/pelnance_web/live/currency_live/index.html.heex:11
-#: lib/pelnance_web/live/currency_live/show.html.heex:12
+#: lib/pelnance_web/live/currency_live/show.html.heex:11
 #: lib/pelnance_web/live/goal_live/index.html.heex:11
 #: lib/pelnance_web/live/goal_live/show.html.heex:12
 #: lib/pelnance_web/live/type_live/index.html.heex:11
@@ -90,6 +91,7 @@ msgstr "Categoria"
 #: lib/pelnance_web/live/account_live/form_component.ex:26
 #: lib/pelnance_web/live/account_live/index.html.heex:23
 #: lib/pelnance_web/live/account_live/show.html.heex:13
+#: lib/pelnance_web/live/currency_live/show.html.heex:2
 #, elixir-autogen, elixir-format
 msgid "Currency"
 msgstr "Moeda"
@@ -128,8 +130,9 @@ msgstr "Saldo Inicial"
 msgid "Subtraction"
 msgstr "Subtração"
 
+#: lib/pelnance_web/live/currency_live/form_component.ex:22
 #: lib/pelnance_web/live/currency_live/index.html.heex:12
-#: lib/pelnance_web/live/currency_live/show.html.heex:13
+#: lib/pelnance_web/live/currency_live/show.html.heex:12
 #, elixir-autogen, elixir-format
 msgid "Symbol"
 msgstr "Simbolo"
@@ -267,3 +270,46 @@ msgstr "Salvar Categoria"
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Show Category"
 msgstr "Exibir Categoria"
+
+#: lib/pelnance_web/live/currency_live/show.html.heex:15
+#, elixir-autogen, elixir-format, fuzzy
+msgid "Back to currencies"
+msgstr "Voltar para moedas"
+
+#: lib/pelnance_web/live/currency_live/form_component.ex:77
+#, elixir-autogen, elixir-format, fuzzy
+msgid "Currency created successfully"
+msgstr "Moeda criada com sucesso"
+
+#: lib/pelnance_web/live/currency_live/form_component.ex:62
+#, elixir-autogen, elixir-format, fuzzy
+msgid "Currency updated successfully"
+msgstr "Moeda atualizada com sucesso"
+
+#: lib/pelnance_web/live/currency_live/index.ex:19
+#: lib/pelnance_web/live/currency_live/show.ex:20
+#, elixir-autogen, elixir-format, fuzzy
+msgid "Edit Currency"
+msgstr "Editar Moeda"
+
+#: lib/pelnance_web/live/currency_live/index.ex:32
+#: lib/pelnance_web/live/currency_live/index.html.heex:2
+#, elixir-autogen, elixir-format, fuzzy
+msgid "Listing Currencies"
+msgstr "Lista Moedas"
+
+#: lib/pelnance_web/live/currency_live/index.ex:25
+#: lib/pelnance_web/live/currency_live/index.html.heex:5
+#, elixir-autogen, elixir-format, fuzzy
+msgid "New Currency"
+msgstr "Nova Moeda"
+
+#: lib/pelnance_web/live/currency_live/form_component.ex:24
+#, elixir-autogen, elixir-format, fuzzy
+msgid "Save Currency"
+msgstr "Salvar Moeda"
+
+#: lib/pelnance_web/live/currency_live/show.ex:19
+#, elixir-autogen, elixir-format, fuzzy
+msgid "Show Currency"
+msgstr "Exibir Moeda"

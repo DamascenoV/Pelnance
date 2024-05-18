@@ -18,10 +18,10 @@ defmodule PelnanceWeb.CurrencyLive.FormComponent do
         phx-change="validate"
         phx-submit="save"
       >
-        <.input field={@form[:name]} type="text" label="Name" />
-        <.input field={@form[:symbol]} type="text" label="Symbol" />
+        <.input field={@form[:name]} type="text" label={gettext("Name")} />
+        <.input field={@form[:symbol]} type="text" label={gettext("Symbol")} />
         <:actions>
-          <.button phx-disable-with="Saving...">Save Currency</.button>
+          <.button phx-disable-with="Saving..."><%= gettext("Save Currency") %></.button>
         </:actions>
       </.simple_form>
     </div>
@@ -59,7 +59,7 @@ defmodule PelnanceWeb.CurrencyLive.FormComponent do
 
         {:noreply,
          socket
-         |> put_flash(:info, "Currency updated successfully")
+         |> put_flash(:info, gettext("Currency updated successfully"))
          |> push_patch(to: socket.assigns.patch)}
 
       {:error, %Ecto.Changeset{} = changeset} ->
@@ -74,7 +74,7 @@ defmodule PelnanceWeb.CurrencyLive.FormComponent do
 
         {:noreply,
          socket
-         |> put_flash(:info, "Currency created successfully")
+         |> put_flash(:info, gettext("Currency created successfully"))
          |> push_patch(to: socket.assigns.patch)}
 
       {:error, %Ecto.Changeset{} = changeset} ->

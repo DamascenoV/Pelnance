@@ -16,6 +16,6 @@ defmodule PelnanceWeb.CurrencyLive.Show do
      |> assign(:currency, Currencies.get_currency!(id))}
   end
 
-  defp page_title(:show), do: "Show Currency"
-  defp page_title(:edit), do: "Edit Currency"
+  defp page_title(:show), do: gettext("Show Currency")
+  defp page_title(:edit), do: gettext("Edit Currency")
 end

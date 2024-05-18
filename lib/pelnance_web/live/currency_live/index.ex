@@ -16,20 +16,20 @@ defmodule PelnanceWeb.CurrencyLive.Index do
 
   defp apply_action(socket, :edit, %{"id" => id}) do
     socket
-    |> assign(:page_title, "Edit Currency")
+    |> assign(:page_title, gettext("Edit Currency"))
     |> assign(:currency, Currencies.get_currency!(id))
   end
 
   defp apply_action(socket, :new, _params) do
     socket
-    |> assign(:page_title, "New Currency")
+    |> assign(:page_title, gettext("New Currency"))
     |> assign(:currency, %Currency{})
     |> assign(:current_user, socket.assigns.current_user)
   end
 
   defp apply_action(socket, :index, _params) do
     socket
-    |> assign(:page_title, "Listing Currencies")
+    |> assign(:page_title, gettext("Listing Currencies"))
     |> assign(:currency, nil)
   end
 
