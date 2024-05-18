@@ -70,7 +70,9 @@ msgid "close"
 msgstr "fechar"
 
 #: lib/pelnance_web/live/account_live/show.html.heex:37
+#: lib/pelnance_web/live/transaction_live/form_component.ex:22
 #: lib/pelnance_web/live/transaction_live/index.html.heex:23
+#: lib/pelnance_web/live/transaction_live/show.html.heex:12
 #, elixir-autogen, elixir-format
 msgid "Amount"
 msgstr "Quantidade"
@@ -98,7 +100,9 @@ msgid "Currency"
 msgstr "Moeda"
 
 #: lib/pelnance_web/live/account_live/show.html.heex:38
+#: lib/pelnance_web/live/transaction_live/form_component.ex:21
 #: lib/pelnance_web/live/transaction_live/index.html.heex:24
+#: lib/pelnance_web/live/transaction_live/show.html.heex:11
 #, elixir-autogen, elixir-format
 msgid "Date"
 msgstr "Data"
@@ -106,7 +110,9 @@ msgstr "Data"
 #: lib/pelnance_web/live/account_live/show.html.heex:34
 #: lib/pelnance_web/live/goal_live/form_component.ex:22
 #: lib/pelnance_web/live/goal_live/index.html.heex:12
+#: lib/pelnance_web/live/transaction_live/form_component.ex:23
 #: lib/pelnance_web/live/transaction_live/index.html.heex:20
+#: lib/pelnance_web/live/transaction_live/show.html.heex:13
 #, elixir-autogen, elixir-format
 msgid "Description"
 msgstr "Descricão"
@@ -154,6 +160,7 @@ msgid "Accounts"
 msgstr "Contas"
 
 #: lib/pelnance_web/components/layouts/root.html.heex:99
+#: lib/pelnance_web/live/transaction_live/form_component.ex:28
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Categories"
 msgstr "Categorias"
@@ -189,6 +196,7 @@ msgid "Types"
 msgstr "Tipos"
 
 #: lib/pelnance_web/live/account_live/show.html.heex:2
+#: lib/pelnance_web/live/transaction_live/form_component.ex:35
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Account"
 msgstr "Quantidade"
@@ -369,3 +377,59 @@ msgstr "Salvar Objectivo"
 #, elixir-autogen, elixir-format
 msgid "Show Goal"
 msgstr "Exibir Objectivo"
+
+#: lib/pelnance_web/live/transaction_live/show.html.heex:16
+#, elixir-autogen, elixir-format, fuzzy
+msgid "Back to transactions"
+msgstr "Voltar para transições"
+
+#: lib/pelnance_web/live/transaction_live/index.ex:25
+#: lib/pelnance_web/live/transaction_live/show.ex:20
+#, elixir-autogen, elixir-format, fuzzy
+msgid "Edit Transaction"
+msgstr "Editar Transições"
+
+#: lib/pelnance_web/live/transaction_live/show.html.heex:5
+#, elixir-autogen, elixir-format
+msgid "Edit transaction"
+msgstr "Editar transições"
+
+#: lib/pelnance_web/live/transaction_live/index.ex:51
+#, elixir-autogen, elixir-format
+msgid "Listing Transactions"
+msgstr "Lista Transições"
+
+#: lib/pelnance_web/live/transaction_live/index.html.heex:6
+#, elixir-autogen, elixir-format
+msgid "New"
+msgstr "Nova"
+
+#: lib/pelnance_web/live/transaction_live/index.ex:38
+#, elixir-autogen, elixir-format, fuzzy
+msgid "New Transaction"
+msgstr "Nova Transições"
+
+#: lib/pelnance_web/live/transaction_live/form_component.ex:39
+#, elixir-autogen, elixir-format, fuzzy
+msgid "Save Transaction"
+msgstr "Salvar Transições"
+
+#: lib/pelnance_web/live/transaction_live/show.ex:19
+#, elixir-autogen, elixir-format, fuzzy
+msgid "Show Transaction"
+msgstr "Exibir Transições"
+
+#: lib/pelnance_web/live/transaction_live/show.html.heex:2
+#, elixir-autogen, elixir-format, fuzzy
+msgid "Transaction"
+msgstr "Transições"
+
+#: lib/pelnance_web/live/transaction_live/form_component.ex:92
+#, elixir-autogen, elixir-format, fuzzy
+msgid "Transaction created successfully"
+msgstr "Transição criada com sucesso"
+
+#: lib/pelnance_web/live/transaction_live/form_component.ex:77
+#, elixir-autogen, elixir-format, fuzzy
+msgid "Transaction updated successfully"
+msgstr "Transição atualizada com sucesso"

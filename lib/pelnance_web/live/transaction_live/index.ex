@@ -20,8 +20,9 @@ defmodule PelnanceWeb.TransactionLive.Index do
 
   defp apply_action(socket, :edit, params) do
     IO.inspect(params)
+
     socket
-    |> assign(:page_title, "Edit Transaction")
+    |> assign(:page_title, gettext("Edit Transaction"))
     |> assign(:transaction, Transactions.get_transaction!(params["id"]))
     |> assign(:accounts, Accounts.list_accounts(socket.assigns.current_user))
     |> assign(
@@ -34,7 +35,7 @@ defmodule PelnanceWeb.TransactionLive.Index do
 
   defp apply_action(socket, :new, params) do
     socket
-    |> assign(:page_title, "New Transaction")
+    |> assign(:page_title, gettext("New Transaction"))
     |> assign(:transaction, %Transaction{})
     |> assign(:accounts, Accounts.list_accounts(socket.assigns.current_user))
     |> assign(
@@ -47,7 +48,7 @@ defmodule PelnanceWeb.TransactionLive.Index do
 
   defp apply_action(socket, :index, _params) do
     socket
-    |> assign(:page_title, "Listing Transactions")
+    |> assign(:page_title, gettext("Listing Transactions"))
     |> assign(:transaction, nil)
   end
 

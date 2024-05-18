@@ -1,22 +1,26 @@
 <.header>
-  Transaction <%= @transaction.id %>
-  <:subtitle>This is a transaction record from your database.</:subtitle>
+  <%= gettext("Transaction") %> Transaction <%= @transaction.id %>
   <:actions>
     <.link patch={~p"/transactions/#{@transaction}/show/edit"} phx-click={JS.push_focus()}>
-      <.button>Edit transaction</.button>
+      <.button><%= gettext("Edit transaction") %></.button>
     </.link>
   </:actions>
 </.header>
 
 <.list>
-  <:item title="Date"><%= @transaction.date %></:item>
-  <:item title="Amount"><%= @transaction.amount %></:item>
-  <:item title="Description"><%= @transaction.description %></:item>
+  <:item title={gettext("Date")}><%= @transaction.date %></:item>
+  <:item title={gettext("Amount")}><%= @transaction.amount %></:item>
+  <:item title={gettext("Description")}><%= @transaction.description %></:item>
 </.list>
 
-<.back navigate={~p"/transactions"}>Back to transactions</.back>
+<.back navigate={~p"/transactions"}><%= gettext("Back to transactions") %></.back>
 
-<.modal :if={@live_action == :edit} id="transaction-modal" show on_cancel={JS.patch(~p"/transactions/#{@transaction}")}>
+<.modal
+  :if={@live_action == :edit}
+  id="transaction-modal"
+  show
+  on_cancel={JS.patch(~p"/transactions/#{@transaction}")}
+>
   <.live_component
     module={PelnanceWeb.TransactionLive.FormComponent}
     id={@transaction.id}
