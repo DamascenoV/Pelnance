@@ -10,7 +10,7 @@ defmodule PelnanceWeb.TypeLive.FormComponent do
       <.header>
         <%= @title %>
         <:subtitle>
-          You can find icons here: <a href="https://heroicons.com/" target="_blank">Heroicons</a>.
+          <%= gettext("You can find icons here:") %> <a href="https://heroicons.com/" target="_blank">Heroicons</a>.
         </:subtitle>
       </.header>
 
@@ -21,11 +21,16 @@ defmodule PelnanceWeb.TypeLive.FormComponent do
         phx-change="validate"
         phx-submit="save"
       >
-        <.input field={@form[:name]} type="text" label="Name" />
-        <.input field={@form[:icon]} type="text" label="Icon" placeholder="hero-arrow-path" />
-        <.input field={@form[:subtraction]} type="checkbox" label="Subtraction" />
+        <.input field={@form[:name]} type="text" label={gettext("Name")} />
+        <.input
+          field={@form[:icon]}
+          type="text"
+          label={gettext("Icon")}
+          placeholder="hero-arrow-path"
+        />
+        <.input field={@form[:subtraction]} type="checkbox" label={gettext("Subtraction")} />
         <:actions>
-          <.button phx-disable-with="Saving...">Save Type</.button>
+          <.button phx-disable-with="Saving..."><%= gettext("Save Type") %></.button>
         </:actions>
       </.simple_form>
     </div>
@@ -63,7 +68,7 @@ defmodule PelnanceWeb.TypeLive.FormComponent do
 
         {:noreply,
          socket
-         |> put_flash(:info, "Type updated successfully")
+         |> put_flash(:info, gettext("Type updated successfully"))
          |> push_patch(to: socket.assigns.patch)}
 
       {:error, %Ecto.Changeset{} = changeset} ->
@@ -78,7 +83,7 @@ defmodule PelnanceWeb.TypeLive.FormComponent do
 
         {:noreply,
          socket
-         |> put_flash(:info, "Type created successfully")
+         |> put_flash(:info, gettext("Type created successfully"))
          |> push_patch(to: socket.assigns.patch)}
 
       {:error, %Ecto.Changeset{} = changeset} ->

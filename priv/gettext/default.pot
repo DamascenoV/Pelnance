@@ -43,7 +43,9 @@ msgstr ""
 #: lib/pelnance_web/live/goal_live/form_component.ex:21
 #: lib/pelnance_web/live/goal_live/index.html.heex:11
 #: lib/pelnance_web/live/goal_live/show.html.heex:11
-#: lib/pelnance_web/live/type_live/index.html.heex:11
+#: lib/pelnance_web/live/type_live/form_component.ex:24
+#: lib/pelnance_web/live/type_live/index.html.heex:12
+#: lib/pelnance_web/live/type_live/show.html.heex:11
 #, elixir-autogen, elixir-format
 msgid "Name"
 msgstr ""
@@ -124,7 +126,8 @@ msgstr ""
 msgid "Done"
 msgstr ""
 
-#: lib/pelnance_web/live/type_live/index.html.heex:12
+#: lib/pelnance_web/live/type_live/form_component.ex:28
+#: lib/pelnance_web/live/type_live/index.html.heex:13
 #, elixir-autogen, elixir-format
 msgid "Icon"
 msgstr ""
@@ -134,7 +137,8 @@ msgstr ""
 msgid "Initial Balance"
 msgstr ""
 
-#: lib/pelnance_web/live/type_live/index.html.heex:15
+#: lib/pelnance_web/live/type_live/form_component.ex:31
+#: lib/pelnance_web/live/type_live/index.html.heex:16
 #, elixir-autogen, elixir-format
 msgid "Subtraction"
 msgstr ""
@@ -150,6 +154,7 @@ msgstr ""
 #: lib/pelnance_web/live/category_live/form_component.ex:25
 #: lib/pelnance_web/live/category_live/index.html.heex:12
 #: lib/pelnance_web/live/transaction_live/index.html.heex:13
+#: lib/pelnance_web/live/type_live/show.html.heex:2
 #, elixir-autogen, elixir-format
 msgid "Type"
 msgstr ""
@@ -395,6 +400,7 @@ msgid "Edit transaction"
 msgstr ""
 
 #: lib/pelnance_web/live/transaction_live/index.ex:51
+#: lib/pelnance_web/live/transaction_live/index.html.heex:2
 #, elixir-autogen, elixir-format
 msgid "Listing Transactions"
 msgstr ""
@@ -432,4 +438,57 @@ msgstr ""
 #: lib/pelnance_web/live/transaction_live/form_component.ex:77
 #, elixir-autogen, elixir-format
 msgid "Transaction updated successfully"
+msgstr ""
+
+#: lib/pelnance_web/live/type_live/show.html.heex:14
+#, elixir-autogen, elixir-format
+msgid "Back to types"
+msgstr ""
+
+#: lib/pelnance_web/live/type_live/index.ex:18
+#: lib/pelnance_web/live/type_live/show.ex:20
+#, elixir-autogen, elixir-format
+msgid "Edit Type"
+msgstr ""
+
+#: lib/pelnance_web/live/type_live/show.html.heex:5
+#, elixir-autogen, elixir-format
+msgid "Edit type"
+msgstr ""
+
+#: lib/pelnance_web/live/type_live/index.ex:31
+#: lib/pelnance_web/live/type_live/index.html.heex:2
+#, elixir-autogen, elixir-format
+msgid "Listing Types"
+msgstr ""
+
+#: lib/pelnance_web/live/type_live/index.ex:24
+#: lib/pelnance_web/live/type_live/index.html.heex:5
+#, elixir-autogen, elixir-format
+msgid "New Type"
+msgstr ""
+
+#: lib/pelnance_web/live/type_live/form_component.ex:33
+#, elixir-autogen, elixir-format
+msgid "Save Type"
+msgstr ""
+
+#: lib/pelnance_web/live/type_live/show.ex:19
+#, elixir-autogen, elixir-format
+msgid "Show Type"
+msgstr ""
+
+#: lib/pelnance_web/live/type_live/form_component.ex:86
+#, elixir-autogen, elixir-format
+msgid "Type created successfully"
+msgstr ""
+
+#: lib/pelnance_web/live/type_live/form_component.ex:71
+#, elixir-autogen, elixir-format
+msgid "Type updated successfully"
+msgstr ""
+
+#: lib/pelnance_web/live/type_live/form_component.ex:13
+#, elixir-autogen, elixir-format
+msgid "You can find icons here:"
 msgstr ""

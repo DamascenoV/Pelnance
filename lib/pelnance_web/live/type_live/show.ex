@@ -16,6 +16,6 @@ defmodule PelnanceWeb.TypeLive.Show do
      |> assign(:type, Types.get_type!(id))}
   end
 
-  defp page_title(:show), do: "Show Type"
-  defp page_title(:edit), do: "Edit Type"
+  defp page_title(:show), do: gettext("Show Type")
+  defp page_title(:edit), do: gettext("Edit Type")
 end

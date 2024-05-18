@@ -15,20 +15,20 @@ defmodule PelnanceWeb.TypeLive.Index do
 
   defp apply_action(socket, :edit, %{"id" => id}) do
     socket
-    |> assign(:page_title, "Edit Type")
+    |> assign(:page_title, gettext("Edit Type"))
     |> assign(:type, Types.get_type!(id))
   end
 
   defp apply_action(socket, :new, _params) do
     socket
-    |> assign(:page_title, "New Type")
+    |> assign(:page_title, gettext("New Type"))
     |> assign(:type, %Type{})
     |> assign(:current_user, socket.assigns.current_user)
   end
 
   defp apply_action(socket, :index, _params) do
     socket
-    |> assign(:page_title, "Listing Types")
+    |> assign(:page_title, gettext("Listing Types"))
     |> assign(:type, nil)
   end
 

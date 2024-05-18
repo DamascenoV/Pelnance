@@ -1,17 +1,17 @@
 <.header>
-  Type <%= @type.name %>
+  <%= gettext("Type") %> Type <%= @type.name %>
   <:actions>
     <.link patch={~p"/types/#{@type}/show/edit"} phx-click={JS.push_focus()}>
-      <.button>Edit type</.button>
+      <.button><%= gettext("Edit type") %></.button>
     </.link>
   </:actions>
 </.header>
 
 <.list>
-  <:item title="Name"><%= @type.name %></:item>
+  <:item title={gettext("Name")}><%= @type.name %></:item>
 </.list>
 
-<.back navigate={~p"/types"}>Back to types</.back>
+<.back navigate={~p"/types"}><%= gettext("Back to types") %></.back>
 
 <.modal :if={@live_action == :edit} id="type-modal" show on_cancel={JS.patch(~p"/types/#{@type}")}>
   <.live_component
