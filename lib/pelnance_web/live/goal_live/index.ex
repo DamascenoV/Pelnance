@@ -16,20 +16,20 @@ defmodule PelnanceWeb.GoalLive.Index do
 
   defp apply_action(socket, :edit, %{"id" => id}) do
     socket
-    |> assign(:page_title, "Edit Goal")
+    |> assign(:page_title, gettext("Edit Goal"))
     |> assign(:goal, Goals.get_goal!(id))
   end
 
   defp apply_action(socket, :new, _params) do
     socket
-    |> assign(:page_title, "New Goal")
+    |> assign(:page_title, gettext("New Goal"))
     |> assign(:goal, %Goal{})
     |> assign(:current_user, socket.assigns.current_user)
   end
 
   defp apply_action(socket, :index, _params) do
     socket
-    |> assign(:page_title, "Listing Goals")
+    |> assign(:page_title, gettext("Listing Goals"))
     |> assign(:goal, nil)
   end
 

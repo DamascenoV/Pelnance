@@ -1,9 +1,8 @@
 <.header>
-  Goal <%= @goal.id %>
-  <:subtitle>This is a goal record from your database.</:subtitle>
+  <%= gettext("Goal") %> Goal <%= @goal.id %>
   <:actions>
     <.link patch={~p"/goals/#{@goal}/show/edit"} phx-click={JS.push_focus()}>
-      <.button>Edit goal</.button>
+      <.button><%= gettext("Edit goal") %></.button>
     </.link>
   </:actions>
 </.header>
@@ -13,7 +12,7 @@
   <:item title={gettext("Done")}><%= @goal.done %></:item>
 </.list>
 
-<.back navigate={~p"/goals"}>Back to goals</.back>
+<.back navigate={~p"/goals"}><%= gettext("Back to goals") %></.back>
 
 <.modal :if={@live_action == :edit} id="goal-modal" show on_cancel={JS.patch(~p"/goals/#{@goal}")}>
   <.live_component

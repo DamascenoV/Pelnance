@@ -40,8 +40,9 @@ msgstr ""
 #: lib/pelnance_web/live/currency_live/form_component.ex:21
 #: lib/pelnance_web/live/currency_live/index.html.heex:11
 #: lib/pelnance_web/live/currency_live/show.html.heex:11
+#: lib/pelnance_web/live/goal_live/form_component.ex:21
 #: lib/pelnance_web/live/goal_live/index.html.heex:11
-#: lib/pelnance_web/live/goal_live/show.html.heex:12
+#: lib/pelnance_web/live/goal_live/show.html.heex:11
 #: lib/pelnance_web/live/type_live/index.html.heex:11
 #, elixir-autogen, elixir-format
 msgid "Name"
@@ -103,14 +104,16 @@ msgid "Date"
 msgstr ""
 
 #: lib/pelnance_web/live/account_live/show.html.heex:34
+#: lib/pelnance_web/live/goal_live/form_component.ex:22
 #: lib/pelnance_web/live/goal_live/index.html.heex:12
 #: lib/pelnance_web/live/transaction_live/index.html.heex:20
 #, elixir-autogen, elixir-format
 msgid "Description"
 msgstr ""
 
+#: lib/pelnance_web/live/goal_live/form_component.ex:23
 #: lib/pelnance_web/live/goal_live/index.html.heex:13
-#: lib/pelnance_web/live/goal_live/show.html.heex:13
+#: lib/pelnance_web/live/goal_live/show.html.heex:12
 #, elixir-autogen, elixir-format
 msgid "Done"
 msgstr ""
@@ -312,4 +315,57 @@ msgstr ""
 #: lib/pelnance_web/live/currency_live/show.ex:19
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Show Currency"
+msgstr ""
+
+#: lib/pelnance_web/live/goal_live/show.html.heex:15
+#, elixir-autogen, elixir-format, fuzzy
+msgid "Back to goals"
+msgstr ""
+
+#: lib/pelnance_web/live/goal_live/index.ex:19
+#: lib/pelnance_web/live/goal_live/show.ex:20
+#, elixir-autogen, elixir-format
+msgid "Edit Goal"
+msgstr ""
+
+#: lib/pelnance_web/live/goal_live/show.html.heex:5
+#, elixir-autogen, elixir-format
+msgid "Edit goal"
+msgstr ""
+
+#: lib/pelnance_web/live/goal_live/show.html.heex:2
+#, elixir-autogen, elixir-format, fuzzy
+msgid "Goal"
+msgstr ""
+
+#: lib/pelnance_web/live/goal_live/form_component.ex:78
+#, elixir-autogen, elixir-format, fuzzy
+msgid "Goal created successfully"
+msgstr ""
+
+#: lib/pelnance_web/live/goal_live/form_component.ex:63
+#, elixir-autogen, elixir-format, fuzzy
+msgid "Goal updated successfully"
+msgstr ""
+
+#: lib/pelnance_web/live/goal_live/index.ex:32
+#: lib/pelnance_web/live/goal_live/index.html.heex:2
+#, elixir-autogen, elixir-format
+msgid "Listing Goals"
+msgstr ""
+
+#: lib/pelnance_web/live/goal_live/index.ex:25
+#: lib/pelnance_web/live/goal_live/index.html.heex:5
+#, elixir-autogen, elixir-format
+msgid "New Goal"
+msgstr ""
+
+#: lib/pelnance_web/live/goal_live/form_component.ex:25
+#, elixir-autogen, elixir-format
+msgid "Save Goal"
+msgstr ""
+
+#: lib/pelnance_web/live/goal_live/show.ex:19
+#, elixir-autogen, elixir-format
+msgid "Show Goal"
 msgstr ""

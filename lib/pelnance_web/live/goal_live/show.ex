@@ -16,6 +16,6 @@ defmodule PelnanceWeb.GoalLive.Show do
      |> assign(:goal, Goals.get_goal!(id))}
   end
 
-  defp page_title(:show), do: "Show Goal"
-  defp page_title(:edit), do: "Edit Goal"
+  defp page_title(:show), do: gettext("Show Goal")
+  defp page_title(:edit), do: gettext("Edit Goal")
 end
