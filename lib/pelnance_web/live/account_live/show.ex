@@ -8,10 +8,14 @@ defmodule PelnanceWeb.AccountLive.Show do
   @impl true
   def mount(params, _session, socket) do
     IO.inspect(params)
-    {:ok, socket
-    |> stream(:transactions, Transactions.list_transactions_from_account(params["id"]), at: 0, limit: 2)
-    |> assign(:currencies, Currencies.list_currencies(socket.assigns.current_user))
-    }
+
+    {:ok,
+     socket
+     |> stream(:transactions, Transactions.list_transactions_from_account(params["id"]),
+       at: 0,
+       limit: 2
+     )
+     |> assign(:currencies, Currencies.list_currencies(socket.assigns.current_user))}
   end
 
   @impl true
@@ -22,6 +26,6 @@ defmodule PelnanceWeb.AccountLive.Show do
      |> assign(:account, Accounts.get_account!(id))}
   end
 
-  defp page_title(:show), do: "Show Account"
-  defp page_title(:edit), do: "Edit Account"
+  defp page_title(:show), do: gettext("Show Account")
+  defp page_title(:edit), do: gettext("Edit Account")
 end

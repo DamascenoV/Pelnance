@@ -31,7 +31,9 @@ msgstr "Erro!"
 msgid "Hang in there while we get back on track"
 msgstr "Vamos aguardar enquanto recuperamos o controle"
 
+#: lib/pelnance_web/live/account_live/form_component.ex:21
 #: lib/pelnance_web/live/account_live/index.html.heex:11
+#: lib/pelnance_web/live/account_live/show.html.heex:11
 #: lib/pelnance_web/live/category_live/index.html.heex:11
 #: lib/pelnance_web/live/currency_live/index.html.heex:11
 #: lib/pelnance_web/live/currency_live/show.html.heex:12
@@ -63,31 +65,39 @@ msgstr "Não conseguimos encontrar a internet"
 msgid "close"
 msgstr "fechar"
 
+#: lib/pelnance_web/live/account_live/show.html.heex:37
 #: lib/pelnance_web/live/transaction_live/index.html.heex:23
 #, elixir-autogen, elixir-format
 msgid "Amount"
 msgstr "Quantidade"
 
+#: lib/pelnance_web/live/account_live/form_component.ex:22
 #: lib/pelnance_web/live/account_live/index.html.heex:13
+#: lib/pelnance_web/live/account_live/show.html.heex:12
 #, elixir-autogen, elixir-format
 msgid "Balance"
 msgstr "Saldo"
 
+#: lib/pelnance_web/live/account_live/show.html.heex:31
 #: lib/pelnance_web/live/transaction_live/index.html.heex:17
 #, elixir-autogen, elixir-format
 msgid "Category"
 msgstr "Categoria"
 
+#: lib/pelnance_web/live/account_live/form_component.ex:26
 #: lib/pelnance_web/live/account_live/index.html.heex:23
+#: lib/pelnance_web/live/account_live/show.html.heex:13
 #, elixir-autogen, elixir-format
 msgid "Currency"
 msgstr "Moeda"
 
+#: lib/pelnance_web/live/account_live/show.html.heex:38
 #: lib/pelnance_web/live/transaction_live/index.html.heex:24
 #, elixir-autogen, elixir-format
 msgid "Date"
 msgstr "Data"
 
+#: lib/pelnance_web/live/account_live/show.html.heex:34
 #: lib/pelnance_web/live/goal_live/index.html.heex:12
 #: lib/pelnance_web/live/transaction_live/index.html.heex:20
 #, elixir-autogen, elixir-format
@@ -121,8 +131,97 @@ msgstr "Subtração"
 msgid "Symbol"
 msgstr "Simbolo"
 
+#: lib/pelnance_web/live/account_live/show.html.heex:27
 #: lib/pelnance_web/live/category_live/index.html.heex:12
 #: lib/pelnance_web/live/transaction_live/index.html.heex:13
 #, elixir-autogen, elixir-format
 msgid "Type"
 msgstr "Tipo"
+
+#: lib/pelnance_web/components/layouts/root.html.heex:81
+#, elixir-autogen, elixir-format, fuzzy
+msgid "Accounts"
+msgstr "Contas"
+
+#: lib/pelnance_web/components/layouts/root.html.heex:99
+#, elixir-autogen, elixir-format, fuzzy
+msgid "Categories"
+msgstr "Categoria"
+
+#: lib/pelnance_web/components/layouts/root.html.heex:105
+#, elixir-autogen, elixir-format, fuzzy
+msgid "Currencies"
+msgstr "Moeda"
+
+#: lib/pelnance_web/components/layouts/root.html.heex:75
+#, elixir-autogen, elixir-format
+msgid "Dashboard"
+msgstr "Pagina Incial"
+
+#: lib/pelnance_web/components/layouts/root.html.heex:90
+#, elixir-autogen, elixir-format
+msgid "Goals"
+msgstr "Objectivos"
+
+#: lib/pelnance_web/components/layouts/root.html.heex:112
+#, elixir-autogen, elixir-format
+msgid "Profile"
+msgstr "Perfil"
+
+#: lib/pelnance_web/components/layouts/root.html.heex:87
+#, elixir-autogen, elixir-format
+msgid "Transactions"
+msgstr "Transições"
+
+#: lib/pelnance_web/components/layouts/root.html.heex:93
+#, elixir-autogen, elixir-format, fuzzy
+msgid "Types"
+msgstr "Tipos"
+
+#: lib/pelnance_web/live/account_live/show.html.heex:2
+#, elixir-autogen, elixir-format, fuzzy
+msgid "Account"
+msgstr "Quantidade"
+
+#: lib/pelnance_web/live/account_live/form_component.ex:83
+#, elixir-autogen, elixir-format
+msgid "Account created successfully"
+msgstr "Conta criada com sucesso"
+
+#: lib/pelnance_web/live/account_live/form_component.ex:68
+#, elixir-autogen, elixir-format
+msgid "Account updated successfully"
+msgstr "Conta atualizada com sucesso"
+
+#: lib/pelnance_web/live/account_live/show.html.heex:18
+#, elixir-autogen, elixir-format
+msgid "Back to accounts"
+msgstr "Voltar para contas"
+
+#: lib/pelnance_web/live/account_live/index.ex:24
+#: lib/pelnance_web/live/account_live/show.ex:30
+#, elixir-autogen, elixir-format
+msgid "Edit Account"
+msgstr "Editar Conta"
+
+#: lib/pelnance_web/live/account_live/index.ex:36
+#: lib/pelnance_web/live/account_live/index.html.heex:2
+#, elixir-autogen, elixir-format
+msgid "Listing Accounts"
+msgstr "Lista Contas"
+
+#: lib/pelnance_web/live/account_live/index.ex:30
+#: lib/pelnance_web/live/account_live/index.html.heex:5
+#, elixir-autogen, elixir-format, fuzzy
+msgid "New Account"
+msgstr "Nova Conta"
+
+#: lib/pelnance_web/live/account_live/form_component.ex:30
+#, elixir-autogen, elixir-format, fuzzy
+msgid "Save Account"
+msgstr "Salvar Conta"
+
+#: lib/pelnance_web/live/account_live/show.ex:29
+#, elixir-autogen, elixir-format
+msgid "Show Account"
+msgstr "Exibir Conta"

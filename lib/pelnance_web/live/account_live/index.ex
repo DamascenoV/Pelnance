@@ -21,19 +21,19 @@ defmodule PelnanceWeb.AccountLive.Index do
 
   defp apply_action(socket, :edit, %{"id" => id}) do
     socket
-    |> assign(:page_title, "Edit Account")
+    |> assign(:page_title, gettext("Edit Account"))
     |> assign(:account, Accounts.get_account!(id))
   end
 
   defp apply_action(socket, :new, _params) do
     socket
-    |> assign(:page_title, "New Account")
+    |> assign(:page_title, gettext("New Account"))
     |> assign(:account, %Account{})
   end
 
   defp apply_action(socket, :index, _params) do
     socket
-    |> assign(:page_title, "Listing Accounts")
+    |> assign(:page_title, gettext("Listing Accounts"))
     |> assign(:account, nil)
   end
 
