@@ -10,7 +10,7 @@ defmodule PelnanceWeb.TransactionLive.Index do
   def mount(_params, _session, socket) do
     {:ok,
      socket
-     |> stream(:transactions, Transactions.list_transactions())}
+     |> stream(:transactions, Transactions.list_transactions(socket.assigns.current_user))}
   end
 
   @impl true

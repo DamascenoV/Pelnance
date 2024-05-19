@@ -7,6 +7,7 @@ defmodule Pelnance.Transactions do
   alias Pelnance.Repo
 
   alias Pelnance.Transactions.Transaction
+  alias Pelnance.Users.User
 
   @doc """
   Returns the list of transactions.
@@ -19,6 +20,19 @@ defmodule Pelnance.Transactions do
   """
   def list_transactions do
     Repo.all(Transaction)
+  end
+
+  @doc """
+  Returns the list of transactions.
+
+  ## Examples
+
+      iex> list_transactions(%User{})
+      [%Transaction{}, ...]
+
+  """
+  def list_transactions(user = %User{}) do
+    Repo.all(from t in Transaction, join: a in assoc(t, :account), where: a.user_id == ^user.id)
   end
 
   @doc """
