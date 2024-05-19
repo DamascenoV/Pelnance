@@ -187,13 +187,12 @@ defmodule PelnanceWeb.UserSettingsLive do
 
     case Users.update_user_locale(user, locale) do
       {:ok, user} ->
-        locale_form =
           user
           |> Users.change_user_locale()
           |> to_form()
 
         info = "Locale updated"
-        {:noreply, assign(socket |> put_flash(:info, info), locale_form: locale_form)}
+        {:noreply, redirect(socket, to: ~p"/users/settings") |> put_flash(:info, info)}
 
       {:error, changeset} ->
         {:noreply, assign(socket, locale_form: to_form(changeset))}
