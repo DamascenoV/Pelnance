@@ -6,8 +6,8 @@ defmodule PelnanceWeb.UserSettingsLive do
   def render(assigns) do
     ~H"""
     <.header class="text-center">
-      Account Settings
-      <:subtitle>Manage your account email address and password settings</:subtitle>
+      <%= gettext("Account Settings") %>
+      <:subtitle><%= gettext("Manage your account email address and password settings") %></:subtitle>
     </.header>
 
     <div class="space-y-12 divide-y">
@@ -24,12 +24,12 @@ defmodule PelnanceWeb.UserSettingsLive do
             name="current_password"
             id="current_password_for_email"
             type="password"
-            label="Current password"
+            label={gettext("Current password")}
             value={@email_form_current_password}
             required
           />
           <:actions>
-            <.button phx-disable-with="Changing...">Change Email</.button>
+            <.button phx-disable-with="Changing..."><%= gettext("Change Email") %></.button>
           </:actions>
         </.simple_form>
       </div>
@@ -49,23 +49,28 @@ defmodule PelnanceWeb.UserSettingsLive do
             id="hidden_user_email"
             value={@current_email}
           />
-          <.input field={@password_form[:password]} type="password" label="New password" required />
+          <.input
+            field={@password_form[:password]}
+            type="password"
+            label={gettext("New password")}
+            required
+          />
           <.input
             field={@password_form[:password_confirmation]}
             type="password"
-            label="Confirm new password"
+            label={gettext("Confirm new password")}
           />
           <.input
             field={@password_form[:current_password]}
             name="current_password"
             type="password"
-            label="Current password"
+            label={gettext("Current password")}
             id="current_password_for_password"
             value={@current_password}
             required
           />
           <:actions>
-            <.button phx-disable-with="Changing...">Change Password</.button>
+            <.button phx-disable-with="Changing..."><%= gettext("Change Password") %></.button>
           </:actions>
         </.simple_form>
       </div>
@@ -74,12 +79,12 @@ defmodule PelnanceWeb.UserSettingsLive do
           <.input
             field={@locale_form[:locale]}
             type="select"
-            label="Locale"
+            label={gettext("Locale")}
             options={Gettext.known_locales(PelnanceWeb.Gettext)}
             required
           />
           <:actions>
-            <.button phx-disable-with="Changing...">Change Locale</.button>
+            <.button phx-disable-with="Changing..."><%= gettext("Change Locale") %></.button>
           </:actions>
         </.simple_form>
       </div>
@@ -91,10 +96,10 @@ defmodule PelnanceWeb.UserSettingsLive do
     socket =
       case Users.update_user_email(socket.assigns.current_user, token) do
         :ok ->
-          put_flash(socket, :info, "Email changed successfully.")
+          put_flash(socket, :info, gettext("Email changed successfully."))
 
         :error ->
-          put_flash(socket, :error, "Email change link is invalid or it has expired.")
+          put_flash(socket, :error, gettext("Email change link is invalid or it has expired."))
       end
 
     {:ok, push_navigate(socket, to: ~p"/users/settings")}
@@ -143,7 +148,7 @@ defmodule PelnanceWeb.UserSettingsLive do
           &url(~p"/users/settings/confirm_email/#{&1}")
         )
 
-        info = "A link to confirm your email change has been sent to the new address."
+        info = gettext("A link to confirm your email change has been sent to the new address.")
         {:noreply, socket |> put_flash(:info, info) |> assign(email_form_current_password: nil)}
 
       {:error, changeset} ->
@@ -187,11 +192,11 @@ defmodule PelnanceWeb.UserSettingsLive do
 
     case Users.update_user_locale(user, locale) do
       {:ok, user} ->
-          user
-          |> Users.change_user_locale()
-          |> to_form()
+        user
+        |> Users.change_user_locale()
+        |> to_form()
 
-        info = "Locale updated"
+        info = gettext("Locale updated")
         {:noreply, redirect(socket, to: ~p"/users/settings") |> put_flash(:info, info)}
 
       {:error, changeset} ->

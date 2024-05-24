@@ -44,7 +44,7 @@ msgstr ""
 #: lib/pelnance_web/live/goal_live/index.html.heex:11
 #: lib/pelnance_web/live/goal_live/show.html.heex:11
 #: lib/pelnance_web/live/type_live/form_component.ex:24
-#: lib/pelnance_web/live/type_live/index.html.heex:12
+#: lib/pelnance_web/live/type_live/index.html.heex:11
 #: lib/pelnance_web/live/type_live/show.html.heex:11
 #, elixir-autogen, elixir-format
 msgid "Name"
@@ -127,7 +127,7 @@ msgid "Done"
 msgstr ""
 
 #: lib/pelnance_web/live/type_live/form_component.ex:28
-#: lib/pelnance_web/live/type_live/index.html.heex:13
+#: lib/pelnance_web/live/type_live/index.html.heex:12
 #, elixir-autogen, elixir-format
 msgid "Icon"
 msgstr ""
@@ -138,7 +138,7 @@ msgid "Initial Balance"
 msgstr ""
 
 #: lib/pelnance_web/live/type_live/form_component.ex:31
-#: lib/pelnance_web/live/type_live/index.html.heex:16
+#: lib/pelnance_web/live/type_live/index.html.heex:15
 #, elixir-autogen, elixir-format
 msgid "Subtraction"
 msgstr ""
@@ -159,43 +159,43 @@ msgstr ""
 msgid "Type"
 msgstr ""
 
-#: lib/pelnance_web/components/layouts/root.html.heex:81
+#: lib/pelnance_web/components/layouts/root.html.heex:40
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Accounts"
 msgstr ""
 
-#: lib/pelnance_web/components/layouts/root.html.heex:99
+#: lib/pelnance_web/components/layouts/root.html.heex:58
 #: lib/pelnance_web/live/transaction_live/form_component.ex:28
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Categories"
 msgstr ""
 
-#: lib/pelnance_web/components/layouts/root.html.heex:105
+#: lib/pelnance_web/components/layouts/root.html.heex:64
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Currencies"
 msgstr ""
 
-#: lib/pelnance_web/components/layouts/root.html.heex:75
+#: lib/pelnance_web/components/layouts/root.html.heex:34
 #, elixir-autogen, elixir-format
 msgid "Dashboard"
 msgstr ""
 
-#: lib/pelnance_web/components/layouts/root.html.heex:90
+#: lib/pelnance_web/components/layouts/root.html.heex:49
 #, elixir-autogen, elixir-format
 msgid "Goals"
 msgstr ""
 
-#: lib/pelnance_web/components/layouts/root.html.heex:112
+#: lib/pelnance_web/components/layouts/root.html.heex:71
 #, elixir-autogen, elixir-format
 msgid "Profile"
 msgstr ""
 
-#: lib/pelnance_web/components/layouts/root.html.heex:87
+#: lib/pelnance_web/components/layouts/root.html.heex:46
 #, elixir-autogen, elixir-format
 msgid "Transactions"
 msgstr ""
 
-#: lib/pelnance_web/components/layouts/root.html.heex:93
+#: lib/pelnance_web/components/layouts/root.html.heex:52
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Types"
 msgstr ""
@@ -491,4 +491,70 @@ msgstr ""
 #: lib/pelnance_web/live/type_live/form_component.ex:13
 #, elixir-autogen, elixir-format
 msgid "You can find icons here:"
+msgstr ""
+
+#: lib/pelnance_web/live/user_settings_live.ex:151
+#, elixir-autogen, elixir-format
+msgid "A link to confirm your email change has been sent to the new address."
+msgstr ""
+
+#: lib/pelnance_web/live/user_settings_live.ex:9
+#, elixir-autogen, elixir-format, fuzzy
+msgid "Account Settings"
+msgstr ""
+
+#: lib/pelnance_web/live/user_settings_live.ex:32
+#, elixir-autogen, elixir-format
+msgid "Change Email"
+msgstr ""
+
+#: lib/pelnance_web/live/user_settings_live.ex:87
+#, elixir-autogen, elixir-format
+msgid "Change Locale"
+msgstr ""
+
+#: lib/pelnance_web/live/user_settings_live.ex:73
+#, elixir-autogen, elixir-format
+msgid "Change Password"
+msgstr ""
+
+#: lib/pelnance_web/live/user_settings_live.ex:61
+#, elixir-autogen, elixir-format
+msgid "Confirm new password"
+msgstr ""
+
+#: lib/pelnance_web/live/user_settings_live.ex:27
+#: lib/pelnance_web/live/user_settings_live.ex:67
+#, elixir-autogen, elixir-format
+msgid "Current password"
+msgstr ""
+
+#: lib/pelnance_web/live/user_settings_live.ex:102
+#, elixir-autogen, elixir-format
+msgid "Email change link is invalid or it has expired."
+msgstr ""
+
+#: lib/pelnance_web/live/user_settings_live.ex:99
+#, elixir-autogen, elixir-format, fuzzy
+msgid "Email changed successfully."
+msgstr ""
+
+#: lib/pelnance_web/live/user_settings_live.ex:82
+#, elixir-autogen, elixir-format
+msgid "Locale"
+msgstr ""
+
+#: lib/pelnance_web/live/user_settings_live.ex:199
+#, elixir-autogen, elixir-format
+msgid "Locale updated"
+msgstr ""
+
+#: lib/pelnance_web/live/user_settings_live.ex:10
+#, elixir-autogen, elixir-format
+msgid "Manage your account email address and password settings"
+msgstr ""
+
+#: lib/pelnance_web/live/user_settings_live.ex:55
+#, elixir-autogen, elixir-format
+msgid "New password"
 msgstr ""
