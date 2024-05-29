@@ -6,6 +6,7 @@ defmodule Pelnance.Transactions do
   import Ecto.Query, warn: false
   alias Pelnance.Repo
 
+  alias Pelnance.Accounts
   alias Pelnance.Transactions.Transaction
   alias Pelnance.Users.User
 
@@ -77,9 +78,14 @@ defmodule Pelnance.Transactions do
 
   """
   def create_transaction(attrs \\ %{}) do
-    %Transaction{}
-    |> Transaction.changeset(attrs)
-    |> Repo.insert()
+    {:ok, transaction} =
+      %Transaction{}
+      |> Transaction.changeset(attrs)
+      |> Repo.insert()
+
+    Accounts.update_balance(:insert, transaction)
+
+    {:ok, transaction}
   end
 
   @doc """
@@ -113,7 +119,9 @@ defmodule Pelnance.Transactions do
 
   """
   def delete_transaction(%Transaction{} = transaction) do
-    Repo.delete(transaction)
+    {:ok, transaction} = Repo.delete(transaction)
+    Accounts.update_balance(:delete, transaction)
+    {:ok, transaction}
   end
 
   @doc """

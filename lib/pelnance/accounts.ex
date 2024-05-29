@@ -5,6 +5,7 @@ defmodule Pelnance.Accounts do
 
   import Ecto.Query, warn: false
   alias Pelnance.Repo
+  alias Pelnance.Types
 
   alias Pelnance.Accounts.Account
   alias Pelnance.Transactions.Transaction
@@ -105,29 +106,57 @@ defmodule Pelnance.Accounts do
     Account.changeset(account, attrs)
   end
 
-  def get_balance_from_transactions!(account = %Account{}) do
-    transactions = load_transactions(account.id)
-    {expenses, income} = calculate_expenses_and_income(transactions)
+  @doc """
+  Updates the balance of an account.
 
-    calculate_total(account.balance, expenses, income)
-    |> :erlang.float_to_binary(decimals: 2)
-  end
+  ## Examples
 
-  defp load_transactions(account_id) do
-    Repo.all(from t in Transaction, where: t.account_id == ^account_id)
-    |> Repo.preload(:type)
-  end
+      iex> update_balance(:insert, %Transaction{})
+      {:ok, %Account{}}
+  """
+  def update_balance(:insert, transaction = %Transaction{}) do
+    type = Types.get_type!(transaction.type_id)
+    account = get_account!(transaction.account_id)
 
-  defp calculate_expenses_and_income(transactions) do
-    Enum.reduce(transactions, {0, 0}, fn t, {acc_expenses, acc_income} ->
-      case t.type.subtraction do
-        false -> {acc_expenses, acc_income + Decimal.to_float(t.amount)}
-        true -> {acc_expenses - Decimal.to_float(t.amount), acc_income}
+    amount =
+      case type.subtraction do
+        false -> Decimal.to_float(transaction.amount) + Decimal.to_float(account.balance)
+        true -> Decimal.to_float(account.balance) - Decimal.to_float(transaction.amount)
       end
-    end)
+
+    account
+    |> Account.changeset(%{balance: amount})
+    |> Repo.update()
   end
 
-  defp calculate_total(balance, expenses, income) do
-    Decimal.to_float(balance) + income + expenses
+  # TODO
+  def update_balance(:edit, transaction = %Transaction{}) do
+    type = Types.get_type!(transaction.type_id)
+    account = get_account!(transaction.account_id)
+
+    amount =
+      case type.subtraction do
+        false -> Decimal.to_float(account.balance) - Decimal.to_float(transaction.amount)
+        true -> Decimal.to_float(transaction.amount) + Decimal.to_float(account.balance)
+      end
+
+    account
+    |> Account.changeset(%{balance: amount})
+    |> Repo.update()
+  end
+
+  def update_balance(:delete, transaction = %Transaction{}) do
+    type = Types.get_type!(transaction.type_id)
+    account = get_account!(transaction.account_id)
+
+    amount =
+      case type.subtraction do
+        false -> Decimal.to_float(account.balance) - Decimal.to_float(transaction.amount)
+        true -> Decimal.to_float(transaction.amount) + Decimal.to_float(account.balance)
+      end
+
+    account
+    |> Account.changeset(%{balance: amount})
+    |> Repo.update()
   end
 end
