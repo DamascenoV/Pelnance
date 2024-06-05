@@ -6,6 +6,60 @@ defmodule PelnanceWeb.AccountLive.Index do
   alias Pelnance.Currencies
 
   @impl true
+  def render(assigns) do
+    ~H"""
+    <.header>
+      <%= gettext("Listing Accounts") %> <.icon name="hero-wallet" />
+      <:actions>
+        <.link patch={~p"/accounts/new"}>
+          <.button><%= gettext("New Account") %></.button>
+        </.link>
+      </:actions>
+    </.header>
+
+    <.table id="accounts" rows={@streams.accounts}>
+      <:col :let={{_id, account}} label={gettext("Name")}><%= account.name %></:col>
+      <:col :let={{_id, account}} label={gettext("Initial Balance")}><%= account.balance %></:col>
+      <:col :let={{_id, account}} label={gettext("Currency")}>
+        <%= Pelnance.Currencies.get_currency!(account.currency_id).name %>
+      </:col>
+      <:action :let={{id, account}}>
+        <.link navigate={~p"/accounts/#{account}"}>
+          <.icon name="hero-eye" />
+        </.link>
+        <.link patch={~p"/accounts/#{account}/edit"}>
+          <.icon name="hero-pencil-square" />
+        </.link>
+        <.link
+          phx-click={JS.push("delete", value: %{id: account.id}) |> hide("##{id}")}
+          data-confirm="Are you sure?"
+        >
+          <.icon name="hero-trash" class="text-red-700" />
+        </.link>
+      </:action>
+    </.table>
+
+    <.modal
+      :if={@live_action in [:new, :edit]}
+      id="account-modal"
+      show
+      on_cancel={JS.patch(~p"/accounts")}
+    >
+      <.live_component
+        module={PelnanceWeb.AccountLive.FormComponent}
+        id={@account.id || :new}
+        title={@page_title}
+        action={@live_action}
+        account={@account}
+        currencies={@currencies}
+        current_user={@user}
+        patch={~p"/accounts"}
+      />
+    </.modal>
+    """
+  end
+
+  @impl true
   def mount(_params, _session, socket) do
     {:ok,
      socket

@@ -5,6 +5,58 @@ defmodule PelnanceWeb.GoalLive.Index do
   alias Pelnance.Goals.Goal
 
   @impl true
+  def render(assigns) do
+    ~H"""
+    <.header>
+      <%= gettext("Listing Goals") %>
+      <:actions>
+        <.link patch={~p"/goals/new"}>
+          <.button><%= gettext("New Goal") %></.button>
+        </.link>
+      </:actions>
+    </.header>
+
+    <.table id="goals" rows={@streams.goals}>
+      <:col :let={{_id, goal}} label={gettext("Name")}><%= goal.name %></:col>
+      <:col :let={{_id, goal}} label={gettext("Description")}><%= goal.description %></:col>
+      <:col :let={{_id, goal}} label={gettext("Done")}>
+        <%= if goal.done do %>
+          <div class="h-2.5 w-2.5 rounded-full bg-green-500 me-2"></div>
+        <% else %>
+          <div class="h-2.5 w-2.5 rounded-full bg-red-500 me-2"></div>
+        <% end %>
+      </:col>
+      <:action :let={{id, goal}}>
+        <.link navigate={~p"/goals/#{goal}"}>
+          <.icon name="hero-eye" />
+        </.link>
+        <.link patch={~p"/goals/#{goal}/edit"}>
+          <.icon name="hero-pencil-square" />
+        </.link>
+        <.link
+          phx-click={JS.push("delete", value: %{id: goal.id}) |> hide("##{id}")}
+          data-confirm="Are you sure?"
+        >
+          <.icon name="hero-trash" class="text-red-700" />
+        </.link>
+      </:action>
+    </.table>
+
+    <.modal :if={@live_action in [:new, :edit]} id="goal-modal" show on_cancel={JS.patch(~p"/goals")}>
+      <.live_component
+        module={PelnanceWeb.GoalLive.FormComponent}
+        id={@goal.id || :new}
+        title={@page_title}
+        action={@live_action}
+        goal={@goal}
+        current_user={@current_user}
+        patch={~p"/goals"}
+      />
+    </.modal>
+    """
+  end
+
+  @impl true
   def mount(_params, _session, socket) do
     {:ok, stream(socket, :goals, Goals.list_goals(socket.assigns.current_user))}
   end

@@ -6,6 +6,60 @@ defmodule PelnanceWeb.CategoryLive.Index do
   alias Pelnance.Categories.Category
 
   @impl true
+  def render(assigns) do
+    ~H"""
+    <.header>
+      <%= gettext("Listing Categories") %> <.icon name="hero-tag" />
+      <:actions>
+        <.link patch={~p"/categories/new"}>
+          <.button><%= gettext("New Category") %></.button>
+        </.link>
+      </:actions>
+    </.header>
+
+    <.table id="categories" rows={@streams.categories}>
+      <:col :let={{_id, category}} label={gettext("Name")}><%= category.name %></:col>
+      <:col :let={{_id, category}} label={gettext("Type")}>
+        <%= Pelnance.Types.get_type!(category.type_id).name %>
+      </:col>
+      <:action :let={{id, category}}>
+        <.link navigate={~p"/categories/#{category}"}>
+          <.icon name="hero-eye" />
+        </.link>
+        <.link patch={~p"/categories/#{category}/edit"}>
+          <.icon name="hero-pencil-square" />
+        </.link>
+
+        <.link
+          phx-click={JS.push("delete", value: %{id: category.id}) |> hide("##{id}")}
+          data-confirm="Are you sure?"
+        >
+          <.icon name="hero-trash" class="text-red-700" />
+        </.link>
+      </:action>
+    </.table>
+
+    <.modal
+      :if={@live_action in [:new, :edit]}
+      id="category-modal"
+      show
+      on_cancel={JS.patch(~p"/categories")}
+    >
+      <.live_component
+        module={PelnanceWeb.CategoryLive.FormComponent}
+        id={@category.id || :new}
+        title={@page_title}
+        action={@live_action}
+        category={@category}
+        current_user={@current_user}
+        types={@types}
+        patch={~p"/categories"}
+      />
+    </.modal>
+    """
+  end
+
+  @impl true
   def mount(_params, _session, socket) do
     {:ok,
      socket
