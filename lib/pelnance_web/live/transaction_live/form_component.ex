@@ -18,25 +18,25 @@ defmodule PelnanceWeb.TransactionLive.FormComponent do
         phx-change="validate"
         phx-submit="save"
       >
-        <.input field={@form[:date]} type="date" label="Date" />
-        <.input field={@form[:amount]} type="number" label="Amount" step="any" />
-        <.input field={@form[:description]} type="text" label="Description" />
+        <.input field={@form[:date]} type="date" label={gettext("Date")} />
+        <.input field={@form[:amount]} type="number" label={gettext("Amount")} step="any" />
+        <.input field={@form[:description]} type="text" label={gettext("Description")} />
         <.input field={@form[:type_id]} type="hidden" value={@type_id} />
         <.input
           field={@form[:category_id]}
           type="select"
-          label="Categories"
+          label={gettext("Categories")}
           options={@categories |> Enum.map(&{&1.name, &1.id})}
         />
 
         <.input
           field={@form[:account_id]}
           type="select"
-          label="Account"
+          label={gettext("Account")}
           options={@accounts |> Enum.map(&{&1.name, &1.id})}
         />
         <:actions>
-          <.button phx-disable-with="Saving...">Save Transaction</.button>
+          <.button phx-disable-with="Saving..."><%= gettext("Save Transaction") %></.button>
         </:actions>
       </.simple_form>
     </div>
@@ -74,7 +74,7 @@ defmodule PelnanceWeb.TransactionLive.FormComponent do
 
         {:noreply,
          socket
-         |> put_flash(:info, "Transaction updated successfully")
+         |> put_flash(:info, gettext("Transaction updated successfully"))
          |> push_patch(to: socket.assigns.patch)}
 
       {:error, %Ecto.Changeset{} = changeset} ->
@@ -89,7 +89,7 @@ defmodule PelnanceWeb.TransactionLive.FormComponent do
 
         {:noreply,
          socket
-         |> put_flash(:info, "Transaction created successfully")
+         |> put_flash(:info, gettext("Transaction created successfully"))
          |> push_patch(to: socket.assigns.patch)}
 
       {:error, %Ecto.Changeset{} = changeset} ->

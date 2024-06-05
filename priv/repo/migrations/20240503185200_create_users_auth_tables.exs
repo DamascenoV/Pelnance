@@ -7,6 +7,7 @@ defmodule Pelnance.Repo.Migrations.CreateUsersAuthTables do
       add :email, :string, null: false, collate: :nocase
       add :hashed_password, :string, null: false
       add :confirmed_at, :naive_datetime
+      add :locale, :string, null: false, default: "en"
       timestamps(type: :utc_datetime)
     end
 

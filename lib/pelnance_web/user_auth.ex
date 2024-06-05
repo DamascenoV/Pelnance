@@ -152,6 +152,9 @@ defmodule PelnanceWeb.UserAuth do
     socket = mount_current_user(socket, session)
 
     if socket.assigns.current_user do
+      PelnanceWeb.Gettext
+      |> Gettext.put_locale(socket.assigns.current_user.locale)
+
       {:cont, socket}
     else
       socket =
@@ -224,5 +227,5 @@ defmodule PelnanceWeb.UserAuth do
 
   defp maybe_store_return_to(conn), do: conn
 
-  defp signed_in_path(_conn), do: ~p"/"
+  defp signed_in_path(_conn), do: ~p"/dashboard"
 end

@@ -146,6 +146,15 @@ defmodule Pelnance.Users do
     end
   end
 
+  @doc """
+  Update user locale
+  """
+  def update_user_locale(user, locale) do
+    user
+    |> User.locale_changeset(%{locale: locale})
+    |> Repo.update()
+  end
+
   defp user_email_multi(user, email, context) do
     changeset =
       user
@@ -185,6 +194,19 @@ defmodule Pelnance.Users do
   """
   def change_user_password(user, attrs \\ %{}) do
     User.password_changeset(user, attrs, hash_password: false)
+  end
+
+  @doc """
+  Returns an `%Ecto.Changeset{}` for changing the user locale.
+
+  ## Examples
+
+      iex> change_user_locale(user)
+      %Ecto.Changeset{data: %User{}}
+
+  """
+  def change_user_locale(user, attrs \\ %{}) do
+    User.locale_changeset(user, attrs)
   end
 
   @doc """

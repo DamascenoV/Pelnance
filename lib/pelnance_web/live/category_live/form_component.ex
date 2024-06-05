@@ -18,10 +18,15 @@ defmodule PelnanceWeb.CategoryLive.FormComponent do
         phx-change="validate"
         phx-submit="save"
       >
-        <.input field={@form[:name]} type="text" label="Name" />
-        <.input field={@form[:type_id]} type="select" label="Type" options={@types |> Enum.map(&{&1.name, &1.id})} />
+        <.input field={@form[:name]} type="text" label={gettext("Name")} />
+        <.input
+          field={@form[:type_id]}
+          type="select"
+          label={gettext("Type")}
+          options={@types |> Enum.map(&{&1.name, &1.id})}
+        />
         <:actions>
-          <.button phx-disable-with="Saving...">Save Category</.button>
+          <.button phx-disable-with="Saving..."><%= gettext("Save Category") %></.button>
         </:actions>
       </.simple_form>
     </div>
@@ -59,7 +64,7 @@ defmodule PelnanceWeb.CategoryLive.FormComponent do
 
         {:noreply,
          socket
-         |> put_flash(:info, "Category updated successfully")
+         |> put_flash(:info, gettext("Category updated successfully"))
          |> push_patch(to: socket.assigns.patch)}
 
       {:error, %Ecto.Changeset{} = changeset} ->
@@ -74,7 +79,7 @@ defmodule PelnanceWeb.CategoryLive.FormComponent do
 
         {:noreply,
          socket
-         |> put_flash(:info, "Category created successfully")
+         |> put_flash(:info, gettext("Category created successfully"))
          |> push_patch(to: socket.assigns.patch)}
 
       {:error, %Ecto.Changeset{} = changeset} ->

@@ -6,7 +6,9 @@ defmodule Pelnance.Transactions do
   import Ecto.Query, warn: false
   alias Pelnance.Repo
 
+  alias Pelnance.Accounts
   alias Pelnance.Transactions.Transaction
+  alias Pelnance.Users.User
 
   @doc """
   Returns the list of transactions.
@@ -19,6 +21,19 @@ defmodule Pelnance.Transactions do
   """
   def list_transactions do
     Repo.all(Transaction)
+  end
+
+  @doc """
+  Returns the list of transactions.
+
+  ## Examples
+
+      iex> list_transactions(%User{})
+      [%Transaction{}, ...]
+
+  """
+  def list_transactions(user = %User{}) do
+    Repo.all(from t in Transaction, join: a in assoc(t, :account), where: a.user_id == ^user.id)
   end
 
   @doc """
@@ -63,9 +78,14 @@ defmodule Pelnance.Transactions do
 
   """
   def create_transaction(attrs \\ %{}) do
-    %Transaction{}
-    |> Transaction.changeset(attrs)
-    |> Repo.insert()
+    {:ok, transaction} =
+      %Transaction{}
+      |> Transaction.changeset(attrs)
+      |> Repo.insert()
+
+    Accounts.update_balance(:insert, transaction)
+
+    {:ok, transaction}
   end
 
   @doc """
@@ -99,7 +119,9 @@ defmodule Pelnance.Transactions do
 
   """
   def delete_transaction(%Transaction{} = transaction) do
-    Repo.delete(transaction)
+    {:ok, transaction} = Repo.delete(transaction)
+    Accounts.update_balance(:delete, transaction)
+    {:ok, transaction}
   end
 
   @doc """

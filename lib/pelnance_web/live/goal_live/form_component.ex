@@ -9,7 +9,6 @@ defmodule PelnanceWeb.GoalLive.FormComponent do
     <div>
       <.header>
         <%= @title %>
-        <:subtitle>Use this form to manage goal records in your database.</:subtitle>
       </.header>
 
       <.simple_form
@@ -19,11 +18,11 @@ defmodule PelnanceWeb.GoalLive.FormComponent do
         phx-change="validate"
         phx-submit="save"
       >
-        <.input field={@form[:name]} type="text" label="Name" />
-        <.input field={@form[:description]} type="text" label="Description" />
-        <.input field={@form[:done]} type="checkbox" label="Done" />
+        <.input field={@form[:name]} type="text" label={gettext("Name")} />
+        <.input field={@form[:description]} type="text" label={gettext("Description")} />
+        <.input field={@form[:done]} type="checkbox" label={gettext("Done")} />
         <:actions>
-          <.button phx-disable-with="Saving...">Save Goal</.button>
+          <.button phx-disable-with="Saving..."><%= gettext("Save Goal") %></.button>
         </:actions>
       </.simple_form>
     </div>
@@ -61,7 +60,7 @@ defmodule PelnanceWeb.GoalLive.FormComponent do
 
         {:noreply,
          socket
-         |> put_flash(:info, "Goal updated successfully")
+         |> put_flash(:info, gettext("Goal updated successfully"))
          |> push_patch(to: socket.assigns.patch)}
 
       {:error, %Ecto.Changeset{} = changeset} ->
@@ -76,7 +75,7 @@ defmodule PelnanceWeb.GoalLive.FormComponent do
 
         {:noreply,
          socket
-         |> put_flash(:info, "Goal created successfully")
+         |> put_flash(:info, gettext("Goal created successfully"))
          |> push_patch(to: socket.assigns.patch)}
 
       {:error, %Ecto.Changeset{} = changeset} ->

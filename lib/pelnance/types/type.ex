@@ -18,6 +18,7 @@ defmodule Pelnance.Types.Type do
     type
     |> cast(attrs, [:name, :icon, :subtraction, :user_id])
     |> validate_required([:name, :icon, :subtraction, :user_id])
+    |> validate_format(:icon, ~r/^hero-/)
     |> foreign_key_constraint(:user_id)
   end
 end

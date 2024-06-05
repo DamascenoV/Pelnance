@@ -14,12 +14,12 @@ defmodule Pelnance.Currencies do
 
   ## Examples
 
-      iex> list_currencies()
+      iex> list_currencies(%User{})
       [%Currency{}, ...]
 
   """
-  def list_currencies do
-    Repo.all(Currency)
+  def list_currencies(user = %User{}) do
+    Repo.all(from c in Currency, where: c.user_id == ^user.id)
   end
 
   @doc """

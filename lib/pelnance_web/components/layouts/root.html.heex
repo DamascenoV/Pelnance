@@ -12,47 +12,6 @@
     </script>
   </head>
   <body class="bg-white antialiased">
-    <ul class="relative z-10 flex items-center gap-4 px-4 sm:px-6 lg:px-8 justify-end">
-      <%= if @current_user do %>
-        <li class="text-[0.8125rem] leading-6 text-zinc-900">
-          <%= @current_user.email %>
-        </li>
-        <li>
-          <.link
-            href={~p"/users/settings"}
-            class="text-[0.8125rem] leading-6 text-zinc-900 font-semibold hover:text-zinc-700"
-          >
-            Settings
-          </.link>
-        </li>
-        <li>
-          <.link
-            href={~p"/users/log_out"}
-            method="delete"
-            class="text-[0.8125rem] leading-6 text-zinc-900 font-semibold hover:text-zinc-700"
-          >
-            Log out
-          </.link>
-        </li>
-      <% else %>
-        <li>
-          <.link
-            href={~p"/users/register"}
-            class="text-[0.8125rem] leading-6 text-zinc-900 font-semibold hover:text-zinc-700"
-          >
-            Register
-          </.link>
-        </li>
-        <li>
-          <.link
-            href={~p"/users/log_in"}
-            class="text-[0.8125rem] leading-6 text-zinc-900 font-semibold hover:text-zinc-700"
-          >
-            Log in
-          </.link>
-        </li>
-      <% end %>
-    </ul>
     <div
       id="sidebar"
       class="fixed top-0 left-0 h-screen w-full overflow-y-auto backdrop-blur-md bg-white/30 border flex flex-col justify-between p-4 transition duration-300 lg:w-64 md:w-64 hidden rounded-lg z-10"
@@ -72,50 +31,44 @@
             href={~p"/dashboard"}
             class="flex items-center p-2 rounded-lg hover:bg-gray-200 py-2"
           >
-            <.icon name="hero-home" class="w-6 h-6 mr-2" /> Dashboard
+            <.icon name="hero-home" class="w-6 h-6 mr-2" /> <%= gettext "Dashboard" %>
           </.link>
           <.link
             href={~p"/accounts"}
             class="flex items-center p-2 rounded-lg hover:bg-gray-200 py-2"
           >
-            <.icon name="hero-wallet" class="w-6 h-6 mr-2" /> Accounts
+            <.icon name="hero-wallet" class="w-6 h-6 mr-2" /> <%= gettext "Accounts" %>
           </.link>
           <.link
             href={~p"/transactions"}
             class="flex items-center p-2 rounded-lg hover:bg-gray-200 py-2"
           >
-            <.icon name="hero-arrows-right-left" class="w-6 h-6 mr-2" /> Transactions
+            <.icon name="hero-arrows-right-left" class="w-6 h-6 mr-2" /> <%= gettext "Transactions" %>
           </.link>
           <.link href={~p"/goals"} class="flex items-center p-2 rounded-lg hover:bg-gray-200 py-2">
-            <.icon name="hero-clipboard-document-check" class="w-6 h-6 mr-2" /> Goals
+            <.icon name="hero-clipboard-document-check" class="w-6 h-6 mr-2" /> <%= gettext "Goals" %>
           </.link>
           <.link href={~p"/types"} class="flex items-center p-2 rounded-lg hover:bg-gray-200 py-2">
-            <.icon name="hero-banknotes" class="w-6 h-6 mr-2" /> Types
+            <.icon name="hero-banknotes" class="w-6 h-6 mr-2" /> <%= gettext "Types" %>
           </.link>
           <.link
             href={~p"/categories"}
             class="flex items-center p-2 rounded-lg hover:bg-gray-200 py-2"
           >
-            <.icon name="hero-tag" class="w-6 h-6 mr-2" /> Categories
+            <.icon name="hero-tag" class="w-6 h-6 mr-2" /> <%= gettext "Categories" %>
           </.link>
           <.link
             href={~p"/currencies"}
             class="flex items-center p-2 rounded-lg hover:bg-gray-200 py-2"
           >
-            <.icon name="hero-currency-euro" class="w-6 h-6 mr-2" /> Currencies
-          </.link>
-          <.link
-            href={~p"/users/settings"}
-            class="flex items-center p-2 rounded-lg hover:bg-gray-200 py-2"
-          >
-            <.icon name="hero-cog-8-tooth" class="w-6 h-6 mr-2" /> Settings
+            <.icon name="hero-currency-euro" class="w-6 h-6 mr-2" /> <%= gettext "Currencies" %>
           </.link>
           <div class="absolute bottom-4">
             <.link
               href={~p"/users/settings"}
               class="flex items-center p-2 rounded-lg hover:bg-gray-200 py-2"
             >
-              <.icon name="hero-user" class="w-6 h-6 mr-2" /> Profile
+              <.icon name="hero-user" class="w-6 h-6 mr-2" /> <%= gettext "Profile" %>
             </.link>
             <.link
               href={~p"/users/log_out"}

@@ -18,16 +18,16 @@ defmodule PelnanceWeb.AccountLive.FormComponent do
         phx-change="validate"
         phx-submit="save"
       >
-        <.input field={@form[:name]} type="text" label="Name" />
-        <.input field={@form[:balance]} type="number" label="Balance" step="any" />
+        <.input field={@form[:name]} type="text" label={gettext("Name")} />
+        <.input field={@form[:balance]} type="number" label={gettext("Balance")} step="any" />
         <.input
           field={@form[:currency_id]}
           type="select"
-          label="Currency"
+          label={gettext("Currency")}
           options={@currencies |> Enum.map(&{&1.name, &1.id})}
         />
         <:actions>
-          <.button phx-disable-with="Saving...">Save Account</.button>
+          <.button phx-disable-with="Saving..."><%= gettext("Save Account") %></.button>
         </:actions>
       </.simple_form>
     </div>
@@ -65,7 +65,7 @@ defmodule PelnanceWeb.AccountLive.FormComponent do
 
         {:noreply,
          socket
-         |> put_flash(:info, "Account updated successfully")
+         |> put_flash(:info, gettext("Account updated successfully"))
          |> push_patch(to: socket.assigns.patch)}
 
       {:error, %Ecto.Changeset{} = changeset} ->
@@ -80,7 +80,7 @@ defmodule PelnanceWeb.AccountLive.FormComponent do
 
         {:noreply,
          socket
-         |> put_flash(:info, "Account created successfully")
+         |> put_flash(:info, gettext("Account created successfully"))
          |> push_patch(to: socket.assigns.patch)}
 
       {:error, %Ecto.Changeset{} = changeset} ->

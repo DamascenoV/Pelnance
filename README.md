@@ -21,10 +21,13 @@ Ready to run in production? Please [check our deployment guides](https://hexdocs
 
  * [] - Tests
  * [] - Improve layout
+ * [] - Dark mode
  * [] - When creating a transaction change the difference in accounts balance
  * [] - In the page of the Account show the transactions
  * [] - Dashboard
- * [] - Goals
+ * [x] - Goals
+ * [] - Translations
  * [] - Transfer amount from one account to another
  * [] - Recurrent transactions
  * [] - Settings page
+ * [] - When create a transaction save the account balance

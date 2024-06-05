@@ -14,12 +14,12 @@ defmodule Pelnance.Types do
 
   ## Examples
 
-      iex> list_types()
+      iex> list_types(%User{})
       [%Type{}, ...]
 
   """
-  def list_types do
-    Repo.all(Type)
+  def list_types(user = %User{}) do
+    Repo.all(from t in Type, where: t.user_id == ^user.id)
   end
 
   @doc """
