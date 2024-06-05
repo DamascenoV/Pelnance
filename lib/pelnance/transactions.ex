@@ -78,6 +78,11 @@ defmodule Pelnance.Transactions do
 
   """
   def create_transaction(attrs \\ %{}) do
+    account_balance = Accounts.get_account!(attrs["account_id"]).balance
+
+    attrs = attrs
+    |> Map.put("account_balance", account_balance)
+
     {:ok, transaction} =
       %Transaction{}
       |> Transaction.changeset(attrs)
@@ -101,9 +106,13 @@ defmodule Pelnance.Transactions do
 
   """
   def update_transaction(%Transaction{} = transaction, attrs) do
-    transaction
+    {:ok, t} = transaction
     |> Transaction.changeset(attrs)
     |> Repo.update()
+
+    Accounts.update_balance(:edit, t)
+
+    {:ok, t}
   end
 
   @doc """

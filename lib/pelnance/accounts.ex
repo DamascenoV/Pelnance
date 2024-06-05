@@ -136,8 +136,8 @@ defmodule Pelnance.Accounts do
 
     amount =
       case type.subtraction do
-        false -> Decimal.to_float(account.balance) - Decimal.to_float(transaction.amount)
-        true -> Decimal.to_float(transaction.amount) + Decimal.to_float(account.balance)
+        false -> Decimal.to_float(transaction.amount) + Decimal.to_float(transaction.account_balance)
+        true -> Decimal.to_float(transaction.account_balance) - Decimal.to_float(transaction.amount)
       end
 
     account

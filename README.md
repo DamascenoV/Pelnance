@@ -30,4 +30,4 @@ Ready to run in production? Please [check our deployment guides](https://hexdocs
  * [] - Transfer amount from one account to another
  * [] - Recurrent transactions
  * [] - Settings page
- * [] - When create a transaction save the account balance
+ * [x] - When create a transaction save the account balance

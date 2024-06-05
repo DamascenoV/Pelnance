@@ -8,6 +8,7 @@ defmodule Pelnance.Transactions.Transaction do
     field :date, :date
     field :description, :string
     field :amount, :decimal
+    field :account_balance, :decimal
     belongs_to :type, Pelnance.Types.Type
     belongs_to :category, Pelnance.Categories.Category
     belongs_to :account, Pelnance.Accounts.Account
@@ -18,7 +19,7 @@ defmodule Pelnance.Transactions.Transaction do
   @doc false
   def changeset(transaction, attrs) do
     transaction
-    |> cast(attrs, [:date, :amount, :description, :type_id, :category_id, :account_id])
+    |> cast(attrs, [:date, :amount, :description, :type_id, :category_id, :account_id, :account_balance])
     |> validate_required([:date, :amount, :description, :type_id, :category_id, :account_id])
     |> foreign_key_constraint(:type_id)
     |> foreign_key_constraint(:category_id)

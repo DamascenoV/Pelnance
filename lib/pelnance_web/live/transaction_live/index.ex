@@ -31,7 +31,10 @@ defmodule PelnanceWeb.TransactionLive.Index do
       <:col :let={{_id, transaction}} label={gettext("Description")}>
         <%= transaction.description %>
       </:col>
-      <:col :let={{_id, transaction}} label={gettext("Amount")}><%= transaction.amount %></:col>
+      <:col :let={{_id, transaction}} label={gettext("Amount")}><%= transaction.amount %> €</:col>
+      <:col :let={{_id, transaction}} label={gettext("Balance")}>
+        <%= transaction.account_balance %> €
+      </:col>
       <:col :let={{_id, transaction}} label={gettext("Date")}><%= transaction.date %></:col>
       <:action :let={{id, transaction}}>
         <.link navigate={~p"/transactions/#{transaction}"}>
