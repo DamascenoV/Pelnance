@@ -676,4 +676,14 @@ defmodule PelnanceWeb.CoreComponents do
   def translate_errors(errors, field) when is_list(errors) do
     for {^field, {msg, opts}} <- errors, do: translate_error({msg, opts})
   end
+
+  attr :step_number, :integer, default: 0
+
+  def progress_bar(assigns) do
+    ~H"""
+    <div class="w-full h-1 my-2 bg-gray-200 rounded-full">
+      <div class="h-1 bg-blue-600 rounded-full" style={"width: #{@step_number * 25}%"}></div>
+    </div>
+    """
+  end
 end

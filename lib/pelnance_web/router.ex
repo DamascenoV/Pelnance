@@ -71,6 +71,10 @@ defmodule PelnanceWeb.Router do
 
       # DASHBOARD ROUTES
       live "/dashboard", DashboardLive.Index, :index
+      live "/dashboard/new_currency", DashboardLive.Index, :new_currency
+      live "/dashboard/new_type", DashboardLive.Index, :new_type
+      live "/dashboard/new_category", DashboardLive.Index, :new_category
+      live "/dashboard/new_account", DashboardLive.Index, :new_account
 
       # CURRENCIES ROUTES
       live "/currencies", CurrencyLive.Index, :index
