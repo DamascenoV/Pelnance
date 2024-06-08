@@ -5,8 +5,6 @@ defmodule PelnanceWeb.DashboardLive.Index do
 
   @impl true
   def render(assigns) do
-    dbg(assigns)
-
     ~H"""
     <div>
       <h1>Dashboard</h1>
