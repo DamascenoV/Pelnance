@@ -20,7 +20,13 @@ defmodule PelnanceWeb.TypeLive.Index do
       <:col :let={{_id, type}} label={gettext("Icon")}>
         <%= type.icon %> - <.icon name={type.icon} />
       </:col>
-      <:col :let={{_id, type}} label={gettext("Subtraction")}><%= type.subtraction %></:col>
+      <:col :let={{_id, type}} label={gettext("Subtraction")}>
+        <%= if type.subtraction do %>
+          <div class="h-2.5 w-2.5 rounded-full bg-green-500 me-2"></div>
+        <% else %>
+          <div class="h-2.5 w-2.5 rounded-full bg-red-500 me-2"></div>
+        <% end %>
+      </:col>
       <:action :let={{id, type}}>
         <.link navigate={~p"/types/#{type}"}>
           <.icon name="hero-eye" />
@@ -91,5 +97,14 @@ defmodule PelnanceWeb.TypeLive.Index do
     {:ok, _} = Types.delete_type(type)
 
     {:noreply, stream_delete(socket, :types, type)}
+  end
+
+  def handle_event("generate", _params, socket) do
+    Types.generate_types(socket.assigns.current_user)
+
+    {:noreply,
+     socket
+     |> put_flash(:info, gettext("Types generated successfully"))
+     |> redirect(to: ~p"/types")}
   end
 end

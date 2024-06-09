@@ -14,6 +14,12 @@ defmodule PelnanceWeb.TypeLive.FormComponent do
         </:subtitle>
       </.header>
 
+      <div class="flex flex-col gap-4">
+        <.button phx-disabled-with="Generating..." class="text-xs" phx-click="generate">
+          <%= gettext("Auto Generate Types") %>
+        </.button>
+      </div>
+
       <.simple_form
         for={@form}
         id="type-form"

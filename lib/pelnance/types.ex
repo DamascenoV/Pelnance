@@ -103,4 +103,32 @@ defmodule Pelnance.Types do
   def change_type(%Type{} = type, attrs \\ %{}) do
     Type.changeset(type, attrs)
   end
+
+  @doc """
+  Generate types
+
+  ## Examples
+
+      iex> list_types(%User{})
+      [%Type{}, ...]
+
+  """
+  def generate_types(user = %User{}) do
+    types = [
+      %{
+        name: "Income",
+        icon: "hero-arrow-trending-up",
+        user_id: user.id,
+        subtraction: false
+      },
+      %{
+        name: "Expense",
+        icon: "hero-arrow-trending-down",
+        user_id: user.id,
+        subtraction: true
+      }
+    ]
+
+    Enum.each(types, fn type -> create_type(user, type) end)
+  end
 end
