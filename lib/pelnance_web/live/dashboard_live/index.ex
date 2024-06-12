@@ -9,12 +9,14 @@ defmodule PelnanceWeb.DashboardLive.Index do
     <div>
       <h1>Dashboard</h1>
       <%= if @step_number < 4 do %>
-        <p class="text-md text-red-500">Please complete your setup in the steps below.</p>
+        <p class="text-md text-red-500">
+          <%= gettext("Please complete your setup in the steps below") %>.
+        </p>
         <.progress_bar step_number={@step_number} />
       <% end %>
       <div class="flex flex-col gap-4 mt-4">
         <%= if @user.currencies == [] do %>
-          <.button phx-click="create_currency">Create new currency</.button>
+          <.button phx-click="create_currency"><%= gettext("Create new currency") %></.button>
           <.modal
             :if={@live_action == :new_currency}
             id="currency-modal"
@@ -24,7 +26,7 @@ defmodule PelnanceWeb.DashboardLive.Index do
             <.live_component
               module={PelnanceWeb.CurrencyLive.FormComponent}
               id={:new}
-              title="Create new currency"
+              title={gettext("Create new currency")}
               action={:new}
               currency={%Pelnance.Currencies.Currency{}}
               current_user={@user}
@@ -33,7 +35,7 @@ defmodule PelnanceWeb.DashboardLive.Index do
           </.modal>
         <% end %>
         <%= if @user.types == [] do %>
-          <.button phx-click="create_type">Create new type</.button>
+          <.button phx-click="create_type"><%= gettext("Create new type") %></.button>
           <.modal
             :if={@live_action == :new_type}
             id="type-modal"
@@ -43,7 +45,7 @@ defmodule PelnanceWeb.DashboardLive.Index do
             <.live_component
               module={PelnanceWeb.TypeLive.FormComponent}
               id={:new}
-              title="Create new type"
+              title={gettext("Create new type")}
               action={:new}
               type={%Pelnance.Types.Type{}}
               current_user={@user}
@@ -52,7 +54,7 @@ defmodule PelnanceWeb.DashboardLive.Index do
           </.modal>
         <% end %>
         <%= if @user.categories == [] do %>
-          <.button phx-click="create_category">Create new category</.button>
+          <.button phx-click="create_category"><%= gettext("Create new category") %></.button>
           <.modal
             :if={@live_action == :new_category}
             id="category-modal"
@@ -62,7 +64,7 @@ defmodule PelnanceWeb.DashboardLive.Index do
             <.live_component
               module={PelnanceWeb.CategoryLive.FormComponent}
               id={:new}
-              title="Create new category"
+              title={gettext("Create new category")}
               action={:new}
               category={%Pelnance.Categories.Category{}}
               current_user={@user}
@@ -72,7 +74,7 @@ defmodule PelnanceWeb.DashboardLive.Index do
           </.modal>
         <% end %>
         <%= if @user.accounts == [] do %>
-          <.button phx-click="create_account">Create new account</.button>
+          <.button phx-click="create_account"><%= gettext("Create new account") %></.button>
           <.modal
             :if={@live_action == :new_account}
             id="account-modal"
@@ -82,7 +84,7 @@ defmodule PelnanceWeb.DashboardLive.Index do
             <.live_component
               module={PelnanceWeb.AccountLive.FormComponent}
               id={:new}
-              title="Create new account"
+              title={gettext("Create new account")}
               action={:new}
               account={%Pelnance.Accounts.Account{}}
               current_user={@user}
