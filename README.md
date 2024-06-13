@@ -31,3 +31,4 @@ Ready to run in production? Please [check our deployment guides](https://hexdocs
  * [] - Recurrent transactions
  * [] - Settings page
  * [x] - When create a transaction save the account balance
+ * [] - Add Documents in the transaction

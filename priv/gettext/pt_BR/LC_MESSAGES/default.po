@@ -204,7 +204,7 @@ msgstr "Tipos"
 #: lib/pelnance_web/live/transaction_live/form_component.ex:35
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Account"
-msgstr "Quantidade"
+msgstr "Conta"
 
 #: lib/pelnance_web/live/account_live/form_component.ex:83
 #, elixir-autogen, elixir-format

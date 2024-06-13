@@ -19,7 +19,7 @@ defmodule PelnanceWeb.AccountLive.Index do
 
     <.table id="accounts" rows={@streams.accounts}>
       <:col :let={{_id, account}} label={gettext("Name")}><%= account.name %></:col>
-      <:col :let={{_id, account}} label={gettext("Initial Balance")}><%= account.balance %></:col>
+      <:col :let={{_id, account}} label={gettext("Balance")}><%= account.balance %></:col>
       <:col :let={{_id, account}} label={gettext("Currency")}>
         <%= Pelnance.Currencies.get_currency!(account.currency_id).name %>
       </:col>
