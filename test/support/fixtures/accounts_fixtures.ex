@@ -7,14 +7,16 @@ defmodule Pelnance.AccountsFixtures do
   @doc """
   Generate a account.
   """
-  def account_fixture(attrs \\ %{}) do
-    {:ok, account} =
+  def account_fixture(user, attrs \\ %{}) do
+    attrs =
       attrs
       |> Enum.into(%{
         balance: "120.5",
         name: "some name"
       })
-      |> Pelnance.Accounts.create_account()
+
+    {:ok, account} =
+      Pelnance.Accounts.create_account(user, attrs)
 
     account
   end

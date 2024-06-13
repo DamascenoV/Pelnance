@@ -6,34 +6,39 @@ defmodule Pelnance.CurrenciesTest do
   describe "currencies" do
     alias Pelnance.Currencies.Currency
 
-    import Pelnance.CurrenciesFixtures
+    import Pelnance.{CurrenciesFixtures, UsersFixtures}
 
     @invalid_attrs %{name: nil, symbol: nil}
 
     test "list_currencies/0 returns all currencies" do
-      currency = currency_fixture()
-      assert Currencies.list_currencies() == [currency]
+      user = user_fixture()
+      currency = currency_fixture(user)
+      assert Currencies.list_currencies(user) == [currency]
     end
 
     test "get_currency!/1 returns the currency with given id" do
-      currency = currency_fixture()
+      user = user_fixture()
+      currency = currency_fixture(user)
       assert Currencies.get_currency!(currency.id) == currency
     end
 
     test "create_currency/1 with valid data creates a currency" do
-      valid_attrs = %{name: "some name", symbol: "some symbol"}
+      user = user_fixture()
 
-      assert {:ok, %Currency{} = currency} = Currencies.create_currency(valid_attrs)
+      assert {:ok, %Currency{} = currency} = Currencies.create_currency(user, %{name: "some name", symbol: "some symbol"})
       assert currency.name == "some name"
       assert currency.symbol == "some symbol"
+      assert currency.user_id == user.id
     end
 
     test "create_currency/1 with invalid data returns error changeset" do
-      assert {:error, %Ecto.Changeset{}} = Currencies.create_currency(@invalid_attrs)
+      user = user_fixture()
+      assert {:error, %Ecto.Changeset{}} = Currencies.create_currency(user)
     end
 
     test "update_currency/2 with valid data updates the currency" do
-      currency = currency_fixture()
+      user = user_fixture()
+      currency = currency_fixture(user)
       update_attrs = %{name: "some updated name", symbol: "some updated symbol"}
 
       assert {:ok, %Currency{} = currency} = Currencies.update_currency(currency, update_attrs)
@@ -42,19 +47,22 @@ defmodule Pelnance.CurrenciesTest do
     end
 
     test "update_currency/2 with invalid data returns error changeset" do
-      currency = currency_fixture()
+      user = user_fixture()
+      currency = currency_fixture(user)
       assert {:error, %Ecto.Changeset{}} = Currencies.update_currency(currency, @invalid_attrs)
       assert currency == Currencies.get_currency!(currency.id)
     end
 
     test "delete_currency/1 deletes the currency" do
-      currency = currency_fixture()
+      user = user_fixture()
+      currency = currency_fixture(user)
       assert {:ok, %Currency{}} = Currencies.delete_currency(currency)
       assert_raise Ecto.NoResultsError, fn -> Currencies.get_currency!(currency.id) end
     end
 
     test "change_currency/1 returns a currency changeset" do
-      currency = currency_fixture()
+      user = user_fixture()
+      currency = currency_fixture(user)
       assert %Ecto.Changeset{} = Currencies.change_currency(currency)
     end
   end
