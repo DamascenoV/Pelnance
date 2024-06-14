@@ -80,17 +80,18 @@ defmodule Pelnance.Transactions do
   def create_transaction(attrs \\ %{}) do
     account_balance = Accounts.get_account!(attrs["account_id"]).balance
 
-    attrs = attrs
-    |> Map.put("account_balance", account_balance)
+    attrs =
+      attrs
+      |> Map.put("account_balance", account_balance)
 
-    {:ok, transaction} =
-      %Transaction{}
-      |> Transaction.changeset(attrs)
-      |> Repo.insert()
+    case %Transaction{} |> Transaction.changeset(attrs) |> Repo.insert() do
+      {:ok, transaction} ->
+        Accounts.update_balance(:insert, transaction)
+        {:ok, transaction}
 
-    Accounts.update_balance(:insert, transaction)
-
-    {:ok, transaction}
+      {:error, changeset} ->
+        {:error, changeset}
+    end
   end
 
   @doc """
@@ -106,13 +107,14 @@ defmodule Pelnance.Transactions do
 
   """
   def update_transaction(%Transaction{} = transaction, attrs) do
-    {:ok, t} = transaction
-    |> Transaction.changeset(attrs)
-    |> Repo.update()
+    case transaction |> Transaction.changeset(attrs) |> Repo.update() do
+      {:ok, transaction} ->
+        Accounts.update_balance(:edit, transaction)
+        {:ok, transaction}
 
-    Accounts.update_balance(:edit, t)
-
-    {:ok, t}
+      {:error, changeset} ->
+        {:error, changeset}
+    end
   end
 
   @doc """

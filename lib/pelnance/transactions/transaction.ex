@@ -19,7 +19,15 @@ defmodule Pelnance.Transactions.Transaction do
   @doc false
   def changeset(transaction, attrs) do
     transaction
-    |> cast(attrs, [:date, :amount, :description, :type_id, :category_id, :account_id, :account_balance])
+    |> cast(attrs, [
+      :date,
+      :amount,
+      :description,
+      :type_id,
+      :category_id,
+      :account_id,
+      :account_balance
+    ])
     |> validate_required([:date, :amount, :description, :type_id, :category_id, :account_id])
     |> foreign_key_constraint(:type_id)
     |> foreign_key_constraint(:category_id)

@@ -11,8 +11,7 @@ defmodule Pelnance.Application do
       PelnanceWeb.Telemetry,
       Pelnance.Repo,
       {Ecto.Migrator,
-        repos: Application.fetch_env!(:pelnance, :ecto_repos),
-        skip: skip_migrations?()},
+       repos: Application.fetch_env!(:pelnance, :ecto_repos), skip: skip_migrations?()},
       {DNSCluster, query: Application.get_env(:pelnance, :dns_cluster_query) || :ignore},
       {Phoenix.PubSub, name: Pelnance.PubSub},
       # Start the Finch HTTP client for sending emails

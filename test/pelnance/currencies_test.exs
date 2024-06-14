@@ -25,7 +25,9 @@ defmodule Pelnance.CurrenciesTest do
     test "create_currency/1 with valid data creates a currency" do
       user = user_fixture()
 
-      assert {:ok, %Currency{} = currency} = Currencies.create_currency(user, %{name: "some name", symbol: "some symbol"})
+      assert {:ok, %Currency{} = currency} =
+               Currencies.create_currency(user, %{name: "some name", symbol: "some symbol"})
+
       assert currency.name == "some name"
       assert currency.symbol == "some symbol"
       assert currency.user_id == user.id

@@ -81,21 +81,23 @@ defmodule Pelnance.TransactionsTest do
       assert transaction.type_id == type.id
     end
 
-    # test "create_transaction/1 with invalid data returns error changeset" do
-    #   user = user_fixture()
-    #   currency = currency_fixture(user)
-    #   account = account_fixture(user, %{currency_id: currency.id})
-    #
-    #   assert {:error, %Ecto.Changeset{}} =
-    #            Transactions.create_transaction(%{
-    #              "date" => ~D[2024-05-02],
-    #              "description" => "some description",
-    #              "amount" => "120.5",
-    #              "account_id" => account.id,
-    #              "category_id" => nil,
-    #              "type_id" => nil
-    #            })
-    # end
+    test "create_transaction/1 with invalid data returns error changeset" do
+      user = user_fixture()
+      currency = currency_fixture(user)
+      type = type_fixture(user)
+      category = category_fixture(user, %{type_id: type.id})
+      account = account_fixture(user, %{currency_id: currency.id})
+
+      assert {:error, %Ecto.Changeset{}} =
+               Transactions.create_transaction(%{
+                 "date" => ~D[2024-05-02],
+                 "description" => "some description",
+                 "amount" => nil,
+                 "account_id" => account.id,
+                 "category_id" => category.id,
+                 "type_id" => type.id
+               })
+    end
 
     test "update_transaction/2 with valid data updates the transaction" do
       user = user_fixture()
@@ -125,25 +127,25 @@ defmodule Pelnance.TransactionsTest do
       assert transaction.amount == Decimal.new("456.7")
     end
 
-    # test "update_transaction/2 with invalid data returns error changeset" do
-    #   user = user_fixture()
-    #   type = type_fixture(user)
-    #   category = category_fixture(user, %{type_id: type.id})
-    #   currency = currency_fixture(user)
-    #   account = account_fixture(user, %{currency_id: currency.id})
-    #
-    #   transaction =
-    #     transaction_fixture(%{
-    #       "account_id" => account.id,
-    #       "category_id" => category.id,
-    #       "type_id" => type.id
-    #     })
-    #
-    #   assert {:error, %Ecto.Changeset{}} =
-    #            Transactions.update_transaction(transaction, @invalid_attrs)
-    #
-    #   assert transaction == Transactions.get_transaction!(transaction.id)
-    # end
+    test "update_transaction/2 with invalid data returns error changeset" do
+      user = user_fixture()
+      type = type_fixture(user)
+      category = category_fixture(user, %{type_id: type.id})
+      currency = currency_fixture(user)
+      account = account_fixture(user, %{currency_id: currency.id})
+
+      transaction =
+        transaction_fixture(%{
+          "account_id" => account.id,
+          "category_id" => category.id,
+          "type_id" => type.id
+        })
+
+      assert {:error, %Ecto.Changeset{}} =
+               Transactions.update_transaction(transaction, @invalid_attrs)
+
+      assert transaction == Transactions.get_transaction!(transaction.id)
+    end
 
     test "delete_transaction/1 deletes the transaction" do
       user = user_fixture()

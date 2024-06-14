@@ -8,7 +8,8 @@ defmodule Pelnance.CurrenciesFixtures do
   Generate a currency.
   """
   def currency_fixture(user = %Pelnance.Users.User{}, attrs \\ %{}) do
-      attrs = attrs
+    attrs =
+      attrs
       |> Enum.into(%{
         name: "some name",
         symbol: "some symbol"

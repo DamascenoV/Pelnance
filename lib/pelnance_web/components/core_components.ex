@@ -682,7 +682,9 @@ defmodule PelnanceWeb.CoreComponents do
   def progress_bar(assigns) do
     ~H"""
     <div>
-      <p class="text-sm text-gray-500"><%= gettext("Step") %> <%= @step_number %> <%= gettext("of") %> 4</p>
+      <p class="text-sm text-gray-500">
+        <%= gettext("Step") %> <%= @step_number %> <%= gettext("of") %> 4
+      </p>
       <div class="w-full h-2 my-2 bg-gray-200 rounded-full">
         <div class="h-2 bg-blue-600 rounded-full" style={"width: #{@step_number * 25}%"}></div>
       </div>
