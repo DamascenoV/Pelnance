@@ -22,7 +22,11 @@ defmodule PelnanceWeb.TransactionLive.Index do
 
     <.table id="transactions" rows={@streams.transactions}>
       <:col :let={{_id, transaction}} label={gettext("Type")}>
-        <.icon name={Pelnance.Types.get_type!(transaction.type_id).icon} />
+        <%= if transaction.type.subtraction == true do %>
+          <.icon name="hero-arrow-trending-down text-red-500" />
+        <% else %>
+          <.icon name="hero-arrow-trending-up text-green-500" />
+        <% end %>
         - <%= Pelnance.Types.get_type!(transaction.type_id).name %>
       </:col>
       <:col :let={{_id, transaction}} label={gettext("Category")}>

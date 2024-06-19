@@ -33,7 +33,7 @@ defmodule PelnanceWeb.TransactionLive.FormComponent do
           field={@form[:account_id]}
           type="select"
           label={gettext("Account")}
-          options={@accounts |> Enum.map(&{&1.name, &1.id})}
+          options={@accounts |> Enum.map(&{&1.name <> " - " <> Decimal.to_string(&1.balance), &1.id})}
         />
         <:actions>
           <.button phx-disable-with="Saving..."><%= gettext("Save Transaction") %></.button>

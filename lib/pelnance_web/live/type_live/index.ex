@@ -17,9 +17,6 @@ defmodule PelnanceWeb.TypeLive.Index do
 
     <.table id="types" rows={@streams.types}>
       <:col :let={{_id, type}} label={gettext("Name")}><%= type.name %></:col>
-      <:col :let={{_id, type}} label={gettext("Icon")}>
-        <%= type.icon %> - <.icon name={type.icon} />
-      </:col>
       <:col :let={{_id, type}} label={gettext("Subtraction")}>
         <%= if type.subtraction do %>
           <div class="h-2.5 w-2.5 rounded-full bg-green-500 me-2"></div>

@@ -9,9 +9,6 @@ defmodule PelnanceWeb.TypeLive.FormComponent do
     <div>
       <.header>
         <%= @title %>
-        <:subtitle>
-          <%= gettext("You can find icons here:") %> <a href="https://heroicons.com/" target="_blank">Heroicons</a>.
-        </:subtitle>
       </.header>
 
       <div class="flex flex-col gap-4">
@@ -28,12 +25,6 @@ defmodule PelnanceWeb.TypeLive.FormComponent do
         phx-submit="save"
       >
         <.input field={@form[:name]} type="text" label={gettext("Name")} />
-        <.input
-          field={@form[:icon]}
-          type="text"
-          label={gettext("Icon")}
-          placeholder="hero-arrow-path"
-        />
         <.input field={@form[:subtraction]} type="checkbox" label={gettext("Subtraction")} />
         <:actions>
           <.button phx-disable-with="Saving..."><%= gettext("Save Type") %></.button>

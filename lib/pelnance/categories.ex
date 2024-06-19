@@ -19,7 +19,7 @@ defmodule Pelnance.Categories do
 
   """
   def list_categories(user = %User{}) do
-    Repo.all(from c in Category, where: c.user_id == ^user.id)
+    Repo.all(from c in Category, where: c.user_id == ^user.id, order_by: c.type_id)
   end
 
   @doc """

@@ -33,7 +33,12 @@ defmodule Pelnance.Transactions do
 
   """
   def list_transactions(user = %User{}) do
-    Repo.all(from t in Transaction, join: a in assoc(t, :account), where: a.user_id == ^user.id)
+    Repo.all(
+      from t in Transaction,
+        join: a in assoc(t, :account),
+        where: a.user_id == ^user.id,
+        preload: [:type]
+    )
   end
 
   @doc """
@@ -87,7 +92,7 @@ defmodule Pelnance.Transactions do
     case %Transaction{} |> Transaction.changeset(attrs) |> Repo.insert() do
       {:ok, transaction} ->
         Accounts.update_balance(:insert, transaction)
-        {:ok, transaction}
+        {:ok, transaction |> Repo.preload([:type])}
 
       {:error, changeset} ->
         {:error, changeset}
@@ -110,7 +115,7 @@ defmodule Pelnance.Transactions do
     case transaction |> Transaction.changeset(attrs) |> Repo.update() do
       {:ok, transaction} ->
         Accounts.update_balance(:edit, transaction)
-        {:ok, transaction}
+        {:ok, transaction |> Repo.preload([:type])}
 
       {:error, changeset} ->
         {:error, changeset}
@@ -132,7 +137,7 @@ defmodule Pelnance.Transactions do
   def delete_transaction(%Transaction{} = transaction) do
     {:ok, transaction} = Repo.delete(transaction)
     Accounts.update_balance(:delete, transaction)
-    {:ok, transaction}
+    {:ok, transaction |> Repo.preload([:type])}
   end
 
   @doc """

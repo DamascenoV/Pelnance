@@ -21,7 +21,7 @@ defmodule Pelnance.Accounts do
 
   """
   def list_accounts(user = %User{}) do
-    Repo.all(from a in Account, where: a.user_id == ^user.id)
+    Repo.all(from a in Account, where: a.user_id == ^user.id, preload: [:currency])
   end
 
   @doc """
