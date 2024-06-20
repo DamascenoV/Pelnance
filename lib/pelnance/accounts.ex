@@ -38,7 +38,7 @@ defmodule Pelnance.Accounts do
       ** (Ecto.NoResultsError)
 
   """
-  def get_account!(id), do: Repo.get!(Account, id)
+  def get_account!(id), do: Repo.get!(Account, id) |> Repo.preload([:currency])
 
   @doc """
   Creates a account.
@@ -53,10 +53,16 @@ defmodule Pelnance.Accounts do
 
   """
   def create_account(user = %User{}, attrs \\ %{}) do
-    user
-    |> Ecto.build_assoc(:accounts)
-    |> Account.changeset(attrs)
-    |> Repo.insert()
+    account =
+      user
+      |> Ecto.build_assoc(:accounts)
+      |> Account.changeset(attrs)
+      |> Repo.insert()
+
+    case account do
+      {:ok, account} -> {:ok, account |> Repo.preload([:currency])}
+      {:error, changeset} -> {:error, changeset}
+    end
   end
 
   @doc """
@@ -72,9 +78,10 @@ defmodule Pelnance.Accounts do
 
   """
   def update_account(%Account{} = account, attrs) do
-    account
-    |> Account.changeset(attrs)
-    |> Repo.update()
+    case account |> Account.changeset(attrs) |> Repo.update() do
+      {:ok, account} -> {:ok, account |> Repo.preload([:currency])}
+      {:error, changeset} -> {:error, changeset}
+    end
   end
 
   @doc """

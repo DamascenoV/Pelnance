@@ -9,7 +9,7 @@ defmodule Pelnance.TypesTest do
     import Pelnance.TypesFixtures
     import Pelnance.UsersFixtures
 
-    @invalid_attrs %{name: nil, icon: nil, subtraction: false}
+    @invalid_attrs %{name: nil, subtraction: false}
 
     test "list_types/0 returns all types" do
       user = user_fixture()
@@ -25,11 +25,10 @@ defmodule Pelnance.TypesTest do
 
     test "create_type/1 with valid data creates a type" do
       user = user_fixture()
-      valid_attrs = %{name: "some name", icon: "hero-icon", subtraction: true}
+      valid_attrs = %{name: "some name", subtraction: true}
 
       assert {:ok, %Type{} = type} = Types.create_type(user, valid_attrs)
       assert type.name == "some name"
-      assert type.icon == "hero-icon"
       assert type.subtraction == true
       assert type.user_id == user.id
     end

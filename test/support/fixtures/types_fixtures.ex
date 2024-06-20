@@ -12,7 +12,6 @@ defmodule Pelnance.TypesFixtures do
       attrs
       |> Enum.into(%{
         name: "some name",
-        icon: "hero-icon",
         subtraction: true
       })
 

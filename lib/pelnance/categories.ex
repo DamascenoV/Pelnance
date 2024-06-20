@@ -19,7 +19,9 @@ defmodule Pelnance.Categories do
 
   """
   def list_categories(user = %User{}) do
-    Repo.all(from c in Category, where: c.user_id == ^user.id, order_by: c.type_id)
+    Repo.all(
+      from c in Category, where: c.user_id == ^user.id, order_by: c.type_id, preload: [:type]
+    )
   end
 
   @doc """
@@ -36,7 +38,7 @@ defmodule Pelnance.Categories do
       ** (Ecto.NoResultsError)
 
   """
-  def get_category!(id), do: Repo.get!(Category, id)
+  def get_category!(id), do: Repo.get!(Category, id) |> Repo.preload([:type])
 
   @doc """
   Creates a category.
@@ -51,10 +53,16 @@ defmodule Pelnance.Categories do
 
   """
   def create_category(user = %User{}, attrs \\ %{}) do
-    user
-    |> Ecto.build_assoc(:categories)
-    |> Category.changeset(attrs)
-    |> Repo.insert()
+    category =
+      user
+      |> Ecto.build_assoc(:categories)
+      |> Category.changeset(attrs)
+      |> Repo.insert()
+
+    case category do
+      {:ok, category} -> {:ok, category |> Repo.preload([:type])}
+      {:error, changeset} -> {:error, changeset}
+    end
   end
 
   @doc """
@@ -70,9 +78,10 @@ defmodule Pelnance.Categories do
 
   """
   def update_category(%Category{} = category, attrs) do
-    category
-    |> Category.changeset(attrs)
-    |> Repo.update()
+    case category |> Category.changeset(attrs) |> Repo.update() do
+      {:ok, category} -> {:ok, category |> Repo.preload([:type])}
+      {:error, changeset} -> {:error, changeset}
+    end
   end
 
   @doc """

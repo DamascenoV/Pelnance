@@ -20,7 +20,7 @@ defmodule PelnanceWeb.CategoryLive.Index do
     <.table id="categories" rows={@streams.categories}>
       <:col :let={{_id, category}} label={gettext("Name")}><%= category.name %></:col>
       <:col :let={{_id, category}} label={gettext("Type")}>
-        <%= Pelnance.Types.get_type!(category.type_id).name %>
+        <%= category.type.name %>
       </:col>
       <:action :let={{id, category}}>
         <.link navigate={~p"/categories/#{category}"}>

@@ -37,7 +37,7 @@ defmodule Pelnance.Transactions do
       from t in Transaction,
         join: a in assoc(t, :account),
         where: a.user_id == ^user.id,
-        preload: [:type]
+        preload: [:type, :category]
     )
   end
 
@@ -68,7 +68,7 @@ defmodule Pelnance.Transactions do
       ** (Ecto.NoResultsError)
 
   """
-  def get_transaction!(id), do: Repo.get!(Transaction, id)
+  def get_transaction!(id), do: Repo.get!(Transaction, id) |> Repo.preload([:type, :category])
 
   @doc """
   Creates a transaction.
@@ -92,7 +92,7 @@ defmodule Pelnance.Transactions do
     case %Transaction{} |> Transaction.changeset(attrs) |> Repo.insert() do
       {:ok, transaction} ->
         Accounts.update_balance(:insert, transaction)
-        {:ok, transaction |> Repo.preload([:type])}
+        {:ok, transaction |> Repo.preload([:type, :category])}
 
       {:error, changeset} ->
         {:error, changeset}
@@ -115,7 +115,7 @@ defmodule Pelnance.Transactions do
     case transaction |> Transaction.changeset(attrs) |> Repo.update() do
       {:ok, transaction} ->
         Accounts.update_balance(:edit, transaction)
-        {:ok, transaction |> Repo.preload([:type])}
+        {:ok, transaction |> Repo.preload([:type, :category])}
 
       {:error, changeset} ->
         {:error, changeset}
@@ -137,7 +137,7 @@ defmodule Pelnance.Transactions do
   def delete_transaction(%Transaction{} = transaction) do
     {:ok, transaction} = Repo.delete(transaction)
     Accounts.update_balance(:delete, transaction)
-    {:ok, transaction |> Repo.preload([:type])}
+    {:ok, transaction |> Repo.preload([:type, :category])}
   end
 
   @doc """

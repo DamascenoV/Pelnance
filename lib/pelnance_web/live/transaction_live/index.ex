@@ -27,10 +27,10 @@ defmodule PelnanceWeb.TransactionLive.Index do
         <% else %>
           <.icon name="hero-arrow-trending-up text-green-500" />
         <% end %>
-        - <%= Pelnance.Types.get_type!(transaction.type_id).name %>
+        - <%= transaction.type.name %>
       </:col>
       <:col :let={{_id, transaction}} label={gettext("Category")}>
-        <%= Pelnance.Categories.get_category!(transaction.category_id).name %>
+        <%= transaction.category.name %>
       </:col>
       <:col :let={{_id, transaction}} label={gettext("Description")}>
         <%= transaction.description %>
