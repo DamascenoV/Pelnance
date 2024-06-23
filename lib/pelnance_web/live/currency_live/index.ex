@@ -24,12 +24,14 @@ defmodule PelnanceWeb.CurrencyLive.Index do
           <.icon name="hero-eye" />
         </.link>
         <.link patch={~p"/currencies/#{currency}/edit"}>
+          <span class="hidden">Edit</span>
           <.icon name="hero-pencil-square" />
         </.link>
         <.link
           phx-click={JS.push("delete", value: %{id: currency.id}) |> hide("##{id}")}
           data-confirm="Are you sure?"
         >
+          <span class="hidden">Delete</span>
           <.icon name="hero-trash" class="text-red-700" />
         </.link>
       </:action>

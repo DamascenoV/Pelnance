@@ -2,6 +2,7 @@ defmodule PelnanceWeb.GoalLiveTest do
   use PelnanceWeb.ConnCase
 
   import Phoenix.LiveViewTest
+  import Pelnance.UsersFixtures
   import Pelnance.GoalsFixtures
 
   @create_attrs %{name: "some name", done: true}
@@ -9,22 +10,23 @@ defmodule PelnanceWeb.GoalLiveTest do
   @invalid_attrs %{name: nil, done: false}
 
   defp create_goal(_) do
-    goal = goal_fixture()
-    %{goal: goal}
+    user = user_fixture()
+    goal = goal_fixture(user)
+    %{goal: goal, user: user}
   end
 
   describe "Index" do
     setup [:create_goal]
 
-    test "lists all goals", %{conn: conn, goal: goal} do
-      {:ok, _index_live, html} = live(conn, ~p"/goals")
+    test "lists all goals", %{conn: conn, goal: goal, user: user} do
+      {:ok, _index_live, html} = live(conn |> log_in_user(user), ~p"/goals")
 
       assert html =~ "Listing Goals"
       assert html =~ goal.name
     end
 
-    test "saves new goal", %{conn: conn} do
-      {:ok, index_live, _html} = live(conn, ~p"/goals")
+    test "saves new goal", %{conn: conn, user: user} do
+      {:ok, index_live, _html} = live(conn |> log_in_user(user), ~p"/goals")
 
       assert index_live |> element("a", "New Goal") |> render_click() =~
                "New Goal"
@@ -46,8 +48,8 @@ defmodule PelnanceWeb.GoalLiveTest do
       assert html =~ "some name"
     end
 
-    test "updates goal in listing", %{conn: conn, goal: goal} do
-      {:ok, index_live, _html} = live(conn, ~p"/goals")
+    test "updates goal in listing", %{conn: conn, goal: goal, user: user} do
+      {:ok, index_live, _html} = live(conn |> log_in_user(user), ~p"/goals")
 
       assert index_live |> element("#goals-#{goal.id} a", "Edit") |> render_click() =~
                "Edit Goal"
@@ -69,8 +71,8 @@ defmodule PelnanceWeb.GoalLiveTest do
       assert html =~ "some updated name"
     end
 
-    test "deletes goal in listing", %{conn: conn, goal: goal} do
-      {:ok, index_live, _html} = live(conn, ~p"/goals")
+    test "deletes goal in listing", %{conn: conn, goal: goal, user: user} do
+      {:ok, index_live, _html} = live(conn |> log_in_user(user), ~p"/goals")
 
       assert index_live |> element("#goals-#{goal.id} a", "Delete") |> render_click()
       refute has_element?(index_live, "#goals-#{goal.id}")
@@ -80,15 +82,15 @@ defmodule PelnanceWeb.GoalLiveTest do
   describe "Show" do
     setup [:create_goal]
 
-    test "displays goal", %{conn: conn, goal: goal} do
-      {:ok, _show_live, html} = live(conn, ~p"/goals/#{goal}")
+    test "displays goal", %{conn: conn, goal: goal, user: user} do
+      {:ok, _show_live, html} = live(conn |> log_in_user(user), ~p"/goals/#{goal}")
 
       assert html =~ "Show Goal"
       assert html =~ goal.name
     end
 
-    test "updates goal within modal", %{conn: conn, goal: goal} do
-      {:ok, show_live, _html} = live(conn, ~p"/goals/#{goal}")
+    test "updates goal within modal", %{conn: conn, goal: goal, user: user} do
+      {:ok, show_live, _html} = live(conn |> log_in_user(user), ~p"/goals/#{goal}")
 
       assert show_live |> element("a", "Edit") |> render_click() =~
                "Edit Goal"

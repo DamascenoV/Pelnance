@@ -2,29 +2,35 @@ defmodule PelnanceWeb.AccountLiveTest do
   use PelnanceWeb.ConnCase
 
   import Phoenix.LiveViewTest
+  import Pelnance.UsersFixtures
+  import Pelnance.CurrenciesFixtures
   import Pelnance.AccountsFixtures
 
-  @create_attrs %{name: "some name", balance: "120.5"}
   @update_attrs %{name: "some updated name", balance: "456.7"}
   @invalid_attrs %{name: nil, balance: nil}
 
   defp create_account(_) do
-    account = account_fixture()
-    %{account: account}
+    user = user_fixture()
+
+    currency = currency_fixture(user)
+    account = account_fixture(user, %{currency_id: currency.id})
+    %{account: account, user: user}
   end
 
   describe "Index" do
     setup [:create_account]
 
-    test "lists all accounts", %{conn: conn, account: account} do
-      {:ok, _index_live, html} = live(conn, ~p"/accounts")
+    test "lists all accounts", %{conn: conn, account: account, user: user} do
+      {:ok, _index_live, html} = live(conn |> log_in_user(user), ~p"/accounts")
 
       assert html =~ "Listing Accounts"
       assert html =~ account.name
     end
 
-    test "saves new account", %{conn: conn} do
-      {:ok, index_live, _html} = live(conn, ~p"/accounts")
+    test "saves new account", %{conn: conn, user: user} do
+      {:ok, index_live, _html} = live(conn |> log_in_user(user), ~p"/accounts")
+
+      currency = currency_fixture(user)
 
       assert index_live |> element("a", "New Account") |> render_click() =~
                "New Account"
@@ -32,11 +38,19 @@ defmodule PelnanceWeb.AccountLiveTest do
       assert_patch(index_live, ~p"/accounts/new")
 
       assert index_live
-             |> form("#account-form", account: @invalid_attrs)
+             |> form("#account-form",
+               account: %{balance: nil, name: nil}
+             )
              |> render_change() =~ "can&#39;t be blank"
 
       assert index_live
-             |> form("#account-form", account: @create_attrs)
+             |> form("#account-form",
+               account: %{
+                 balance: Decimal.new("1000"),
+                 name: "Account_Test",
+                 currency_id: [currency.id]
+               }
+             )
              |> render_submit()
 
       assert_patch(index_live, ~p"/accounts")
@@ -46,8 +60,8 @@ defmodule PelnanceWeb.AccountLiveTest do
       assert html =~ "some name"
     end
 
-    test "updates account in listing", %{conn: conn, account: account} do
-      {:ok, index_live, _html} = live(conn, ~p"/accounts")
+    test "updates account in listing", %{conn: conn, account: account, user: user} do
+      {:ok, index_live, _html} = live(conn |> log_in_user(user), ~p"/accounts")
 
       assert index_live |> element("#accounts-#{account.id} a", "Edit") |> render_click() =~
                "Edit Account"
@@ -69,8 +83,8 @@ defmodule PelnanceWeb.AccountLiveTest do
       assert html =~ "some updated name"
     end
 
-    test "deletes account in listing", %{conn: conn, account: account} do
-      {:ok, index_live, _html} = live(conn, ~p"/accounts")
+    test "deletes account in listing", %{conn: conn, account: account, user: user} do
+      {:ok, index_live, _html} = live(conn |> log_in_user(user), ~p"/accounts")
 
       assert index_live |> element("#accounts-#{account.id} a", "Delete") |> render_click()
       refute has_element?(index_live, "#accounts-#{account.id}")
@@ -80,15 +94,15 @@ defmodule PelnanceWeb.AccountLiveTest do
   describe "Show" do
     setup [:create_account]
 
-    test "displays account", %{conn: conn, account: account} do
-      {:ok, _show_live, html} = live(conn, ~p"/accounts/#{account}")
+    test "displays account", %{conn: conn, account: account, user: user} do
+      {:ok, _show_live, html} = live(conn |> log_in_user(user), ~p"/accounts/#{account}")
 
       assert html =~ "Show Account"
       assert html =~ account.name
     end
 
-    test "updates account within modal", %{conn: conn, account: account} do
-      {:ok, show_live, _html} = live(conn, ~p"/accounts/#{account}")
+    test "updates account within modal", %{conn: conn, account: account, user: user} do
+      {:ok, show_live, _html} = live(conn |> log_in_user(user), ~p"/accounts/#{account}")
 
       assert show_live |> element("a", "Edit") |> render_click() =~
                "Edit Account"

@@ -1,5 +1,7 @@
 # Pelnance
 
+WIP (Work in Progress) - This is still in beta version so somethings can not work as expected.
+
 To start your Phoenix server:
 
   * Run `mix setup` to install and setup dependencies
@@ -19,16 +21,18 @@ Ready to run in production? Please [check our deployment guides](https://hexdocs
 
 ### TO DO
 
+ * [x] - Goals
+ * [x] - When create a transaction save the account balance
+ * [x] - Settings page
  * [] - Tests
  * [] - Improve layout
  * [] - Dark mode
  * [] - When creating a transaction change the difference in accounts balance
  * [] - In the page of the Account show the transactions
  * [] - Dashboard
- * [x] - Goals
  * [] - Translations
  * [] - Transfer amount from one account to another
  * [] - Recurrent transactions
- * [] - Settings page
- * [x] - When create a transaction save the account balance
  * [] - Add Documents in the transaction
+ * [] - Charts
+ * [] - API? (Future Mobile App)

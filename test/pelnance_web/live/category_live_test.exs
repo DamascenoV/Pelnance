@@ -2,6 +2,7 @@ defmodule PelnanceWeb.CategoryLiveTest do
   use PelnanceWeb.ConnCase
 
   import Phoenix.LiveViewTest
+  import Pelnance.UsersFixtures
   import Pelnance.CategoriesFixtures
 
   @create_attrs %{name: "some name"}
@@ -9,15 +10,16 @@ defmodule PelnanceWeb.CategoryLiveTest do
   @invalid_attrs %{name: nil}
 
   defp create_category(_) do
-    category = category_fixture()
-    %{category: category}
+    user = user_fixture()
+    category = category_fixture(user)
+    %{category: category, user: user}
   end
 
   describe "Index" do
     setup [:create_category]
 
-    test "lists all categories", %{conn: conn, category: category} do
-      {:ok, _index_live, html} = live(conn, ~p"/categories")
+    test "lists all categories", %{conn: conn, category: category, user: user} do
+      {:ok, _index_live, html} = live(conn |> log_in_user(user), ~p"/categories")
 
       assert html =~ "Listing Categories"
       assert html =~ category.name
@@ -46,8 +48,8 @@ defmodule PelnanceWeb.CategoryLiveTest do
       assert html =~ "some name"
     end
 
-    test "updates category in listing", %{conn: conn, category: category} do
-      {:ok, index_live, _html} = live(conn, ~p"/categories")
+    test "updates category in listing", %{conn: conn, category: category, user: user} do
+      {:ok, index_live, _html} = live(conn |> log_in_user(user), ~p"/categories")
 
       assert index_live |> element("#categories-#{category.id} a", "Edit") |> render_click() =~
                "Edit Category"
@@ -69,8 +71,8 @@ defmodule PelnanceWeb.CategoryLiveTest do
       assert html =~ "some updated name"
     end
 
-    test "deletes category in listing", %{conn: conn, category: category} do
-      {:ok, index_live, _html} = live(conn, ~p"/categories")
+    test "deletes category in listing", %{conn: conn, category: category, user: user} do
+      {:ok, index_live, _html} = live(conn |> log_in_user(user), ~p"/categories")
 
       assert index_live |> element("#categories-#{category.id} a", "Delete") |> render_click()
       refute has_element?(index_live, "#categories-#{category.id}")
@@ -80,15 +82,15 @@ defmodule PelnanceWeb.CategoryLiveTest do
   describe "Show" do
     setup [:create_category]
 
-    test "displays category", %{conn: conn, category: category} do
-      {:ok, _show_live, html} = live(conn, ~p"/categories/#{category}")
+    test "displays category", %{conn: conn, category: category, user: user} do
+      {:ok, _show_live, html} = live(conn |> log_in_user(user), ~p"/categories/#{category}")
 
       assert html =~ "Show Category"
       assert html =~ category.name
     end
 
-    test "updates category within modal", %{conn: conn, category: category} do
-      {:ok, show_live, _html} = live(conn, ~p"/categories/#{category}")
+    test "updates category within modal", %{conn: conn, category: category, user: user} do
+      {:ok, show_live, _html} = live(conn |> log_in_user(user), ~p"/categories/#{category}")
 
       assert show_live |> element("a", "Edit") |> render_click() =~
                "Edit Category"
