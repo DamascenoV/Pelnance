@@ -94,6 +94,192 @@ defmodule PelnanceWeb.DashboardLive.Index do
           </.modal>
         <% end %>
       </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div class="rounded-lg border text-card-foreground bg-background shadow-lg" data-v0-t="card">
+          <div class="flex flex-col space-y-1.5 p-6">
+            <h3 class="whitespace-nowrap text-2xl font-semibold leading-none tracking-tight">
+              Accounts
+            </h3>
+            <p class="text-sm text-muted-foreground">View and manage your financial accounts.</p>
+          </div>
+          <div class="p-6 grid gap-4">
+            <div class="flex items-center justify-between">
+              <div>
+                <div class="text-2xl font-bold">$12,345.67</div>
+                <div class="text-muted-foreground text-sm">Total Balance</div>
+              </div>
+              <button class="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-9 rounded-md px-3">
+                View Accounts
+              </button>
+            </div>
+            <div class="grid grid-cols-2 gap-4">
+              <div>
+                <div class="text-xl font-bold">3</div>
+                <div class="text-muted-foreground text-sm">Checking</div>
+              </div>
+              <div>
+                <div class="text-xl font-bold">2</div>
+                <div class="text-muted-foreground text-sm">Savings</div>
+              </div>
+              <div>
+                <div class="text-xl font-bold">1</div>
+                <div class="text-muted-foreground text-sm">Credit Card</div>
+              </div>
+              <div>
+                <div class="text-xl font-bold">1</div>
+                <div class="text-muted-foreground text-sm">Investment</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="rounded-lg border text-card-foreground bg-background shadow-lg" data-v0-t="card">
+          <div class="flex flex-col space-y-1.5 p-6">
+            <h3 class="whitespace-nowrap text-2xl font-semibold leading-none tracking-tight">
+              Transactions
+            </h3>
+            <p class="text-sm text-muted-foreground">View and manage your financial transactions.</p>
+          </div>
+          <div class="p-6 grid gap-4">
+            <div class="flex items-center justify-between">
+              <div>
+                <div class="text-2xl font-bold">$2,345.67</div>
+                <div class="text-muted-foreground text-sm">Total Transactions</div>
+              </div>
+              <button class="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-9 rounded-md px-3">
+                View Transactions
+              </button>
+            </div>
+            <div class="grid grid-cols-2 gap-4">
+              <div>
+                <div class="text-xl font-bold">45</div>
+                <div class="text-muted-foreground text-sm">Expenses</div>
+              </div>
+              <div>
+                <div class="text-xl font-bold">12</div>
+                <div class="text-muted-foreground text-sm">Income</div>
+              </div>
+              <div>
+                <div class="text-xl font-bold">3</div>
+                <div class="text-muted-foreground text-sm">Transfers</div>
+              </div>
+              <div>
+                <div class="text-xl font-bold">2</div>
+                <div class="text-muted-foreground text-sm">Investments</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="rounded-lg border text-card-foreground bg-background shadow-lg" data-v0-t="card">
+          <div class="flex flex-col space-y-1.5 p-6">
+            <h3 class="whitespace-nowrap text-2xl font-semibold leading-none tracking-tight">
+              Goals
+            </h3>
+            <p class="text-sm text-muted-foreground">View and manage your financial goals.</p>
+          </div>
+          <div class="p-6 grid gap-4">
+            <div class="flex items-center justify-between">
+              <div>
+                <div class="text-2xl font-bold">$5,000.00</div>
+                <div class="text-muted-foreground text-sm">Total Goal Amount</div>
+              </div>
+              <button class="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-9 rounded-md px-3">
+                View Goals
+              </button>
+            </div>
+            <div class="grid grid-cols-2 gap-4">
+              <div>
+                <div class="text-xl font-bold">3</div>
+                <div class="text-muted-foreground text-sm">Savings</div>
+              </div>
+              <div>
+                <div class="text-xl font-bold">2</div>
+                <div class="text-muted-foreground text-sm">Investments</div>
+              </div>
+              <div>
+                <div class="text-xl font-bold">1</div>
+                <div class="text-muted-foreground text-sm">Vacation</div>
+              </div>
+              <div>
+                <div class="text-xl font-bold">1</div>
+                <div class="text-muted-foreground text-sm">Debt Payoff</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="mt-8">
+        <h2 class="text-2xl font-bold mb-4">Recent Transactions</h2>
+        <div class="rounded-lg border text-card-foreground bg-background shadow-lg" data-v0-t="card">
+          <div class="p-6">
+            <div class="relative w-full overflow-auto">
+              <table class="w-full caption-bottom text-sm">
+                <thead class="[&amp;_tr]:border-b">
+                  <tr class="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
+                    <th class="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&amp;:has([role=checkbox])]:pr-0">
+                      Date
+                    </th>
+                    <th class="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&amp;:has([role=checkbox])]:pr-0">
+                      Description
+                    </th>
+                    <th class="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&amp;:has([role=checkbox])]:pr-0">
+                      Amount
+                    </th>
+                    <th class="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&amp;:has([role=checkbox])]:pr-0">
+                      Category
+                    </th>
+                    <th class="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&amp;:has([role=checkbox])]:pr-0">
+                      Account
+                    </th>
+                  </tr>
+                </thead>
+                <tbody class="[&amp;_tr:last-child]:border-0">
+                  <tr class="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
+                    <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">2023-06-25</td>
+                    <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">Groceries</td>
+                    <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">-$125.43</td>
+                    <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">Expenses</td>
+                    <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">Checking 1234</td>
+                  </tr>
+                  <tr class="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
+                    <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">2023-06-23</td>
+                    <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">Paycheck</td>
+                    <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">$2,500.00</td>
+                    <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">Income</td>
+                    <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">Checking 1234</td>
+                  </tr>
+                  <tr class="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
+                    <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">2023-06-21</td>
+                    <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">Rent Payment</td>
+                    <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">-$1,200.00</td>
+                    <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">Expenses</td>
+                    <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">Checking 1234</td>
+                  </tr>
+                  <tr class="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
+                    <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">2023-06-18</td>
+                    <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">
+                      Amazon Purchase
+                    </td>
+                    <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">-$49.99</td>
+                    <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">Expenses</td>
+                    <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">
+                      Credit Card 5678
+                    </td>
+                  </tr>
+                  <tr class="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
+                    <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">2023-06-15</td>
+                    <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">
+                      Savings Transfer
+                    </td>
+                    <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">-$500.00</td>
+                    <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">Transfer</td>
+                    <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">Checking 1234</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
     """
   end

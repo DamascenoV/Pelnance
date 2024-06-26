@@ -1,42 +1,262 @@
 <.flash_group flash={@flash} />
-<header class="bg-white shadow-md py-4 px-6 flex justify-between items-center">
-  <h1 class="text-xl font-bold">Pelnance</h1>
-  <a href={~p"/users/log_in"}>
-    <button class="px-4 py-2 bg-zinc-500 text-white rounded hover:bg-zinc-700">
-      Get Started
-    </button>
-  </a>
-</header>
-<main class="container mx-auto px-4 py-10">
-  <h2 class="text-2xl font-semibold mb-4">Take Control of Your Finances</h2>
-  <p class="text-gray-700 mb-8">
-    This app helps you easily track your income, expenses, and budget to achieve your financial goals.
-  </p>
-
-  <section class="grid grid-cols-1 md:grid-cols-2 gap-4">
-    <div class="bg-white p-4 rounded shadow-md">
-      <h3 class="text-lg font-medium mb-2">Track Your Income</h3>
-      <p class="text-gray-700">
-        See all your income sources in one place and understand your cash flow.
-      </p>
-    </div>
-    <div class="bg-white p-4 rounded shadow-md">
-      <h3 class="text-lg font-medium mb-2">Manage Expenses</h3>
-      <p class="text-gray-700">
-        Categorize your spending, identify areas to save, and stay on budget.
-      </p>
-    </div>
-    <div class="bg-white p-4 rounded shadow-md">
-      <h3 class="text-lg font-medium mb-2">Visualize Your Finances</h3>
-      <p class="text-gray-700">
-        Get insights with clear charts and graphs to make informed financial decisions.
-      </p>
-    </div>
-    <div class="bg-white p-4 rounded shadow-md">
-      <h3 class="text-lg font-medium mb-2">Set Financial Goals</h3>
-      <p class="text-gray-700">
-        Plan for your future by setting savings goals and tracking your progress.
-      </p>
-    </div>
-  </section>
-</main>
+<div class="flex flex-col min-h-[100dvh]">
+  <header class="px-4 lg:px-6 h-14 flex items-center">
+    <a class="flex items-center justify-center" href="#" rel="ugc">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        class="h-6 w-6"
+      >
+        <line x1="12" x2="12" y1="2" y2="22"></line>
+        <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+      </svg>
+      <span class="sr-only">Pelnance</span>
+    </a>
+    <nav class="ml-auto flex gap-4 sm:gap-6">
+      <a class="text-sm font-medium hover:underline underline-offset-4" href="#" rel="ugc">
+        Features
+      </a>
+      <a class="text-sm font-medium hover:underline underline-offset-4" href="#" rel="ugc">
+        Pricing
+      </a>
+      <a class="text-sm font-medium hover:underline underline-offset-4" href="#" rel="ugc">
+        About
+      </a>
+      <a class="text-sm font-medium hover:underline underline-offset-4" href="#" rel="ugc">
+        Contact
+      </a>
+    </nav>
+  </header>
+  <main class="flex-1">
+    <section class="w-full py-12 md:py-24 lg:py-32 bg-zinc-900 text-white rounded-lg flex justify-center items-center h-screen">
+      <div class="container px-4 md:px-6">
+        <div class="grid gap-6 lg:grid-cols-2 lg:gap-12 xl:grid-cols-[1fr_600px]">
+          <div class="flex flex-col justify-center space-y-4">
+            <div class="space-y-2">
+              <h1 class="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none">
+                Take Control of Your Finances
+              </h1>
+              <p class="max-w-[600px] text-muted-foreground md:text-xl">
+                Pelnance is the personal finance app that helps you track your transactions, manage your categories,
+                and set financial goals.
+              </p>
+            </div>
+            <div class="flex flex-col gap-2 min-[400px]:flex-row">
+              <a
+                class="inline-flex h-10 items-center justify-center rounded-md border border-input px-8 text-sm font-medium text-white-foreground shadow transition-colors bg-zinc-700 hover:bg-zinc-900/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50"
+                href={~p"/users/register"}
+                rel="ugc"
+              >
+                Sign Up
+              </a>
+              <a
+                class="inline-flex h-10 items-center justify-center rounded-md border border-input bg-background px-8 text-sm font-medium shadow-sm transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50"
+                href={~p"/users/log_in"}
+                rel="ugc"
+              >
+                Log In
+              </a>
+            </div>
+          </div>
+          <img
+            src="/images/logo.svg"
+            width="550"
+            height="550"
+            alt="Hero"
+            class="mx-auto aspect-video overflow-hidden rounded-xl object-cover sm:w-full lg:order-last lg:aspect-square"
+          />
+        </div>
+      </div>
+    </section>
+    <section class="w-full py-12 md:py-24 lg:py-32 flex justify-center items-center h-screen">
+      <div class="container grid gap-12 px-4 md:px-6">
+        <div class="flex flex-col items-center justify-center space-y-4 text-center">
+          <div class="space-y-2">
+            <h2 class="text-3xl font-bold tracking-tighter sm:text-5xl">
+              Manage your finances with ease
+            </h2>
+            <p class="max-w-[900px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
+              Pelnance provides you with the tools you need to take control of your financial life. From budgeting to goal-setting, we've got you covered.
+            </p>
+          </div>
+        </div>
+        <div class="mx-auto grid max-w-5xl items-center gap-6 lg:grid-cols-3 lg:gap-12">
+          <div class="grid gap-1">
+            <div class="flex items-center gap-2">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="h-6 w-6 text-black"
+              >
+                <path d="M19 7V4a1 1 0 0 0-1-1H5a2 2 0 0 0 0 4h15a1 1 0 0 1 1 1v4h-3a2 2 0 0 0 0 4h3a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1">
+                </path>
+                <path d="M3 5v14a2 2 0 0 0 2 2h15a1 1 0 0 0 1-1v-4"></path>
+              </svg>
+              <h3 class="text-xl font-bold">Account Management</h3>
+            </div>
+            <p class="text-muted-foreground">
+              Easily connect and manage all your financial accounts in one place.
+            </p>
+          </div>
+          <div class="grid gap-1">
+            <div class="flex items-center gap-2">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="h-6 w-6 text-black"
+              >
+                <polyline points="22 7 13.5 15.5 8.5 10.5 2 17"></polyline>
+                <polyline points="16 7 22 7 22 13"></polyline>
+              </svg>
+              <h3 class="text-xl font-bold">Transaction Tracking</h3>
+            </div>
+            <p class="text-muted-foreground">
+              Categorize and analyze your spending to gain insights into your financial habits.
+            </p>
+          </div>
+          <div class="grid gap-1">
+            <div class="flex items-center gap-2">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="h-6 w-6 text-black"
+              >
+                <path d="M21.21 15.89A10 10 0 1 1 8 2.83"></path>
+                <path d="M22 12A10 10 0 0 0 12 2v10z"></path>
+              </svg>
+              <h3 class="text-xl font-bold">Budgeting Tools</h3>
+            </div>
+            <p class="text-muted-foreground">
+              Create and manage your budgets to stay on top of your expenses.
+            </p>
+          </div>
+          <div class="grid gap-1">
+            <div class="flex items-center gap-2">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="h-6 w-6 text-black"
+              >
+                <circle cx="12" cy="12" r="10"></circle>
+                <circle cx="12" cy="12" r="6"></circle>
+                <circle cx="12" cy="12" r="2"></circle>
+              </svg>
+              <h3 class="text-xl font-bold">Goal Setting</h3>
+            </div>
+            <p class="text-muted-foreground">
+              Set financial goals and track your progress towards achieving them.
+            </p>
+          </div>
+          <div class="grid gap-1">
+            <div class="flex items-center gap-2">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="h-6 w-6 text-black"
+              >
+                <rect width="8" height="4" x="8" y="2" rx="1" ry="1"></rect>
+                <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2">
+                </path>
+              </svg>
+              <h3 class="text-xl font-bold">Reporting</h3>
+            </div>
+            <p class="text-muted-foreground">
+              Generate detailed reports to understand your financial situation.
+            </p>
+          </div>
+          <div class="grid gap-1">
+            <div class="flex items-center gap-2">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="h-6 w-6 text-black"
+              >
+                <rect width="14" height="20" x="5" y="2" rx="2" ry="2"></rect>
+                <path d="M12 18h.01"></path>
+              </svg>
+              <h3 class="text-xl font-bold">Mobile App</h3>
+            </div>
+            <p class="text-muted-foreground">
+              Manage your finances on-the-go with our mobile app.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="w-full py-12 md:py-24 lg:py-32 bg-zinc-200 flex justify-center items-center">
+      <div class="container grid items-center gap-6 px-4 md:px-6 lg:grid-cols-2 lg:gap-10">
+        <div class="space-y-2">
+          <h2 class="text-3xl font-bold tracking-tighter md:text-4xl/tight">
+            Take control of your financial future
+          </h2>
+          <p class="max-w-[600px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
+            Pelnance provides you with the tools and insights you need to make informed financial decisions and achieve your goals.
+          </p>
+        </div>
+        <div class="flex flex-col gap-2 min-[400px]:flex-row lg:justify-end">
+          <a
+            class="inline-flex h-10 items-center justify-center rounded-md bg-zinc-900 px-8 text-sm font-medium text-white shadow transition-colors hover:bg-zinc-900/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50"
+            href={~p"/users/register"}
+          >
+            Sign Up
+          </a>
+          <a
+            class="inline-flex h-10 items-center justify-center rounded-md border border-input bg-background px-8 text-sm font-medium shadow-sm transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50"
+            href="#"
+          >
+            Learn More
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+</div>
