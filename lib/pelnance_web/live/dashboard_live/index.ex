@@ -95,121 +95,110 @@ defmodule PelnanceWeb.DashboardLive.Index do
         <% end %>
       </div>
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        <div class="rounded-lg border text-card-foreground bg-background shadow-lg" data-v0-t="card">
-          <div class="flex flex-col space-y-1.5 p-6">
-            <h3 class="whitespace-nowrap text-2xl font-semibold leading-none tracking-tight">
-              Accounts
-            </h3>
-            <p class="text-sm text-muted-foreground">View and manage your financial accounts.</p>
-          </div>
+        <.dashboard_card
+          title={gettext("Accounts")}
+          description={gettext("View and manage your financial accounts.")}
+        >
           <div class="p-6 grid gap-4">
             <div class="flex items-center justify-between">
               <div>
-                <div class="text-2xl font-bold">$12,345.67</div>
-                <div class="text-muted-foreground text-sm">Total Balance</div>
+                <div class="text-2xl font-bold"><%= @accounts_info.total_balance %></div>
+                <div class="text-muted-foreground text-sm"><%= gettext("Total Balance") %></div>
               </div>
-              <button class="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-9 rounded-md px-3">
-                View Accounts
-              </button>
+              <.link patch={~p"/accounts"}>
+                <button class="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-9 rounded-md px-3">
+                  <%= gettext("View Accounts") %>
+                </button>
+              </.link>
             </div>
             <div class="grid grid-cols-2 gap-4">
               <div>
-                <div class="text-xl font-bold">3</div>
-                <div class="text-muted-foreground text-sm">Checking</div>
+                <div class="text-xl font-bold"><%= @accounts_info.total_accounts %></div>
+                <div class="text-muted-foreground text-sm"><%= gettext("Accounts") %></div>
               </div>
               <div>
-                <div class="text-xl font-bold">2</div>
-                <div class="text-muted-foreground text-sm">Savings</div>
-              </div>
-              <div>
-                <div class="text-xl font-bold">1</div>
-                <div class="text-muted-foreground text-sm">Credit Card</div>
-              </div>
-              <div>
-                <div class="text-xl font-bold">1</div>
-                <div class="text-muted-foreground text-sm">Investment</div>
+                <div class="text-xl font-bold"><%= @accounts_info.total_currencies %></div>
+                <div class="text-muted-foreground text-sm"><%= gettext("Currencies") %></div>
               </div>
             </div>
           </div>
-        </div>
-        <div class="rounded-lg border text-card-foreground bg-background shadow-lg" data-v0-t="card">
-          <div class="flex flex-col space-y-1.5 p-6">
-            <h3 class="whitespace-nowrap text-2xl font-semibold leading-none tracking-tight">
-              Transactions
-            </h3>
-            <p class="text-sm text-muted-foreground">View and manage your financial transactions.</p>
-          </div>
+        </.dashboard_card>
+        <.dashboard_card
+          title={gettext("Transactions")}
+          description={gettext("View and manage your financial transactions.")}
+        >
           <div class="p-6 grid gap-4">
             <div class="flex items-center justify-between">
               <div>
                 <div class="text-2xl font-bold">$2,345.67</div>
-                <div class="text-muted-foreground text-sm">Total Transactions</div>
+                <div class="text-muted-foreground text-sm"><%= gettext("Total Transactions") %></div>
               </div>
-              <button class="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-9 rounded-md px-3">
-                View Transactions
-              </button>
+              <.link patch={~p"/transactions"}>
+                <button class="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-9 rounded-md px-3">
+                  <%= gettext("View Transactions") %>
+                </button>
+              </.link>
             </div>
             <div class="grid grid-cols-2 gap-4">
               <div>
                 <div class="text-xl font-bold">45</div>
-                <div class="text-muted-foreground text-sm">Expenses</div>
+                <div class="text-muted-foreground text-sm"><%= gettext("Expenses") %></div>
               </div>
               <div>
                 <div class="text-xl font-bold">12</div>
-                <div class="text-muted-foreground text-sm">Income</div>
+                <div class="text-muted-foreground text-sm"><%= gettext("Income") %></div>
               </div>
               <div>
                 <div class="text-xl font-bold">3</div>
-                <div class="text-muted-foreground text-sm">Transfers</div>
+                <div class="text-muted-foreground text-sm"><%= gettext("Transfers") %></div>
               </div>
               <div>
                 <div class="text-xl font-bold">2</div>
-                <div class="text-muted-foreground text-sm">Investments</div>
+                <div class="text-muted-foreground text-sm"><%= gettext("Investments") %></div>
               </div>
             </div>
           </div>
-        </div>
-        <div class="rounded-lg border text-card-foreground bg-background shadow-lg" data-v0-t="card">
-          <div class="flex flex-col space-y-1.5 p-6">
-            <h3 class="whitespace-nowrap text-2xl font-semibold leading-none tracking-tight">
-              Goals
-            </h3>
-            <p class="text-sm text-muted-foreground">View and manage your financial goals.</p>
-          </div>
+        </.dashboard_card>
+        <.dashboard_card
+          title={gettext("Goals")}
+          description={gettext("View and manage your financial goals.")}
+        >
           <div class="p-6 grid gap-4">
             <div class="flex items-center justify-between">
               <div>
                 <div class="text-2xl font-bold">$5,000.00</div>
-                <div class="text-muted-foreground text-sm">Total Goal Amount</div>
+                <div class="text-muted-foreground text-sm"><%= gettext("Total Goal Amount") %></div>
               </div>
+              <.link patch={~p"/goals"}>
               <button class="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-9 rounded-md px-3">
-                View Goals
+                <%= gettext("View Goals") %>
               </button>
+              </.link>
             </div>
             <div class="grid grid-cols-2 gap-4">
               <div>
                 <div class="text-xl font-bold">3</div>
-                <div class="text-muted-foreground text-sm">Savings</div>
+                <div class="text-muted-foreground text-sm"><% gettext("Savings") %></div>
               </div>
               <div>
                 <div class="text-xl font-bold">2</div>
-                <div class="text-muted-foreground text-sm">Investments</div>
+                <div class="text-muted-foreground text-sm"><%= gettext("Investments") %></div>
               </div>
               <div>
                 <div class="text-xl font-bold">1</div>
-                <div class="text-muted-foreground text-sm">Vacation</div>
+                <div class="text-muted-foreground text-sm"><%= gettext("Vacation") %></div>
               </div>
               <div>
                 <div class="text-xl font-bold">1</div>
-                <div class="text-muted-foreground text-sm">Debt Payoff</div>
+                <div class="text-muted-foreground text-sm"><%= gettext("Debt Payoff") %></div>
               </div>
             </div>
           </div>
-        </div>
+        </.dashboard_card>
       </div>
       <div class="mt-8">
-        <h2 class="text-2xl font-bold mb-4">Recent Transactions</h2>
-        <div class="rounded-lg border text-card-foreground bg-background shadow-lg" data-v0-t="card">
+        <h2 class="text-2xl font-bold mb-4"><%= gettext("Recent Transactions") %></h2>
+        <div class="rounded-lg border text-card-foreground bg-background shadow-lg">
           <div class="p-6">
             <div class="relative w-full overflow-auto">
               <table class="w-full caption-bottom text-sm">
@@ -293,11 +282,19 @@ defmodule PelnanceWeb.DashboardLive.Index do
         !Enum.empty?(x)
       end)
 
+    accounts_info = %{
+      total_balance:
+        Enum.reduce(user.accounts, 0, fn x, acc -> acc + Decimal.to_float(x.balance) end),
+      total_accounts: Enum.count(user.accounts),
+      total_currencies: Enum.count(user.currencies)
+    }
+
     {
       :ok,
       socket
       |> assign(:user, user)
       |> assign(:step_number, step_number)
+      |> assign(:accounts_info, accounts_info)
     }
   end
 

@@ -691,4 +691,22 @@ defmodule PelnanceWeb.CoreComponents do
     </div>
     """
   end
+
+  attr :title, :string, required: true
+  attr :description, :string, required: true
+  slot :inner_block
+
+  def dashboard_card(assigns) do
+    ~H"""
+      <div class="rounded-lg border text-card-foreground bg-background shadow-lg">
+        <div class="flex flex-col space-y-1.5 p-6">
+          <h3 class="whitespace-nowrap text-2xl font-semibold leading-none tracking-tight">
+            <%= @title %>
+          </h3>
+          <p class="text-sm text-muted-foreground"><%= @description %></p>
+        </div>
+          <%= render_slot(@inner_block) %>
+        </div>
+    """
+  end
 end
