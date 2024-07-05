@@ -21,9 +21,9 @@ Ready to run in production? Please [check our deployment guides](https://hexdocs
 
 ### TO DO
 
- * [x] - Goals
  * [x] - When create a transaction save the account balance
  * [x] - Settings page
+ * [] - Goals -> Need to refactor this... Do something like a acc of value for the goal
  * [] - Tests
  * [] - Improve layout
  * [] - Dark mode
@@ -32,6 +32,7 @@ Ready to run in production? Please [check our deployment guides](https://hexdocs
  * [] - Dashboard
  * [] - Translations
  * [] - Transfer amount from one account to another
+ * [] - Transfer to Goal
  * [] - Recurrent transactions
  * [] - Add Documents in the transaction
  * [] - Charts

@@ -130,7 +130,7 @@ defmodule PelnanceWeb.DashboardLive.Index do
           <div class="p-6 grid gap-4">
             <div class="flex items-center justify-between">
               <div>
-                <div class="text-2xl font-bold">$2,345.67</div>
+                <div class="text-2xl font-bold"><%= @transactions_info.total %></div>
                 <div class="text-muted-foreground text-sm"><%= gettext("Total Transactions") %></div>
               </div>
               <.link patch={~p"/transactions"}>
@@ -141,11 +141,11 @@ defmodule PelnanceWeb.DashboardLive.Index do
             </div>
             <div class="grid grid-cols-2 gap-4">
               <div>
-                <div class="text-xl font-bold">45</div>
+                <div class="text-xl font-bold"><%= @transactions_info.total_expenses %></div>
                 <div class="text-muted-foreground text-sm"><%= gettext("Expenses") %></div>
               </div>
               <div>
-                <div class="text-xl font-bold">12</div>
+                <div class="text-xl font-bold"><%= @transactions_info.total_income %></div>
                 <div class="text-muted-foreground text-sm"><%= gettext("Income") %></div>
               </div>
               <div>
@@ -170,15 +170,15 @@ defmodule PelnanceWeb.DashboardLive.Index do
                 <div class="text-muted-foreground text-sm"><%= gettext("Total Goal Amount") %></div>
               </div>
               <.link patch={~p"/goals"}>
-              <button class="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-9 rounded-md px-3">
-                <%= gettext("View Goals") %>
-              </button>
+                <button class="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-9 rounded-md px-3">
+                  <%= gettext("View Goals") %>
+                </button>
               </.link>
             </div>
             <div class="grid grid-cols-2 gap-4">
               <div>
                 <div class="text-xl font-bold">3</div>
-                <div class="text-muted-foreground text-sm"><% gettext("Savings") %></div>
+                <div class="text-muted-foreground text-sm"><%= gettext("Savings") %></div>
               </div>
               <div>
                 <div class="text-xl font-bold">2</div>
@@ -276,6 +276,7 @@ defmodule PelnanceWeb.DashboardLive.Index do
   @impl true
   def mount(_params, _session, socket) do
     user = Users.prepare_user(socket.assigns.current_user)
+    transactions = Pelnance.Transactions.list_transactions(user)
 
     step_number =
       Enum.count([user.currencies, user.types, user.categories, user.accounts], fn x ->
@@ -289,12 +290,19 @@ defmodule PelnanceWeb.DashboardLive.Index do
       total_currencies: Enum.count(user.currencies)
     }
 
+    transactions_info = %{
+      total: Enum.reduce(transactions, 0, fn transaction, acc -> acc + Decimal.to_float(transaction.amount) end),
+      total_expenses: Enum.count(transactions, fn x -> x.type.subtraction == true end),
+      total_income: Enum.count(transactions, fn x -> x.type.subtraction == false end),
+    }
+
     {
       :ok,
       socket
       |> assign(:user, user)
       |> assign(:step_number, step_number)
       |> assign(:accounts_info, accounts_info)
+      |> assign(:transactions_info, transactions_info)
     }
   end
 

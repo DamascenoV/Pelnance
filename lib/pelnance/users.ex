@@ -386,6 +386,6 @@ defmodule Pelnance.Users do
     |> Repo.preload(:currencies)
     |> Repo.preload(:types)
     |> Repo.preload(:categories)
-    |> Repo.preload(:accounts)
+    |> Repo.preload(accounts: :transactions)
   end
 end

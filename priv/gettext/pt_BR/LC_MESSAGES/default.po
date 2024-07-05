@@ -583,7 +583,7 @@ msgstr "Criar novo tipo"
 msgid "Please complete your setup in the steps below"
 msgstr "Por favor, complete o seu setup nas etapas abaixo"
 
-#: lib/pelnance_web/live/dashboard_live/index.ex:330
+#: lib/pelnance_web/live/dashboard_live/index.ex:332
 #: lib/pelnance_web/live/type_live/index.ex:104
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Types generated successfully"
@@ -599,7 +599,7 @@ msgstr "Passo"
 msgid "of"
 msgstr "de"
 
-#: lib/pelnance_web/live/dashboard_live/index.ex:191
+#: lib/pelnance_web/live/dashboard_live/index.ex:193
 #, elixir-autogen, elixir-format
 msgid "Debt Payoff"
 msgstr "Pagamento de Dívida"
@@ -615,17 +615,17 @@ msgid "Income"
 msgstr "Renda"
 
 #: lib/pelnance_web/live/dashboard_live/index.ex:157
-#: lib/pelnance_web/live/dashboard_live/index.ex:183
+#: lib/pelnance_web/live/dashboard_live/index.ex:185
 #, elixir-autogen, elixir-format
 msgid "Investments"
 msgstr "Investimentos"
 
-#: lib/pelnance_web/live/dashboard_live/index.ex:198
+#: lib/pelnance_web/live/dashboard_live/index.ex:200
 #, elixir-autogen, elixir-format
 msgid "Recent Transactions"
 msgstr "Transações Recentes"
 
-#: lib/pelnance_web/live/dashboard_live/index.ex:179
+#: lib/pelnance_web/live/dashboard_live/index.ex:181
 #, elixir-autogen, elixir-format
 msgid "Savings"
 msgstr "Poupanças"
@@ -650,7 +650,7 @@ msgstr "Salvar Transições"
 msgid "Transfers"
 msgstr "Transferências"
 
-#: lib/pelnance_web/live/dashboard_live/index.ex:187
+#: lib/pelnance_web/live/dashboard_live/index.ex:189
 #, elixir-autogen, elixir-format
 msgid "Vacation"
 msgstr "Férias"
@@ -680,7 +680,7 @@ msgstr "Ver e gerenciar seus objetivos financeiros."
 msgid "View and manage your financial transactions."
 msgstr "Ver e gerenciar suas transações financeiras."
 
-#: lib/pelnance_web/live/dashboard_live/index.ex:173
+#: lib/pelnance_web/live/dashboard_live/index.ex:174
 #, elixir-autogen, elixir-format, fuzzy
 msgid "View Goals"
 msgstr "Ver Objectivos"
