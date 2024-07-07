@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="csrf-token" content={get_csrf_token()} />
-    <.live_title suffix=" · Phoenix Framework">
+    <.live_title suffix=" · Personal Finances">
       <%= assigns[:page_title] || "Pelnance" %>
     </.live_title>
     <link phx-track-static rel="stylesheet" href={~p"/assets/app.css"} />
@@ -14,8 +14,7 @@
   <body class="bg-white antialiased">
     <div
       id="sidebar"
-      class="fixed top-0 left-0 h-screen w-full overflow-y-auto backdrop-blur-md bg-white/30 border flex flex-col justify-between p-4 transition duration-300 lg:w-64 md:w-64 hidden rounded-lg z-10"
-      phx-click-away={JS.hide(to: "#sidebar")}
+      class="fixed top-0 left-0 h-screen w-full overflow-y-auto backdrop-blur-md bg-white/30 border flex flex-col justify-between p-4 transition duration-300 lg:w-64 md:w-64 hidden rounded-lg z-10 md:block"
     >
       <div>
         <div class="flex items-center justify-between mb-4">

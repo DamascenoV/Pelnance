@@ -19,21 +19,39 @@ Ready to run in production? Please [check our deployment guides](https://hexdocs
   * Forum: https://elixirforum.com/c/phoenix-forum
   * Source: https://github.com/phoenixframework/phoenix
 
+
+
+### The features that I want:
+
+* Accounts
+* Transactions (Income, Expenses) -> Can have documents attached
+* Creation of categories, currencies
+* Dashboard to see the stats of the month, half-year, year
+* Translations (en and pt-br)
+* Recurrent Transactions (Income and Expenses) -> This can be configure by the user
+* Goals -> Like some list that things that the user want to achieve
+
+
+
 ### TO DO
 
  * [x] - When create a transaction save the account balance
- * [x] - Settings page
- * [] - Goals -> Need to refactor this... Do something like a acc of value for the goal
- * [] - Tests
- * [] - Improve layout
- * [] - Dark mode
+ * [x] - Goals
+ * [] - Settings page
+    - [] - Dashboard Settings (Put some configurations like time to show the stats of the dashboard (month, half-year, year))
  * [] - When creating a transaction change the difference in accounts balance
  * [] - In the page of the Account show the transactions
  * [] - Dashboard
  * [] - Translations
- * [] - Transfer amount from one account to another
- * [] - Transfer to Goal
+ * [] - Migrations to default types (Expenses, Income) -> Maybe remove the possibility to create a type
+    - [] - Expenses Default Categories (House, Car, Food, Transfer)
+    - [] - Income Default Categories (Salary, Bonus, Income, Transfer)
  * [] - Recurrent transactions
  * [] - Add Documents in the transaction
+ * [] - Tests
+    - [] - Liveview Tests
+ * [] - Table filters
+ * [] - Improve layout
+ * [] - Dark mode
  * [] - Charts
  * [] - API? (Future Mobile App)

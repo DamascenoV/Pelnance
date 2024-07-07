@@ -20,6 +20,18 @@ defmodule PelnanceWeb.TransactionLive.Index do
       </:actions>
     </.header>
 
+    <!-- <.simple_form for={} phx-change="filter-description">
+       <div class="grid grid-cols-8 gap-4">
+         <.input type="select" options={[]} name="type" value={nil} label={gettext("Type")} />
+         <.input type="select" options={[]} name="account" value={nil} label={gettext("Account")} />
+         <.input type="select" options={[]} name="category" value={nil} label={gettext("Type")} />
+         <.input type="text" name="description" value={nil} label={gettext("Description")} />
+         <.input type="number" step="0.01" name="amount" value={nil} label={gettext("Amount")} />
+         <.input type="date" name="start" value={nil} label={gettext("Start")} />
+         <.input type="date" name="end" value={nil} label={gettext("End")} />
+       </div>
+    </.simple_form> -->
+
     <.table id="transactions" rows={@streams.transactions}>
       <:col :let={{_id, transaction}} label={gettext("Type")}>
         <%= if transaction.type.subtraction == true do %>
@@ -28,6 +40,9 @@ defmodule PelnanceWeb.TransactionLive.Index do
           <.icon name="hero-arrow-trending-up text-green-500" />
         <% end %>
         - <%= transaction.type.name %>
+      </:col>
+      <:col :let={{_id, transaction}} label={gettext("Account")}>
+        <%= transaction.account.name %>
       </:col>
       <:col :let={{_id, transaction}} label={gettext("Category")}>
         <%= transaction.category.name %>
@@ -128,6 +143,25 @@ defmodule PelnanceWeb.TransactionLive.Index do
   def handle_info({PelnanceWeb.TransactionLive.FormComponent, {:saved, transaction}}, socket) do
     {:noreply, stream_insert(socket, :transactions, transaction)}
   end
+
+  # @impl true
+  # def handle_event("filter-description", filters, socket) do
+  #   dbg(filters)
+  #
+  #   transactions = Transactions.list_transactions(socket.assigns.current_user)
+  #
+  #   filter_transactions =
+  #     Enum.filter(transactions, fn transaction -> transaction.description == filters["description"] end)
+  #
+  #   dbg(filter_transactions)
+  #
+  #   {:noreply,
+  #    stream(
+  #      socket,
+  #      :transactions,
+  #      filter_transactions
+  #    )}
+  # end
 
   @impl true
   def handle_event("delete", %{"id" => id}, socket) do
