@@ -12,7 +12,8 @@
     </script>
   </head>
   <body class="bg-white antialiased">
-    <div
+    <%= if assigns[:current_user] do %>
+    <aside
       id="sidebar"
       class="fixed top-0 left-0 h-screen w-full overflow-y-auto backdrop-blur-md bg-white/30 border flex flex-col justify-between p-4 transition duration-300 lg:w-64 md:w-64 hidden rounded-lg z-10 md:block"
     >
@@ -83,7 +84,8 @@
           </div>
         </nav>
       </div>
-    </div>
+    </aside>
+    <% end %>
 
     <div class="">
       <%= @inner_content %>
