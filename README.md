@@ -43,7 +43,7 @@ Ready to run in production? Please [check our deployment guides](https://hexdocs
  * [] - In the page of the Account show the transactions
  * [] - Dashboard
  * [] - Translations
- * [] - Migrations to default types (Expenses, Income) -> Maybe remove the possibility to create a type
+ * [x] - Migrations to default types (Expenses, Income) -> Maybe remove the possibility to create a type
     - [] - Expenses Default Categories (House, Car, Food, Transfer)
     - [] - Income Default Categories (Salary, Bonus, Income, Transfer)
  * [] - Recurrent transactions

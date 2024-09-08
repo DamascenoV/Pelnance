@@ -31,27 +31,6 @@
               />
             </.modal>
           <% end %>
-          <%= if @user.types == [] do %>
-            <.button phx-click="create_type" class="w-full mb-2">
-              <%= gettext("Create new type") %>
-            </.button>
-            <.modal
-              :if={@live_action == :new_type}
-              id="type-modal"
-              show
-              on_cancel={JS.patch(~p"/dashboard")}
-            >
-              <.live_component
-                module={PelnanceWeb.TypeLive.FormComponent}
-                id={:new}
-                title={gettext("Create new type")}
-                action={:new}
-                type={%Pelnance.Types.Type{}}
-                current_user={@user}
-                patch={~p"/dashboard"}
-              />
-            </.modal>
-          <% end %>
           <%= if @user.categories == [] do %>
             <.button phx-click="create_category" class="w-full mb-2">
               <%= gettext("Create new category") %>
@@ -69,7 +48,7 @@
                 action={:new}
                 category={%Pelnance.Categories.Category{}}
                 current_user={@user}
-                types={@user.types}
+                types={@types}
                 patch={~p"/dashboard"}
               />
             </.modal>

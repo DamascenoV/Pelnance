@@ -24,7 +24,7 @@ defmodule Pelnance.TransactionsTest do
 
     test "list_transactions/0 returns all transactions" do
       user = user_fixture()
-      type = type_fixture(user)
+      type = type_fixture()
       currency = currency_fixture(user)
       category = category_fixture(user, %{type_id: type.id})
       account = account_fixture(user, %{currency_id: currency.id})
@@ -41,7 +41,7 @@ defmodule Pelnance.TransactionsTest do
 
     test "get_transaction!/1 returns the transaction with given id" do
       user = user_fixture()
-      type = type_fixture(user)
+      type = type_fixture()
       category = category_fixture(user, %{type_id: type.id})
       currency = currency_fixture(user)
       account = account_fixture(user, %{currency_id: currency.id})
@@ -58,7 +58,7 @@ defmodule Pelnance.TransactionsTest do
 
     test "create_transaction/1 with valid data creates a transaction" do
       user = user_fixture()
-      type = type_fixture(user)
+      type = type_fixture()
       category = category_fixture(user, %{type_id: type.id})
       currency = currency_fixture(user)
       account = account_fixture(user, %{currency_id: currency.id})
@@ -84,7 +84,7 @@ defmodule Pelnance.TransactionsTest do
     test "create_transaction/1 with invalid data returns error changeset" do
       user = user_fixture()
       currency = currency_fixture(user)
-      type = type_fixture(user)
+      type = type_fixture()
       category = category_fixture(user, %{type_id: type.id})
       account = account_fixture(user, %{currency_id: currency.id})
 
@@ -101,7 +101,7 @@ defmodule Pelnance.TransactionsTest do
 
     test "update_transaction/2 with valid data updates the transaction" do
       user = user_fixture()
-      type = type_fixture(user)
+      type = type_fixture()
       category = category_fixture(user, %{type_id: type.id})
       currency = currency_fixture(user)
       account = account_fixture(user, %{currency_id: currency.id})
@@ -129,7 +129,7 @@ defmodule Pelnance.TransactionsTest do
 
     test "update_transaction/2 with invalid data returns error changeset" do
       user = user_fixture()
-      type = type_fixture(user)
+      type = type_fixture()
       category = category_fixture(user, %{type_id: type.id})
       currency = currency_fixture(user)
       account = account_fixture(user, %{currency_id: currency.id})
@@ -149,7 +149,7 @@ defmodule Pelnance.TransactionsTest do
 
     test "delete_transaction/1 deletes the transaction" do
       user = user_fixture()
-      type = type_fixture(user)
+      type = type_fixture()
       category = category_fixture(user, %{type_id: type.id})
       currency = currency_fixture(user)
       account = account_fixture(user, %{currency_id: currency.id})
@@ -167,7 +167,7 @@ defmodule Pelnance.TransactionsTest do
 
     test "change_transaction/1 returns a transaction changeset" do
       user = user_fixture()
-      type = type_fixture(user)
+      type = type_fixture()
       category = category_fixture(user, %{type_id: type.id})
       currency = currency_fixture(user)
       account = account_fixture(user, %{currency_id: currency.id})

@@ -14,21 +14,21 @@ defmodule Pelnance.CategoriesTest do
 
     test "list_categories/0 returns all categories" do
       user = user_fixture()
-      type = type_fixture(user)
+      type = type_fixture()
       category = category_fixture(user, %{type_id: type.id})
       assert Categories.list_categories(user) == [category]
     end
 
     test "get_category!/1 returns the category with given id" do
       user = user_fixture()
-      type = type_fixture(user)
+      type = type_fixture()
       category = category_fixture(user, %{type_id: type.id})
       assert Categories.get_category!(category.id) == category
     end
 
     test "create_category/1 with valid data creates a category" do
       user = user_fixture()
-      type = type_fixture(user)
+      type = type_fixture()
       valid_attrs = %{name: "some name", type_id: type.id}
 
       assert {:ok, %Category{} = category} = Categories.create_category(user, valid_attrs)
@@ -44,7 +44,7 @@ defmodule Pelnance.CategoriesTest do
 
     test "update_category/2 with valid data updates the category" do
       user = user_fixture()
-      type = type_fixture(user)
+      type = type_fixture()
       category = category_fixture(user, %{type_id: type.id})
       update_attrs = %{name: "some updated name"}
 
@@ -54,7 +54,7 @@ defmodule Pelnance.CategoriesTest do
 
     test "update_category/2 with invalid data returns error changeset" do
       user = user_fixture()
-      type = type_fixture(user)
+      type = type_fixture()
       category = category_fixture(user, %{type_id: type.id})
       assert {:error, %Ecto.Changeset{}} = Categories.update_category(category, @invalid_attrs)
       assert category == Categories.get_category!(category.id)
@@ -62,7 +62,7 @@ defmodule Pelnance.CategoriesTest do
 
     test "delete_category/1 deletes the category" do
       user = user_fixture()
-      type = type_fixture(user)
+      type = type_fixture()
       category = category_fixture(user, %{type_id: type.id})
       assert {:ok, %Category{}} = Categories.delete_category(category)
       assert_raise Ecto.NoResultsError, fn -> Categories.get_category!(category.id) end
@@ -70,7 +70,7 @@ defmodule Pelnance.CategoriesTest do
 
     test "change_category/1 returns a category changeset" do
       user = user_fixture()
-      type = type_fixture(user)
+      type = type_fixture()
       category = category_fixture(user, %{type_id: type.id})
       assert %Ecto.Changeset{} = Categories.change_category(category)
     end

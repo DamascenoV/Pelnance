@@ -12,7 +12,7 @@ defmodule PelnanceWeb.TransactionLive.Index do
     <.header>
       <%= gettext("Listing Transactions") %> <.icon name="hero-arrows-right-left" />
       <:actions>
-        <%= for type <- Pelnance.Types.list_types(@current_user) do %>
+        <%= for type <- Pelnance.Types.list_types() do %>
           <.link patch={~p"/transactions/new?type=#{type.id}"}>
             <.button class="text-xs"><%= gettext("New") %> <%= type.name %></.button>
           </.link>

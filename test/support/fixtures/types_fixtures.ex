@@ -7,7 +7,7 @@ defmodule Pelnance.TypesFixtures do
   @doc """
   Generate a type.
   """
-  def type_fixture(user = %Pelnance.Users.User{}, attrs \\ %{}) do
+  def type_fixture(attrs \\ %{}) do
     attrs =
       attrs
       |> Enum.into(%{
@@ -16,7 +16,7 @@ defmodule Pelnance.TypesFixtures do
       })
 
     {:ok, type} =
-      Pelnance.Types.create_type(user, attrs)
+      Pelnance.Types.create_type(attrs)
 
     type
   end

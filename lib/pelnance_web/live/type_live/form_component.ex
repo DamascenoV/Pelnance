@@ -74,7 +74,7 @@ defmodule PelnanceWeb.TypeLive.FormComponent do
   end
 
   defp save_type(socket, :new, type_params) do
-    case Types.create_type(socket.assigns.current_user, type_params) do
+    case Types.create_type(type_params) do
       {:ok, type} ->
         notify_parent({:saved, type})
 

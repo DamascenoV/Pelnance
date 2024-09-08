@@ -8,15 +8,11 @@ defmodule PelnanceWeb.TypeLive.Show do
     ~H"""
     <.header>
       <%= gettext("Type") %> Type <%= @type.name %>
-      <:actions>
-        <.link patch={~p"/types/#{@type}/show/edit"} phx-click={JS.push_focus()}>
-          <.button><%= gettext("Edit type") %></.button>
-        </.link>
-      </:actions>
     </.header>
 
     <.list>
       <:item title={gettext("Name")}><%= @type.name %></:item>
+      <:item title={gettext("Subtraction")}><%= @type.subtraction %></:item>
     </.list>
 
     <.back navigate={~p"/types"}><%= gettext("Back to types") %></.back>

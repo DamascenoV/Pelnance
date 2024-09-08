@@ -7,7 +7,6 @@ defmodule Pelnance.Types.Type do
   schema "types" do
     field :name, :string
     field :subtraction, :boolean, default: false
-    belongs_to :user, Pelnance.Users.User
 
     timestamps(type: :utc_datetime)
   end
@@ -15,8 +14,7 @@ defmodule Pelnance.Types.Type do
   @doc false
   def changeset(type, attrs) do
     type
-    |> cast(attrs, [:name, :subtraction, :user_id])
-    |> validate_required([:name, :subtraction, :user_id])
-    |> foreign_key_constraint(:user_id)
+    |> cast(attrs, [:name, :subtraction])
+    |> validate_required([:name, :subtraction])
   end
 end

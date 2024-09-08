@@ -7,9 +7,10 @@ defmodule PelnanceWeb.DashboardLive.Index do
   def mount(_params, _session, socket) do
     user = Users.prepare_user(socket.assigns.current_user)
     transactions = Pelnance.Transactions.list_transactions(user)
+    types = Pelnance.Types.list_types()
 
     step_number =
-      Enum.count([user.currencies, user.types, user.categories, user.accounts], fn x ->
+      Enum.count([user.currencies, types, user.categories, user.accounts], fn x ->
         !Enum.empty?(x)
       end)
 
@@ -30,6 +31,7 @@ defmodule PelnanceWeb.DashboardLive.Index do
       :ok,
       socket
       |> assign(:user, user)
+      |> assign(:types, types)
       |> assign(:step_number, step_number)
       |> assign(:accounts_info, accounts_info)
       |> assign(:transactions_info, transactions_info)
@@ -59,17 +61,6 @@ defmodule PelnanceWeb.DashboardLive.Index do
   @impl true
   def handle_event("create_account", _params, socket) do
     {:noreply, push_patch(socket, to: ~p"/dashboard/new_account")}
-  end
-
-  def handle_event("generate", _params, socket) do
-    Pelnance.Types.generate_types(socket.assigns.current_user)
-
-    socket =
-      socket
-      |> assign(socket, user: Users.prepare_user(socket.assigns.current_user))
-      |> put_flash(:info, gettext("Types generated successfully"))
-
-    {:noreply, socket}
   end
 
   @impl true

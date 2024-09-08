@@ -384,7 +384,6 @@ defmodule Pelnance.Users do
   def prepare_user(user = %User{}) do
     user
     |> Repo.preload(:currencies)
-    |> Repo.preload(:types)
     |> Repo.preload(:categories)
     |> Repo.preload(accounts: :transactions)
   end

@@ -2,7 +2,6 @@ defmodule PelnanceWeb.TypeLiveTest do
   use PelnanceWeb.ConnCase
 
   import Phoenix.LiveViewTest
-  import Pelnance.UsersFixtures
   import Pelnance.TypesFixtures
 
   @create_attrs %{name: "some name"}
@@ -10,9 +9,8 @@ defmodule PelnanceWeb.TypeLiveTest do
   @invalid_attrs %{name: nil}
 
   defp create_type(_) do
-    user = user_fixture()
-    type = type_fixture(user)
-    %{type: type, user: user}
+    type = type_fixture()
+    %{type: type}
   end
 
   describe "Index" do
