@@ -17,12 +17,20 @@ defmodule PelnanceWeb.CategoryLive.Index do
       </:actions>
     </.header>
 
-    <.table id="categories" rows={@streams.categories}>
-      <:col :let={{_id, category}} label={gettext("Name")}><%= category.name %></:col>
-      <:col :let={{_id, category}} label={gettext("Type")}>
-        <%= category.type.name %>
+    <Flop.Phoenix.table
+      items={@streams.categories}
+      meta={@meta}
+      path={~p"/categories"}
+      opts={[
+        table_attrs: [class: "table table-sm table-zebra"],
+        tbody_td_attrs: [class: "cursor-pointer"]
+      ]}
+    >
+      <:col :let={{_id, category}} label={gettext("Name")} field={:name}><%= category.name %></:col>
+      <:col :let={{_id, category}} label={gettext("Type")} field={:age}>
+        <%= Gettext.gettext(PelnanceWeb.Gettext, category.type.name) %>
       </:col>
-      <:action :let={{id, category}}>
+      <:col :let={{id, category}} label={gettext("Actions")}>
         <.link navigate={~p"/categories/#{category}"}>
           <.icon name="hero-eye" />
         </.link>
@@ -36,8 +44,10 @@ defmodule PelnanceWeb.CategoryLive.Index do
         >
           <.icon name="hero-trash" class="text-red-700" />
         </.link>
-      </:action>
-    </.table>
+      </:col>
+    </Flop.Phoenix.table>
+
+    <Flop.Phoenix.pagination meta={@meta} path={~p"/categories"} />
 
     <.modal
       :if={@live_action in [:new, :edit]}
@@ -59,13 +69,20 @@ defmodule PelnanceWeb.CategoryLive.Index do
     """
   end
 
-  @impl true
-  def mount(_params, _session, socket) do
-    {:ok,
-     socket
-     |> stream(:categories, Categories.list_categories(socket.assigns.current_user))
-     |> assign(:types, Types.list_types())}
-  end
+  # @impl true
+  # def mount(params, _session, socket) do
+  #   case Categories.list_categories(socket.assigns.current_user, params) do
+  #     {:ok, {categories, meta}} ->
+  #       {:ok,
+  #        socket
+  #        |> stream(:categories, categories, reset: true)
+  #        |> assign(:meta, meta)
+  #        |> assign(:types, Types.list_types())}
+  #
+  #     {:error, _meta} ->
+  #       {:noreply, redirect(socket, to: Routes.category_index_path(socket, :index))}
+  #   end
+  # end
 
   @impl true
   def handle_params(params, _url, socket) do
@@ -84,10 +101,17 @@ defmodule PelnanceWeb.CategoryLive.Index do
     |> assign(:category, %Category{})
   end
 
-  defp apply_action(socket, :index, _params) do
-    socket
-    |> assign(:page_title, gettext("Listing Categories"))
-    |> assign(:category, nil)
+  defp apply_action(socket, :index, params) do
+    case Categories.list_categories(socket.assigns.current_user, params) do
+      {:ok, {categories, meta}} ->
+        socket
+        |> stream(:categories, categories, reset: true)
+        |> assign(:meta, meta)
+        |> assign(:types, Types.list_types())
+
+      {:error, _meta} ->
+        redirect(socket, to: Routes.category_index_path(socket, :index))
+    end
   end
 
   @impl true

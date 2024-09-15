@@ -17,6 +17,7 @@ defmodule PelnanceWeb.GoalLive.Show do
 
     <.list>
       <:item title={gettext("Name")}><%= @goal.name %></:item>
+      <:item title={gettext("Amount")}><%= @goal.amount %></:item>
       <:item title={gettext("Done")}><%= @goal.done %></:item>
     </.list>
 

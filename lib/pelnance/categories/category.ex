@@ -2,6 +2,14 @@ defmodule Pelnance.Categories.Category do
   use Ecto.Schema
   import Ecto.Changeset
 
+  @derive {
+    Flop.Schema,
+    filterable: [:name, :type_id],
+    sortable: [:name, :type_id],
+    max_limit: 5,
+    default_limit: 5
+  }
+
   @primary_key {:id, :binary_id, autogenerate: true}
   @foreign_key_type :binary_id
   schema "categories" do

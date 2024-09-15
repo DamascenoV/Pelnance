@@ -698,15 +698,56 @@ defmodule PelnanceWeb.CoreComponents do
 
   def dashboard_card(assigns) do
     ~H"""
-      <div class="rounded-lg border text-card-foreground bg-background shadow-lg">
-        <div class="flex flex-col space-y-1.5 p-6">
-          <h3 class="whitespace-nowrap text-2xl font-semibold leading-none tracking-tight">
-            <%= @title %>
-          </h3>
-          <p class="text-sm text-muted-foreground"><%= @description %></p>
-        </div>
-          <%= render_slot(@inner_block) %>
-        </div>
+    <div class="rounded-lg border text-card-foreground bg-background shadow-lg">
+      <div class="flex flex-col space-y-1.5 p-6">
+        <h3 class="whitespace-nowrap text-2xl font-semibold leading-none tracking-tight">
+          <%= @title %>
+        </h3>
+        <p class="text-sm text-muted-foreground"><%= @description %></p>
+      </div>
+      <%= render_slot(@inner_block) %>
+    </div>
+    """
+  end
+
+  def pagination_opts do
+    [
+      page_links: {:ellipsis, 5},
+      disabled_class: "disabled opacity-50",
+      wrapper_attrs: [
+        class: "text-center mt-4 flex"
+      ],
+      previous_link_content: Phoenix.HTML.raw("< Previous"),
+      previous_link_attrs: [
+        class: "p-2 mr-2 border-2 btn rounded-md border-base-300"
+      ],
+      pagination_list_attrs: [
+        class: "flex order-2 place-items-center gap-4 px-4"
+      ],
+      next_link_content: Phoenix.HTML.raw("Next >"),
+      next_link_attrs: [
+        class: "p-2 ml-2 border-2 btn rounded-md order-3 border-base-300"
+      ],
+      current_link_attrs: [
+        class: "text-success"
+      ]
+    ]
+  end
+
+  def table_opts do
+    [
+      container: true,
+      container_attrs: [class: "table-container"],
+      no_results_content: no_results_content(),
+      table_attrs: [class: "table"]
+    ]
+  end
+
+  defp no_results_content do
+    assigns = %{}
+
+    ~H"""
+    <p>Nothing found.</p>
     """
   end
 end

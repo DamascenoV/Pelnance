@@ -19,6 +19,7 @@ defmodule PelnanceWeb.GoalLive.Index do
     <.table id="goals" rows={@streams.goals}>
       <:col :let={{_id, goal}} label={gettext("Name")}><%= goal.name %></:col>
       <:col :let={{_id, goal}} label={gettext("Description")}><%= goal.description %></:col>
+      <:col :let={{_id, goal}} label={gettext("Amount")}><%= goal.amount %></:col>
       <:col :let={{_id, goal}} label={gettext("Done")}>
         <%= if goal.done do %>
           <div class="h-2.5 w-2.5 rounded-full bg-green-500 me-2"></div>

@@ -606,8 +606,10 @@ msgstr "Pagamento de Dívida"
 
 #: lib/pelnance_web/live/dashboard_live/index.ex:145
 #, elixir-autogen, elixir-format
-msgid "Expenses"
-msgstr "Despesas"
+msgid "Expense"
+msgid_plural "Expenses"
+msgstr[0] "Despesa"
+msgstr[1] "Despesas"
 
 #: lib/pelnance_web/live/dashboard_live/index.ex:149
 #, elixir-autogen, elixir-format
@@ -643,7 +645,7 @@ msgstr "Total do Valor do Objetivo"
 #: lib/pelnance_web/live/dashboard_live/index.ex:134
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Total Transactions"
-msgstr "Salvar Transições"
+msgstr "Total Transições"
 
 #: lib/pelnance_web/live/dashboard_live/index.ex:153
 #, elixir-autogen, elixir-format

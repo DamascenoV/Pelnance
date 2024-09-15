@@ -63,6 +63,12 @@ config :phoenix, :json_library, Jason
 
 config :gettext, default_locale: "en", locales: ~w(en pt_BR)
 
+config :flop, repo: Pelnance.Repo
+
+config :flop_phoenix,
+  pagination: [opts: {PelnanceWeb.FlopConfig, :pagination_opts}],
+  table: [opts: {PelnanceWeb.FlopConfig, :table_opts}]
+
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config "#{config_env()}.exs"

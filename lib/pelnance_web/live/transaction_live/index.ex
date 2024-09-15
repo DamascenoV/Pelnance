@@ -14,24 +14,13 @@ defmodule PelnanceWeb.TransactionLive.Index do
       <:actions>
         <%= for type <- Pelnance.Types.list_types() do %>
           <.link patch={~p"/transactions/new?type=#{type.id}"}>
-            <.button class="text-xs"><%= gettext("New") %> <%= type.name %></.button>
+            <.button class="text-xs">
+              <%= gettext("New") %> <%= Gettext.gettext(PelnanceWeb.Gettext, type.name) %>
+            </.button>
           </.link>
         <% end %>
       </:actions>
     </.header>
-
-    <!-- <.simple_form for={} phx-change="filter-description">
-       <div class="grid grid-cols-8 gap-4">
-         <.input type="select" options={[]} name="type" value={nil} label={gettext("Type")} />
-         <.input type="select" options={[]} name="account" value={nil} label={gettext("Account")} />
-         <.input type="select" options={[]} name="category" value={nil} label={gettext("Type")} />
-         <.input type="text" name="description" value={nil} label={gettext("Description")} />
-         <.input type="number" step="0.01" name="amount" value={nil} label={gettext("Amount")} />
-         <.input type="date" name="start" value={nil} label={gettext("Start")} />
-         <.input type="date" name="end" value={nil} label={gettext("End")} />
-       </div>
-    </.simple_form> -->
-
     <.table id="transactions" rows={@streams.transactions}>
       <:col :let={{_id, transaction}} label={gettext("Type")}>
         <%= if transaction.type.subtraction == true do %>
@@ -114,7 +103,7 @@ defmodule PelnanceWeb.TransactionLive.Index do
     |> assign(:accounts, Accounts.list_accounts(socket.assigns.current_user))
     |> assign(
       :categories,
-      Categories.list_categories(socket.assigns.current_user)
+      Categories.list_categories(socket.assigns.current_user, params)
       |> Enum.filter(&(&1.type_id == params["type"]))
     )
     |> assign(:type_id, params["type"])
@@ -127,7 +116,7 @@ defmodule PelnanceWeb.TransactionLive.Index do
     |> assign(:accounts, Accounts.list_accounts(socket.assigns.current_user))
     |> assign(
       :categories,
-      Categories.list_categories(socket.assigns.current_user)
+      Categories.list_categories(socket.assigns.current_user, params)
       |> Enum.filter(&(&1.type_id == params["type"]))
     )
     |> assign(:type_id, params["type"])
@@ -143,25 +132,6 @@ defmodule PelnanceWeb.TransactionLive.Index do
   def handle_info({PelnanceWeb.TransactionLive.FormComponent, {:saved, transaction}}, socket) do
     {:noreply, stream_insert(socket, :transactions, transaction)}
   end
-
-  # @impl true
-  # def handle_event("filter-description", filters, socket) do
-  #   dbg(filters)
-  #
-  #   transactions = Transactions.list_transactions(socket.assigns.current_user)
-  #
-  #   filter_transactions =
-  #     Enum.filter(transactions, fn transaction -> transaction.description == filters["description"] end)
-  #
-  #   dbg(filter_transactions)
-  #
-  #   {:noreply,
-  #    stream(
-  #      socket,
-  #      :transactions,
-  #      filter_transactions
-  #    )}
-  # end
 
   @impl true
   def handle_event("delete", %{"id" => id}, socket) do
