@@ -16,18 +16,44 @@ defmodule PelnanceWeb.GoalLive.Index do
       </:actions>
     </.header>
 
-    <.table id="goals" rows={@streams.goals}>
-      <:col :let={{_id, goal}} label={gettext("Name")}><%= goal.name %></:col>
-      <:col :let={{_id, goal}} label={gettext("Description")}><%= goal.description %></:col>
-      <:col :let={{_id, goal}} label={gettext("Amount")}><%= goal.amount %></:col>
-      <:col :let={{_id, goal}} label={gettext("Done")}>
+    <.filter_form
+      fields={[
+        name: [
+          label: gettext("Name"),
+          op: :like,
+          type: "text"
+        ],
+        description: [
+          label: gettext("Description"),
+          op: :like,
+          type: "text"
+        ]
+      ]}
+      meta={@meta}
+    />
+
+    <Flop.Phoenix.table
+      items={@streams.goals}
+      meta={@meta}
+      path={~p"/goals"}
+      opts={[
+        table_attrs: [class: "table table-sm table-zebra"],
+        tbody_td_attrs: [class: "cursor-pointer"]
+      ]}
+    >
+      <:col :let={{_id, goal}} label={gettext("Name")} field={:name}><%= goal.name %></:col>
+      <:col :let={{_id, goal}} label={gettext("Description")} field={:description}>
+        <%= goal.description %>
+      </:col>
+      <:col :let={{_id, goal}} label={gettext("Amount")} field={:amount}><%= goal.amount %></:col>
+      <:col :let={{_id, goal}} label={gettext("Done")} field={:done}>
         <%= if goal.done do %>
           <div class="h-2.5 w-2.5 rounded-full bg-green-500 me-2"></div>
         <% else %>
           <div class="h-2.5 w-2.5 rounded-full bg-red-500 me-2"></div>
         <% end %>
       </:col>
-      <:action :let={{id, goal}}>
+      <:col :let={{id, goal}} label={gettext("Actions")}>
         <.link navigate={~p"/goals/#{goal}"}>
           <.icon name="hero-eye" />
         </.link>
@@ -40,8 +66,10 @@ defmodule PelnanceWeb.GoalLive.Index do
         >
           <.icon name="hero-trash" class="text-red-700" />
         </.link>
-      </:action>
-    </.table>
+      </:col>
+    </Flop.Phoenix.table>
+
+    <Flop.Phoenix.pagination meta={@meta} path={~p"/goals"} />
 
     <.modal :if={@live_action in [:new, :edit]} id="goal-modal" show on_cancel={JS.patch(~p"/goals")}>
       <.live_component
@@ -55,11 +83,6 @@ defmodule PelnanceWeb.GoalLive.Index do
       />
     </.modal>
     """
-  end
-
-  @impl true
-  def mount(_params, _session, socket) do
-    {:ok, stream(socket, :goals, Goals.list_goals(socket.assigns.current_user))}
   end
 
   @impl true
@@ -80,15 +103,28 @@ defmodule PelnanceWeb.GoalLive.Index do
     |> assign(:current_user, socket.assigns.current_user)
   end
 
-  defp apply_action(socket, :index, _params) do
-    socket
-    |> assign(:page_title, gettext("Listing Goals"))
-    |> assign(:goal, nil)
+  defp apply_action(socket, :index, params) do
+    case Goals.list_goals(socket.assigns.current_user, params) do
+      {:ok, {goals, meta}} ->
+        socket
+        |> assign(:page_title, gettext("Listing Goals"))
+        |> assign(:meta, meta)
+        |> stream(:goals, goals, reset: true)
+
+      {:error, _meta} ->
+        redirect(socket, to: ~p"/goals")
+    end
   end
 
   @impl true
   def handle_info({PelnanceWeb.GoalLive.FormComponent, {:saved, goal}}, socket) do
     {:noreply, stream_insert(socket, :goals, goal)}
+  end
+
+  @impl true
+  def handle_event("update-filter", params, socket) do
+    params = Map.delete(params, "_target")
+    {:noreply, apply_action(socket, :index, params)}
   end
 
   @impl true
