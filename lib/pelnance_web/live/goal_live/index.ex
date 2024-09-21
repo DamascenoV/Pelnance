@@ -36,10 +36,6 @@ defmodule PelnanceWeb.GoalLive.Index do
       items={@streams.goals}
       meta={@meta}
       path={~p"/goals"}
-      opts={[
-        table_attrs: [class: "table table-sm table-zebra"],
-        tbody_td_attrs: [class: "cursor-pointer"]
-      ]}
     >
       <:col :let={{_id, goal}} label={gettext("Name")} field={:name}><%= goal.name %></:col>
       <:col :let={{_id, goal}} label={gettext("Description")} field={:description}>

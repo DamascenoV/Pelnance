@@ -36,10 +36,6 @@ defmodule PelnanceWeb.CurrencyLive.Index do
       items={@streams.currencies}
       meta={@meta}
       path={~p"/currencies"}
-      opts={[
-        table_attrs: [class: "table table-sm table-zebra"],
-        tbody_td_attrs: [class: "cursor-pointer"]
-      ]}
     >
       <:col :let={{_id, currency}} label={gettext("Name")} field={:name}><%= currency.name %></:col>
       <:col :let={{_id, currency}} label={gettext("Symbol")} field={:symbol}>
@@ -106,9 +102,9 @@ defmodule PelnanceWeb.CurrencyLive.Index do
     case Currencies.list_currencies(socket.assigns.current_user, params) do
       {:ok, {currencies, meta}} ->
         socket
-        |> stream(:currencies, currencies, reset: true)
         |> assign(:page_title, gettext("Listing Currencies"))
         |> assign(:meta, meta)
+        |> stream(:currencies, currencies, reset: true)
 
       {:error, _meta} ->
         redirect(socket, to: ~p"/currencies")

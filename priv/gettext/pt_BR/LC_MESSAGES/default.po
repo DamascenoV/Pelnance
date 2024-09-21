@@ -686,3 +686,12 @@ msgstr "Ver e gerenciar suas transações financeiras."
 #, elixir-autogen, elixir-format, fuzzy
 msgid "View Goals"
 msgstr "Ver Objectivos"
+
+msgid "Filter"
+msgstr "Filtros"
+
+msgid "< Previous"
+msgstr "< Anterior"
+
+msgid "Next >"
+msgstr "Proximo >"

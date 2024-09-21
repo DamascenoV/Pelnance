@@ -1,6 +1,7 @@
 # Pelnance
 
-WIP (Work in Progress) - This is still in beta version so somethings can not work as expected.
+WIP (Work in Progress) - This is still in development version so somethings can not work as expected.
+This is a simple project to learn Phoenix framework / Elixir.
 
 To start your Phoenix server:
 
@@ -50,7 +51,7 @@ Ready to run in production? Please [check our deployment guides](https://hexdocs
  * [] - Add Documents in the transaction
  * [] - Tests
     - [] - Liveview Tests
- * [] - Table filters
+ * [x] - Table filters -> Flop
  * [] - Improve layout
  * [] - Dark mode
  * [] - Charts

@@ -731,7 +731,7 @@ defmodule PelnanceWeb.CoreComponents do
       <label class="flex items-center gap-4 text-lg leading-6 text-zinc-600 mt-2">
         <%= gettext("Filter") %>
       </label>
-      <div class="grid grid-cols-2 gap-4">
+      <div class="grid grid-cols-4 gap-4">
         <Flop.Phoenix.filter_fields :let={i} form={@form} fields={@fields}>
           <.input field={i.field} label={i.label} type={i.type} phx-debounce={120} {i.rest} />
         </Flop.Phoenix.filter_fields>

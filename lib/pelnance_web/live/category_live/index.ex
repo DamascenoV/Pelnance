@@ -32,10 +32,6 @@ defmodule PelnanceWeb.CategoryLive.Index do
       items={@streams.categories}
       meta={@meta}
       path={~p"/categories"}
-      opts={[
-        table_attrs: [class: "table table-sm table-zebra"],
-        tbody_td_attrs: [class: "cursor-pointer"]
-      ]}
     >
       <:col :let={{_id, category}} label={gettext("Name")} field={:name}><%= category.name %></:col>
       <:col :let={{_id, category}} label={gettext("Type")} field={:age}>

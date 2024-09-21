@@ -19,6 +19,10 @@ defmodule Pelnance.Categories do
       [%Category{}, ...]
 
   """
+  def list_categories(user = %User{}) do
+    Repo.all(from c in Category, where: c.user_id == ^user.id)
+  end
+
   def list_categories(user = %User{}, params) do
     Category
     |> where(user_id: ^user.id)
