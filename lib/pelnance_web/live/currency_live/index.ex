@@ -16,6 +16,22 @@ defmodule PelnanceWeb.CurrencyLive.Index do
       </:actions>
     </.header>
 
+    <.filter_form
+      fields={[
+        name: [
+          label: gettext("Name"),
+          op: :like,
+          type: "text"
+        ],
+        symbol: [
+          label: gettext("Symbol"),
+          op: :like,
+          type: "text"
+        ]
+      ]}
+      meta={@meta}
+    />
+
     <Flop.Phoenix.table
       items={@streams.currencies}
       meta={@meta}
@@ -90,8 +106,8 @@ defmodule PelnanceWeb.CurrencyLive.Index do
     case Currencies.list_currencies(socket.assigns.current_user, params) do
       {:ok, {currencies, meta}} ->
         socket
+        |> stream(:currencies, currencies, reset: true)
         |> assign(:page_title, gettext("Listing Currencies"))
-        |> stream(:currencies, currencies)
         |> assign(:meta, meta)
 
       {:error, _meta} ->
@@ -102,6 +118,12 @@ defmodule PelnanceWeb.CurrencyLive.Index do
   @impl true
   def handle_info({PelnanceWeb.CurrencyLive.FormComponent, {:saved, currency}}, socket) do
     {:noreply, stream_insert(socket, :currencies, currency)}
+  end
+
+  @impl true
+  def handle_event("update-filter", params, socket) do
+    params = Map.delete(params, "_target")
+    {:noreply, apply_action(socket, :index, params)}
   end
 
   @impl true
