@@ -710,44 +710,22 @@ defmodule PelnanceWeb.CoreComponents do
     """
   end
 
-  def pagination_opts do
-    [
-      page_links: {:ellipsis, 5},
-      disabled_class: "disabled opacity-50",
-      wrapper_attrs: [
-        class: "text-center mt-4 flex"
-      ],
-      previous_link_content: Phoenix.HTML.raw("< Previous"),
-      previous_link_attrs: [
-        class: "p-2 mr-2 border-2 btn rounded-md border-base-300"
-      ],
-      pagination_list_attrs: [
-        class: "flex order-2 place-items-center gap-4 px-4"
-      ],
-      next_link_content: Phoenix.HTML.raw("Next >"),
-      next_link_attrs: [
-        class: "p-2 ml-2 border-2 btn rounded-md order-3 border-base-300"
-      ],
-      current_link_attrs: [
-        class: "text-success"
-      ]
-    ]
-  end
+  attr :fields, :list, required: true
+  attr :meta, Flop.Meta, required: true
+  attr :id, :string, default: nil
+  attr :on_change, :string, default: "update-filter"
+  attr :target, :string, default: nil
 
-  def table_opts do
-    [
-      container: true,
-      container_attrs: [class: "table-container"],
-      no_results_content: no_results_content(),
-      table_attrs: [class: "table"]
-    ]
-  end
-
-  defp no_results_content do
-    assigns = %{}
+  def filter_form(%{meta: meta} = assigns) do
+    assigns = assign(assigns, form: Phoenix.Component.to_form(meta), meta: nil)
 
     ~H"""
-    <p>Nothing found.</p>
+    <label class="flex items-center gap-4 text-lg leading-6 text-zinc-600 mt-4">Filter</label>
+    <.form for={@form} id={@id} phx-target={@target} phx-change={@on_change} phx-submit={@on_change}>
+      <Flop.Phoenix.filter_fields :let={i} form={@form} fields={@fields}>
+        <.input field={i.field} label={i.label} type={i.type} phx-debounce={120} {i.rest} />
+      </Flop.Phoenix.filter_fields>
+    </.form>
     """
   end
 end

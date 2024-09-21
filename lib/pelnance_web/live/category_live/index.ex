@@ -17,6 +17,17 @@ defmodule PelnanceWeb.CategoryLive.Index do
       </:actions>
     </.header>
 
+    <.filter_form
+      fields={[
+        name: [
+          label: gettext("Name"),
+          op: :like,
+          type: "text"
+        ]
+      ]}
+      meta={@meta}
+    />
+
     <Flop.Phoenix.table
       items={@streams.categories}
       meta={@meta}
@@ -69,21 +80,6 @@ defmodule PelnanceWeb.CategoryLive.Index do
     """
   end
 
-  # @impl true
-  # def mount(params, _session, socket) do
-  #   case Categories.list_categories(socket.assigns.current_user, params) do
-  #     {:ok, {categories, meta}} ->
-  #       {:ok,
-  #        socket
-  #        |> stream(:categories, categories, reset: true)
-  #        |> assign(:meta, meta)
-  #        |> assign(:types, Types.list_types())}
-  #
-  #     {:error, _meta} ->
-  #       {:noreply, redirect(socket, to: Routes.category_index_path(socket, :index))}
-  #   end
-  # end
-
   @impl true
   def handle_params(params, _url, socket) do
     {:noreply, apply_action(socket, socket.assigns.live_action, params)}
@@ -110,13 +106,19 @@ defmodule PelnanceWeb.CategoryLive.Index do
         |> assign(:types, Types.list_types())
 
       {:error, _meta} ->
-        redirect(socket, to: Routes.category_index_path(socket, :index))
+        redirect(socket, to: ~p"/categories")
     end
   end
 
   @impl true
   def handle_info({PelnanceWeb.CategoryLive.FormComponent, {:saved, category}}, socket) do
     {:noreply, stream_insert(socket, :categories, category)}
+  end
+
+  @impl true
+  def handle_event("update-filter", params, socket) do
+    params = Map.delete(params, "_target")
+    {:noreply, apply_action(socket, :index, params)}
   end
 
   @impl true

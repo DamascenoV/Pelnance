@@ -28,7 +28,7 @@ defmodule PelnanceWeb.FlopConfig do
       container_attrs: [class: "overflow-y-auto px-4 sm:overflow-visible sm:px-0"],
       table_attrs: [class: "w-full mt-11 sm:w-full"],
       thead_attrs: [class: "text-sm text-left leading-6 text-zinc-500"],
-      tbody_td_attrs: [class: "relative w-14 p-0"],
+      tbody_td_attrs: [class: "relative w-14 p-0"]
     ]
   end
 end

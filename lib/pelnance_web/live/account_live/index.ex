@@ -62,11 +62,11 @@ defmodule PelnanceWeb.AccountLive.Index do
   end
 
   @impl true
-  def mount(_params, _session, socket) do
+  def mount(params, _session, socket) do
     {:ok,
      socket
      |> stream(:accounts, Accounts.list_accounts(socket.assigns.current_user))
-     |> assign(:currencies, Currencies.list_currencies(socket.assigns.current_user))
+     |> assign(:currencies, Currencies.list_currencies(socket.assigns.current_user, params))
      |> assign(:user, socket.assigns.current_user)}
   end
 

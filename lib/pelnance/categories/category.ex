@@ -7,7 +7,17 @@ defmodule Pelnance.Categories.Category do
     filterable: [:name, :type_id],
     sortable: [:name, :type_id],
     max_limit: 5,
-    default_limit: 5
+    default_limit: 5,
+    adapter_opts: [
+      join_fields: [
+        type_id: [
+          binding: :types,
+          field: :type_id,
+          ecto_type: :string
+        ]
+      ]
+    ]
+
   }
 
   @primary_key {:id, :binary_id, autogenerate: true}
