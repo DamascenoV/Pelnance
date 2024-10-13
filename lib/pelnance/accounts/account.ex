@@ -2,6 +2,20 @@ defmodule Pelnance.Accounts.Account do
   use Ecto.Schema
   import Ecto.Changeset
 
+  @derive {
+    Flop.Schema,
+    filterable: [
+      :name,
+      :balance,
+    ],
+    sortable: [
+      :name,
+      :balance,
+    ],
+    max_limit: 5,
+    default_limit: 5,
+  }
+
   @primary_key {:id, :binary_id, autogenerate: true}
   @foreign_key_type :binary_id
   schema "accounts" do

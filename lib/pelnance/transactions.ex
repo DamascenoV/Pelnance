@@ -90,6 +90,7 @@ defmodule Pelnance.Transactions do
 
   """
   def create_transaction(attrs \\ %{}) do
+    dbg(attrs)
     account_balance = Accounts.get_account!(attrs["account_id"]).balance
 
     attrs =

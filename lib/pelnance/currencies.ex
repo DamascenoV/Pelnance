@@ -24,7 +24,6 @@ defmodule Pelnance.Currencies do
     |> Flop.validate_and_run(params, for: Currency)
   end
 
-
   def list_currencies(user = %User{}) do
     Repo.all(from c in Currency, where: c.user_id == ^user.id)
   end

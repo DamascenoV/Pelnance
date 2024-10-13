@@ -87,7 +87,7 @@
       <div class="p-6 grid gap-4">
         <div class="flex items-center justify-between">
           <div>
-            <div class="text-2xl font-bold"><%= Decimal.from_float(@accounts_info.total_balance) %></div>
+            <div class="text-2xl font-bold"><%= # Decimal.from_float(@accounts_info.total_balance) %></div>
             <div class="text-muted-foreground text-sm"><%= gettext("Total Balance") %></div>
           </div>
           <.link patch={~p"/accounts"}>

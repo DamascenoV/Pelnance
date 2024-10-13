@@ -9,7 +9,7 @@ defmodule Pelnance.Transactions.Transaction do
       :description,
       :type_name,
       :category_name,
-      :account_name,
+      :account_name
     ],
     sortable: [
       :date,
@@ -40,7 +40,7 @@ defmodule Pelnance.Transactions.Transaction do
       ]
     ],
     max_limit: 5,
-    default_limit: 5,
+    default_limit: 5
   }
 
   @primary_key {:id, :binary_id, autogenerate: true}

@@ -24,6 +24,14 @@ defmodule Pelnance.Accounts do
     Repo.all(from a in Account, where: a.user_id == ^user.id, preload: [:currency])
   end
 
+
+  def list_accounts(user = %User{}, params) do
+    Account
+    |> where([a], a.user_id == ^user.id)
+    |> preload([:currency])
+    |> Flop.validate_and_run(params, for: Account)
+  end
+
   @doc """
   Gets a single account.
 
