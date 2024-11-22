@@ -8,7 +8,7 @@ defmodule Pelnance.TypesTest do
 
     import Pelnance.TypesFixtures
 
-    @invalid_attrs %{name: nil}
+    @invalid_attrs %{name: nil, subtraction: false}
 
     test "list_types/0 returns all types" do
       type = type_fixture()
@@ -21,10 +21,11 @@ defmodule Pelnance.TypesTest do
     end
 
     test "create_type/1 with valid data creates a type" do
-      valid_attrs = %{name: "some name"}
+      valid_attrs = %{name: "some name", subtraction: true}
 
       assert {:ok, %Type{} = type} = Types.create_type(valid_attrs)
       assert type.name == "some name"
+      assert type.subtraction == true
     end
 
     test "create_type/1 with invalid data returns error changeset" do

@@ -35,8 +35,7 @@ defmodule PelnanceWeb.AccountLive.Show do
 
     <.table id="transactions" rows={@streams.transactions}>
       <:col :let={{_id, transaction}} label={gettext("Type")}>
-        <.icon name={Pelnance.Types.get_type!(transaction.type_id).icon} />
-        - <%= Pelnance.Types.get_type!(transaction.type_id).name %>
+        <%= Pelnance.Types.get_type!(transaction.type_id).name %>
       </:col>
       <:col :let={{_id, transaction}} label={gettext("Category")}>
         <%= Pelnance.Categories.get_category!(transaction.category_id).name %>

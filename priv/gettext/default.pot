@@ -12,6 +12,9 @@ msgid ""
 msgstr ""
 
 #: lib/pelnance_web/components/core_components.ex:487
+#: lib/pelnance_web/live/category_live/index.ex:44
+#: lib/pelnance_web/live/currency_live/index.ex:48
+#: lib/pelnance_web/live/goal_live/index.ex:56
 #, elixir-autogen, elixir-format
 msgid "Actions"
 msgstr ""
@@ -32,20 +35,23 @@ msgid "Hang in there while we get back on track"
 msgstr ""
 
 #: lib/pelnance_web/live/account_live/form_component.ex:21
-#: lib/pelnance_web/live/account_live/index.html.heex:11
-#: lib/pelnance_web/live/account_live/show.html.heex:11
+#: lib/pelnance_web/live/account_live/index.ex:21
+#: lib/pelnance_web/live/account_live/show.ex:21
 #: lib/pelnance_web/live/category_live/form_component.ex:21
-#: lib/pelnance_web/live/category_live/index.html.heex:11
-#: lib/pelnance_web/live/category_live/show.html.heex:11
+#: lib/pelnance_web/live/category_live/index.ex:23
+#: lib/pelnance_web/live/category_live/index.ex:40
+#: lib/pelnance_web/live/category_live/show.ex:19
 #: lib/pelnance_web/live/currency_live/form_component.ex:21
-#: lib/pelnance_web/live/currency_live/index.html.heex:11
-#: lib/pelnance_web/live/currency_live/show.html.heex:11
+#: lib/pelnance_web/live/currency_live/index.ex:22
+#: lib/pelnance_web/live/currency_live/index.ex:44
+#: lib/pelnance_web/live/currency_live/show.ex:19
 #: lib/pelnance_web/live/goal_live/form_component.ex:21
-#: lib/pelnance_web/live/goal_live/index.html.heex:11
-#: lib/pelnance_web/live/goal_live/show.html.heex:11
-#: lib/pelnance_web/live/type_live/form_component.ex:24
-#: lib/pelnance_web/live/type_live/index.html.heex:11
-#: lib/pelnance_web/live/type_live/show.html.heex:11
+#: lib/pelnance_web/live/goal_live/index.ex:22
+#: lib/pelnance_web/live/goal_live/index.ex:44
+#: lib/pelnance_web/live/goal_live/show.ex:19
+#: lib/pelnance_web/live/type_live/form_component.ex:27
+#: lib/pelnance_web/live/type_live/index.ex:14
+#: lib/pelnance_web/live/type_live/show.ex:14
 #, elixir-autogen, elixir-format
 msgid "Name"
 msgstr ""
@@ -71,106 +77,105 @@ msgstr ""
 msgid "close"
 msgstr ""
 
-#: lib/pelnance_web/live/account_live/show.html.heex:37
+#: lib/pelnance_web/live/account_live/show.ex:47
+#: lib/pelnance_web/live/goal_live/form_component.ex:23
+#: lib/pelnance_web/live/goal_live/index.ex:48
+#: lib/pelnance_web/live/goal_live/show.ex:20
 #: lib/pelnance_web/live/transaction_live/form_component.ex:22
-#: lib/pelnance_web/live/transaction_live/index.html.heex:23
-#: lib/pelnance_web/live/transaction_live/show.html.heex:12
+#: lib/pelnance_web/live/transaction_live/index.ex:42
+#: lib/pelnance_web/live/transaction_live/show.ex:20
 #, elixir-autogen, elixir-format
 msgid "Amount"
 msgstr ""
 
 #: lib/pelnance_web/live/account_live/form_component.ex:22
-#: lib/pelnance_web/live/account_live/index.html.heex:13
-#: lib/pelnance_web/live/account_live/show.html.heex:12
+#: lib/pelnance_web/live/account_live/index.ex:22
+#: lib/pelnance_web/live/account_live/show.ex:22
+#: lib/pelnance_web/live/transaction_live/index.ex:43
 #, elixir-autogen, elixir-format
 msgid "Balance"
 msgstr ""
 
-#: lib/pelnance_web/live/account_live/show.html.heex:31
-#: lib/pelnance_web/live/category_live/show.html.heex:2
-#: lib/pelnance_web/live/transaction_live/index.html.heex:17
+#: lib/pelnance_web/live/account_live/show.ex:41
+#: lib/pelnance_web/live/category_live/show.ex:10
+#: lib/pelnance_web/live/transaction_live/index.ex:36
 #, elixir-autogen, elixir-format
 msgid "Category"
 msgstr ""
 
 #: lib/pelnance_web/live/account_live/form_component.ex:26
-#: lib/pelnance_web/live/account_live/index.html.heex:23
-#: lib/pelnance_web/live/account_live/show.html.heex:13
-#: lib/pelnance_web/live/currency_live/show.html.heex:2
+#: lib/pelnance_web/live/account_live/index.ex:25
+#: lib/pelnance_web/live/account_live/show.ex:23
+#: lib/pelnance_web/live/currency_live/show.ex:10
 #, elixir-autogen, elixir-format
 msgid "Currency"
 msgstr ""
 
-#: lib/pelnance_web/live/account_live/show.html.heex:38
+#: lib/pelnance_web/live/account_live/show.ex:48
 #: lib/pelnance_web/live/transaction_live/form_component.ex:21
-#: lib/pelnance_web/live/transaction_live/index.html.heex:24
-#: lib/pelnance_web/live/transaction_live/show.html.heex:11
+#: lib/pelnance_web/live/transaction_live/index.ex:46
+#: lib/pelnance_web/live/transaction_live/show.ex:19
 #, elixir-autogen, elixir-format
 msgid "Date"
 msgstr ""
 
-#: lib/pelnance_web/live/account_live/show.html.heex:34
+#: lib/pelnance_web/live/account_live/show.ex:44
 #: lib/pelnance_web/live/goal_live/form_component.ex:22
-#: lib/pelnance_web/live/goal_live/index.html.heex:12
+#: lib/pelnance_web/live/goal_live/index.ex:27
+#: lib/pelnance_web/live/goal_live/index.ex:45
 #: lib/pelnance_web/live/transaction_live/form_component.ex:23
-#: lib/pelnance_web/live/transaction_live/index.html.heex:20
-#: lib/pelnance_web/live/transaction_live/show.html.heex:13
+#: lib/pelnance_web/live/transaction_live/index.ex:39
+#: lib/pelnance_web/live/transaction_live/show.ex:21
 #, elixir-autogen, elixir-format
 msgid "Description"
 msgstr ""
 
-#: lib/pelnance_web/live/goal_live/form_component.ex:23
-#: lib/pelnance_web/live/goal_live/index.html.heex:13
-#: lib/pelnance_web/live/goal_live/show.html.heex:12
+#: lib/pelnance_web/live/goal_live/form_component.ex:24
+#: lib/pelnance_web/live/goal_live/index.ex:49
+#: lib/pelnance_web/live/goal_live/show.ex:21
 #, elixir-autogen, elixir-format
 msgid "Done"
 msgstr ""
 
 #: lib/pelnance_web/live/type_live/form_component.ex:28
-#: lib/pelnance_web/live/type_live/index.html.heex:12
-#, elixir-autogen, elixir-format
-msgid "Icon"
-msgstr ""
-
-#: lib/pelnance_web/live/account_live/index.html.heex:12
-#, elixir-autogen, elixir-format
-msgid "Initial Balance"
-msgstr ""
-
-#: lib/pelnance_web/live/type_live/form_component.ex:31
-#: lib/pelnance_web/live/type_live/index.html.heex:15
+#: lib/pelnance_web/live/type_live/index.ex:15
+#: lib/pelnance_web/live/type_live/show.ex:15
 #, elixir-autogen, elixir-format
 msgid "Subtraction"
 msgstr ""
 
 #: lib/pelnance_web/live/currency_live/form_component.ex:22
-#: lib/pelnance_web/live/currency_live/index.html.heex:12
-#: lib/pelnance_web/live/currency_live/show.html.heex:12
+#: lib/pelnance_web/live/currency_live/index.ex:27
+#: lib/pelnance_web/live/currency_live/index.ex:45
+#: lib/pelnance_web/live/currency_live/show.ex:20
 #, elixir-autogen, elixir-format
 msgid "Symbol"
 msgstr ""
 
-#: lib/pelnance_web/live/account_live/show.html.heex:27
+#: lib/pelnance_web/live/account_live/show.ex:37
 #: lib/pelnance_web/live/category_live/form_component.ex:25
-#: lib/pelnance_web/live/category_live/index.html.heex:12
-#: lib/pelnance_web/live/transaction_live/index.html.heex:13
-#: lib/pelnance_web/live/type_live/show.html.heex:2
+#: lib/pelnance_web/live/category_live/index.ex:41
+#: lib/pelnance_web/live/transaction_live/index.ex:25
+#: lib/pelnance_web/live/type_live/show.ex:10
 #, elixir-autogen, elixir-format
 msgid "Type"
 msgstr ""
 
 #: lib/pelnance_web/components/layouts/root.html.heex:40
+#: lib/pelnance_web/live/dashboard_live/index.html.heex:84
+#: lib/pelnance_web/live/dashboard_live/index.html.heex:102
 #, elixir-autogen, elixir-format
 msgid "Accounts"
 msgstr ""
 
-#: lib/pelnance_web/components/layouts/root.html.heex:58
+#: lib/pelnance_web/components/layouts/root.html.heex:62
 #: lib/pelnance_web/live/transaction_live/form_component.ex:28
 #, elixir-autogen, elixir-format
 msgid "Categories"
 msgstr ""
 
-#: lib/pelnance_web/components/layouts/root.html.heex:64
+#: lib/pelnance_web/components/layouts/root.html.heex:68
+#: lib/pelnance_web/live/dashboard_live/index.html.heex:106
 #, elixir-autogen, elixir-format
 msgid "Currencies"
 msgstr ""
@@ -180,28 +185,31 @@ msgstr ""
 msgid "Dashboard"
 msgstr ""
 
-#: lib/pelnance_web/components/layouts/root.html.heex:49
+#: lib/pelnance_web/components/layouts/root.html.heex:51
+#: lib/pelnance_web/live/dashboard_live/index.html.heex:148
 #, elixir-autogen, elixir-format
 msgid "Goals"
 msgstr ""
 
-#: lib/pelnance_web/components/layouts/root.html.heex:71
+#: lib/pelnance_web/components/layouts/root.html.heex:75
 #, elixir-autogen, elixir-format
 msgid "Profile"
 msgstr ""
 
 #: lib/pelnance_web/components/layouts/root.html.heex:46
+#: lib/pelnance_web/live/dashboard_live/index.html.heex:112
 #, elixir-autogen, elixir-format
 msgid "Transactions"
 msgstr ""
 
-#: lib/pelnance_web/components/layouts/root.html.heex:52
+#: lib/pelnance_web/components/layouts/root.html.heex:56
 #, elixir-autogen, elixir-format
 msgid "Types"
 msgstr ""
 
-#: lib/pelnance_web/live/account_live/show.html.heex:2
+#: lib/pelnance_web/live/account_live/show.ex:12
 #: lib/pelnance_web/live/transaction_live/form_component.ex:35
+#: lib/pelnance_web/live/transaction_live/index.ex:33
 #, elixir-autogen, elixir-format
 msgid "Account"
 msgstr ""
@@ -216,25 +224,25 @@ msgstr ""
 msgid "Account updated successfully"
 msgstr ""
 
-#: lib/pelnance_web/live/account_live/show.html.heex:18
+#: lib/pelnance_web/live/account_live/show.ex:28
 #, elixir-autogen, elixir-format
 msgid "Back to accounts"
 msgstr ""
 
-#: lib/pelnance_web/live/account_live/index.ex:24
-#: lib/pelnance_web/live/account_live/show.ex:30
+#: lib/pelnance_web/live/account_live/index.ex:80
+#: lib/pelnance_web/live/account_live/show.ex:94
 #, elixir-autogen, elixir-format
 msgid "Edit Account"
 msgstr ""
 
-#: lib/pelnance_web/live/account_live/index.ex:36
-#: lib/pelnance_web/live/account_live/index.html.heex:2
+#: lib/pelnance_web/live/account_live/index.ex:12
+#: lib/pelnance_web/live/account_live/index.ex:92
 #, elixir-autogen, elixir-format
 msgid "Listing Accounts"
 msgstr ""
 
-#: lib/pelnance_web/live/account_live/index.ex:30
-#: lib/pelnance_web/live/account_live/index.html.heex:5
+#: lib/pelnance_web/live/account_live/index.ex:15
+#: lib/pelnance_web/live/account_live/index.ex:86
 #, elixir-autogen, elixir-format
 msgid "New Account"
 msgstr ""
@@ -244,7 +252,7 @@ msgstr ""
 msgid "Save Account"
 msgstr ""
 
-#: lib/pelnance_web/live/account_live/show.ex:29
+#: lib/pelnance_web/live/account_live/show.ex:93
 #, elixir-autogen, elixir-format
 msgid "Show Account"
 msgstr ""
@@ -259,20 +267,19 @@ msgstr ""
 msgid "Category updated successfully"
 msgstr ""
 
-#: lib/pelnance_web/live/category_live/index.ex:23
-#: lib/pelnance_web/live/category_live/show.ex:20
+#: lib/pelnance_web/live/category_live/index.ex:90
+#: lib/pelnance_web/live/category_live/show.ex:56
 #, elixir-autogen, elixir-format
 msgid "Edit Category"
 msgstr ""
 
-#: lib/pelnance_web/live/category_live/index.ex:35
-#: lib/pelnance_web/live/category_live/index.html.heex:2
+#: lib/pelnance_web/live/category_live/index.ex:12
 #, elixir-autogen, elixir-format
 msgid "Listing Categories"
 msgstr ""
 
-#: lib/pelnance_web/live/category_live/index.ex:29
-#: lib/pelnance_web/live/category_live/index.html.heex:5
+#: lib/pelnance_web/live/category_live/index.ex:15
+#: lib/pelnance_web/live/category_live/index.ex:96
 #, elixir-autogen, elixir-format
 msgid "New Category"
 msgstr ""
@@ -282,12 +289,12 @@ msgstr ""
 msgid "Save Category"
 msgstr ""
 
-#: lib/pelnance_web/live/category_live/show.ex:19
+#: lib/pelnance_web/live/category_live/show.ex:55
 #, elixir-autogen, elixir-format
 msgid "Show Category"
 msgstr ""
 
-#: lib/pelnance_web/live/currency_live/show.html.heex:15
+#: lib/pelnance_web/live/currency_live/show.ex:23
 #, elixir-autogen, elixir-format
 msgid "Back to currencies"
 msgstr ""
@@ -302,20 +309,20 @@ msgstr ""
 msgid "Currency updated successfully"
 msgstr ""
 
-#: lib/pelnance_web/live/currency_live/index.ex:19
-#: lib/pelnance_web/live/currency_live/show.ex:20
+#: lib/pelnance_web/live/currency_live/index.ex:94
+#: lib/pelnance_web/live/currency_live/show.ex:57
 #, elixir-autogen, elixir-format
 msgid "Edit Currency"
 msgstr ""
 
-#: lib/pelnance_web/live/currency_live/index.ex:32
-#: lib/pelnance_web/live/currency_live/index.html.heex:2
+#: lib/pelnance_web/live/currency_live/index.ex:11
+#: lib/pelnance_web/live/currency_live/index.ex:110
 #, elixir-autogen, elixir-format
 msgid "Listing Currencies"
 msgstr ""
 
-#: lib/pelnance_web/live/currency_live/index.ex:25
-#: lib/pelnance_web/live/currency_live/index.html.heex:5
+#: lib/pelnance_web/live/currency_live/index.ex:14
+#: lib/pelnance_web/live/currency_live/index.ex:100
 #, elixir-autogen, elixir-format
 msgid "New Currency"
 msgstr ""
@@ -325,92 +332,92 @@ msgstr ""
 msgid "Save Currency"
 msgstr ""
 
-#: lib/pelnance_web/live/currency_live/show.ex:19
+#: lib/pelnance_web/live/currency_live/show.ex:56
 #, elixir-autogen, elixir-format
 msgid "Show Currency"
 msgstr ""
 
-#: lib/pelnance_web/live/goal_live/show.html.heex:15
+#: lib/pelnance_web/live/goal_live/show.ex:24
 #, elixir-autogen, elixir-format
 msgid "Back to goals"
 msgstr ""
 
-#: lib/pelnance_web/live/goal_live/index.ex:19
-#: lib/pelnance_web/live/goal_live/show.ex:20
+#: lib/pelnance_web/live/goal_live/index.ex:95
+#: lib/pelnance_web/live/goal_live/show.ex:53
 #, elixir-autogen, elixir-format
 msgid "Edit Goal"
 msgstr ""
 
-#: lib/pelnance_web/live/goal_live/show.html.heex:5
+#: lib/pelnance_web/live/goal_live/show.ex:13
 #, elixir-autogen, elixir-format
 msgid "Edit goal"
 msgstr ""
 
-#: lib/pelnance_web/live/goal_live/show.html.heex:2
+#: lib/pelnance_web/live/goal_live/show.ex:10
 #, elixir-autogen, elixir-format
 msgid "Goal"
 msgstr ""
 
-#: lib/pelnance_web/live/goal_live/form_component.ex:78
+#: lib/pelnance_web/live/goal_live/form_component.ex:79
 #, elixir-autogen, elixir-format
 msgid "Goal created successfully"
 msgstr ""
 
-#: lib/pelnance_web/live/goal_live/form_component.ex:63
+#: lib/pelnance_web/live/goal_live/form_component.ex:64
 #, elixir-autogen, elixir-format
 msgid "Goal updated successfully"
 msgstr ""
 
-#: lib/pelnance_web/live/goal_live/index.ex:32
-#: lib/pelnance_web/live/goal_live/index.html.heex:2
+#: lib/pelnance_web/live/goal_live/index.ex:11
+#: lib/pelnance_web/live/goal_live/index.ex:110
 #, elixir-autogen, elixir-format
 msgid "Listing Goals"
 msgstr ""
 
-#: lib/pelnance_web/live/goal_live/index.ex:25
-#: lib/pelnance_web/live/goal_live/index.html.heex:5
+#: lib/pelnance_web/live/goal_live/index.ex:14
+#: lib/pelnance_web/live/goal_live/index.ex:101
 #, elixir-autogen, elixir-format
 msgid "New Goal"
 msgstr ""
 
-#: lib/pelnance_web/live/goal_live/form_component.ex:25
+#: lib/pelnance_web/live/goal_live/form_component.ex:26
 #, elixir-autogen, elixir-format
 msgid "Save Goal"
 msgstr ""
 
-#: lib/pelnance_web/live/goal_live/show.ex:19
+#: lib/pelnance_web/live/goal_live/show.ex:52
 #, elixir-autogen, elixir-format
 msgid "Show Goal"
 msgstr ""
 
-#: lib/pelnance_web/live/transaction_live/show.html.heex:16
+#: lib/pelnance_web/live/transaction_live/show.ex:24
 #, elixir-autogen, elixir-format
 msgid "Back to transactions"
 msgstr ""
 
-#: lib/pelnance_web/live/transaction_live/index.ex:25
-#: lib/pelnance_web/live/transaction_live/show.ex:20
+#: lib/pelnance_web/live/transaction_live/index.ex:101
+#: lib/pelnance_web/live/transaction_live/show.ex:58
 #, elixir-autogen, elixir-format
 msgid "Edit Transaction"
 msgstr ""
 
-#: lib/pelnance_web/live/transaction_live/show.html.heex:5
+#: lib/pelnance_web/live/transaction_live/show.ex:13
 #, elixir-autogen, elixir-format
 msgid "Edit transaction"
 msgstr ""
 
-#: lib/pelnance_web/live/transaction_live/index.ex:51
-#: lib/pelnance_web/live/transaction_live/index.html.heex:2
+#: lib/pelnance_web/live/transaction_live/index.ex:13
+#: lib/pelnance_web/live/transaction_live/index.ex:127
 #, elixir-autogen, elixir-format
 msgid "Listing Transactions"
 msgstr ""
 
-#: lib/pelnance_web/live/transaction_live/index.html.heex:6
+#: lib/pelnance_web/live/transaction_live/index.ex:18
 #, elixir-autogen, elixir-format
 msgid "New"
 msgstr ""
 
-#: lib/pelnance_web/live/transaction_live/index.ex:38
+#: lib/pelnance_web/live/transaction_live/index.ex:114
 #, elixir-autogen, elixir-format
 msgid "New Transaction"
 msgstr ""
@@ -420,12 +427,12 @@ msgstr ""
 msgid "Save Transaction"
 msgstr ""
 
-#: lib/pelnance_web/live/transaction_live/show.ex:19
+#: lib/pelnance_web/live/transaction_live/show.ex:57
 #, elixir-autogen, elixir-format
 msgid "Show Transaction"
 msgstr ""
 
-#: lib/pelnance_web/live/transaction_live/show.html.heex:2
+#: lib/pelnance_web/live/transaction_live/show.ex:10
 #, elixir-autogen, elixir-format
 msgid "Transaction"
 msgstr ""
@@ -440,57 +447,40 @@ msgstr ""
 msgid "Transaction updated successfully"
 msgstr ""
 
-#: lib/pelnance_web/live/type_live/show.html.heex:14
+#: lib/pelnance_web/live/type_live/show.ex:18
 #, elixir-autogen, elixir-format
 msgid "Back to types"
 msgstr ""
 
-#: lib/pelnance_web/live/type_live/index.ex:18
-#: lib/pelnance_web/live/type_live/show.ex:20
+#: lib/pelnance_web/live/type_live/show.ex:47
 #, elixir-autogen, elixir-format
 msgid "Edit Type"
 msgstr ""
 
-#: lib/pelnance_web/live/type_live/show.html.heex:5
-#, elixir-autogen, elixir-format
-msgid "Edit type"
-msgstr ""
-
-#: lib/pelnance_web/live/type_live/index.ex:31
-#: lib/pelnance_web/live/type_live/index.html.heex:2
+#: lib/pelnance_web/live/type_live/index.ex:10
+#: lib/pelnance_web/live/type_live/index.ex:43
 #, elixir-autogen, elixir-format
 msgid "Listing Types"
 msgstr ""
 
-#: lib/pelnance_web/live/type_live/index.ex:24
-#: lib/pelnance_web/live/type_live/index.html.heex:5
-#, elixir-autogen, elixir-format
-msgid "New Type"
-msgstr ""
-
-#: lib/pelnance_web/live/type_live/form_component.ex:33
+#: lib/pelnance_web/live/type_live/form_component.ex:30
 #, elixir-autogen, elixir-format
 msgid "Save Type"
 msgstr ""
 
-#: lib/pelnance_web/live/type_live/show.ex:19
+#: lib/pelnance_web/live/type_live/show.ex:46
 #, elixir-autogen, elixir-format
 msgid "Show Type"
 msgstr ""
 
-#: lib/pelnance_web/live/type_live/form_component.ex:86
+#: lib/pelnance_web/live/type_live/form_component.ex:83
 #, elixir-autogen, elixir-format
 msgid "Type created successfully"
 msgstr ""
 
-#: lib/pelnance_web/live/type_live/form_component.ex:71
+#: lib/pelnance_web/live/type_live/form_component.ex:68
 #, elixir-autogen, elixir-format
 msgid "Type updated successfully"
-msgstr ""
-
-#: lib/pelnance_web/live/type_live/form_component.ex:13
-#, elixir-autogen, elixir-format
-msgid "You can find icons here:"
 msgstr ""
 
 #: lib/pelnance_web/live/user_settings_live.ex:151
@@ -557,4 +547,133 @@ msgstr ""
 #: lib/pelnance_web/live/user_settings_live.ex:55
 #, elixir-autogen, elixir-format
 msgid "New password"
+msgstr ""
+
+#: lib/pelnance_web/live/type_live/form_component.ex:16
+#, elixir-autogen, elixir-format
+msgid "Auto Generate Types"
+msgstr ""
+
+#: lib/pelnance_web/live/dashboard_live/index.html.heex:58
+#: lib/pelnance_web/live/dashboard_live/index.html.heex:69
+#, elixir-autogen, elixir-format
+msgid "Create new account"
+msgstr ""
+
+#: lib/pelnance_web/live/dashboard_live/index.html.heex:36
+#: lib/pelnance_web/live/dashboard_live/index.html.heex:47
+#, elixir-autogen, elixir-format
+msgid "Create new category"
+msgstr ""
+
+#: lib/pelnance_web/live/dashboard_live/index.html.heex:15
+#: lib/pelnance_web/live/dashboard_live/index.html.heex:26
+#, elixir-autogen, elixir-format
+msgid "Create new currency"
+msgstr ""
+
+#: lib/pelnance_web/live/dashboard_live/index.html.heex:7
+#, elixir-autogen, elixir-format
+msgid "Please complete your setup in the steps below"
+msgstr ""
+
+#: lib/pelnance_web/components/core_components.ex:686
+#, elixir-autogen, elixir-format
+msgid "Step"
+msgstr ""
+
+#: lib/pelnance_web/components/core_components.ex:686
+#, elixir-autogen, elixir-format
+msgid "of"
+msgstr ""
+
+#: lib/pelnance_web/live/dashboard_live/index.html.heex:178
+#, elixir-autogen, elixir-format
+msgid "Debt Payoff"
+msgstr ""
+
+#: lib/pelnance_web/live/dashboard_live/index.html.heex:130
+#, elixir-autogen, elixir-format
+msgid "Expenses"
+msgstr ""
+
+#: lib/pelnance_web/live/dashboard_live/index.html.heex:134
+#, elixir-autogen, elixir-format
+msgid "Income"
+msgstr ""
+
+#: lib/pelnance_web/live/dashboard_live/index.html.heex:142
+#: lib/pelnance_web/live/dashboard_live/index.html.heex:170
+#, elixir-autogen, elixir-format
+msgid "Investments"
+msgstr ""
+
+#: lib/pelnance_web/live/dashboard_live/index.html.heex:185
+#, elixir-autogen, elixir-format
+msgid "Recent Transactions"
+msgstr ""
+
+#: lib/pelnance_web/live/dashboard_live/index.html.heex:166
+#, elixir-autogen, elixir-format
+msgid "Savings"
+msgstr ""
+
+#: lib/pelnance_web/live/dashboard_live/index.html.heex:91
+#, elixir-autogen, elixir-format
+msgid "Total Balance"
+msgstr ""
+
+#: lib/pelnance_web/live/dashboard_live/index.html.heex:155
+#, elixir-autogen, elixir-format
+msgid "Total Goal Amount"
+msgstr ""
+
+#: lib/pelnance_web/live/dashboard_live/index.html.heex:119
+#, elixir-autogen, elixir-format
+msgid "Total Transactions"
+msgstr ""
+
+#: lib/pelnance_web/live/dashboard_live/index.html.heex:138
+#, elixir-autogen, elixir-format
+msgid "Transfers"
+msgstr ""
+
+#: lib/pelnance_web/live/dashboard_live/index.html.heex:174
+#, elixir-autogen, elixir-format
+msgid "Vacation"
+msgstr ""
+
+#: lib/pelnance_web/live/dashboard_live/index.html.heex:95
+#, elixir-autogen, elixir-format
+msgid "View Accounts"
+msgstr ""
+
+#: lib/pelnance_web/live/dashboard_live/index.html.heex:123
+#, elixir-autogen, elixir-format
+msgid "View Transactions"
+msgstr ""
+
+#: lib/pelnance_web/live/dashboard_live/index.html.heex:85
+#, elixir-autogen, elixir-format
+msgid "View and manage your financial accounts."
+msgstr ""
+
+#: lib/pelnance_web/live/dashboard_live/index.html.heex:149
+#, elixir-autogen, elixir-format
+msgid "View and manage your financial goals."
+msgstr ""
+
+#: lib/pelnance_web/live/dashboard_live/index.html.heex:113
+#, elixir-autogen, elixir-format
+msgid "View and manage your financial transactions."
+msgstr ""
+
+#: lib/pelnance_web/live/dashboard_live/index.html.heex:159
+#, elixir-autogen, elixir-format
+msgid "View Goals"
+msgstr ""
+
+#: lib/pelnance_web/components/core_components.ex:732
+#, elixir-autogen, elixir-format
+msgid "Filter"
 msgstr ""

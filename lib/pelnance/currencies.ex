@@ -18,6 +18,12 @@ defmodule Pelnance.Currencies do
       [%Currency{}, ...]
 
   """
+  def list_currencies(user = %User{}, params) do
+    Currency
+    |> where(user_id: ^user.id)
+    |> Flop.validate_and_run(params, for: Currency)
+  end
+
   def list_currencies(user = %User{}) do
     Repo.all(from c in Currency, where: c.user_id == ^user.id)
   end

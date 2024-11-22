@@ -8,14 +8,16 @@ defmodule Pelnance.TransactionsFixtures do
   Generate a transaction.
   """
   def transaction_fixture(attrs \\ %{}) do
-    {:ok, transaction} =
+    attrs =
       attrs
       |> Enum.into(%{
-        amount: "120.5",
-        date: ~D[2024-05-02],
-        description: "some description"
+        "amount" => "120.5",
+        "date" => ~D[2024-05-02],
+        "description" => "some description"
       })
-      |> Pelnance.Transactions.create_transaction()
+
+    {:ok, transaction} =
+      Pelnance.Transactions.create_transaction(attrs)
 
     transaction
   end

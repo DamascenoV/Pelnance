@@ -35,12 +35,12 @@ defmodule PelnanceWeb.Router do
     # If your application does not have an admins-only section yet,
     # you can use Plug.BasicAuth to set up some basic authentication
     # as long as you are also using SSL (which you should anyway).
-    import Phoenix.LiveDashboard.Router
+    # import Phoenix.LiveDashboard.Router
 
     scope "/dev" do
       pipe_through :browser
 
-      live_dashboard "/dashboard", metrics: PelnanceWeb.Telemetry
+      # live_dashboard "/dashboard", metrics: PelnanceWeb.Telemetry
       forward "/mailbox", Plug.Swoosh.MailboxPreview
     end
   end
@@ -71,6 +71,10 @@ defmodule PelnanceWeb.Router do
 
       # DASHBOARD ROUTES
       live "/dashboard", DashboardLive.Index, :index
+      live "/dashboard/new_currency", DashboardLive.Index, :new_currency
+      live "/dashboard/new_type", DashboardLive.Index, :new_type
+      live "/dashboard/new_category", DashboardLive.Index, :new_category
+      live "/dashboard/new_account", DashboardLive.Index, :new_account
 
       # CURRENCIES ROUTES
       live "/currencies", CurrencyLive.Index, :index

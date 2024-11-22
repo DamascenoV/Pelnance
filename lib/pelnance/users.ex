@@ -372,4 +372,19 @@ defmodule Pelnance.Users do
       {:error, :user, changeset, _} -> {:error, changeset}
     end
   end
+
+  @doc """
+  Prepares a user for display
+
+  ## Examples
+
+      iex> prepare_user(user)
+      %User{}
+  """
+  def prepare_user(user = %User{}) do
+    user
+    |> Repo.preload(:currencies)
+    |> Repo.preload(:categories)
+    |> Repo.preload(accounts: :transactions)
+  end
 end

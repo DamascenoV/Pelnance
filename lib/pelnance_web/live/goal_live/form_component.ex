@@ -20,6 +20,7 @@ defmodule PelnanceWeb.GoalLive.FormComponent do
       >
         <.input field={@form[:name]} type="text" label={gettext("Name")} />
         <.input field={@form[:description]} type="text" label={gettext("Description")} />
+        <.input field={@form[:amount]} type="number" step="0.0" label={gettext("Amount")} />
         <.input field={@form[:done]} type="checkbox" label={gettext("Done")} />
         <:actions>
           <.button phx-disable-with="Saving..."><%= gettext("Save Goal") %></.button>

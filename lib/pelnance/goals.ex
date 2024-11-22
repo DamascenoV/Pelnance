@@ -18,6 +18,12 @@ defmodule Pelnance.Goals do
       [%Goal{}, ...]
 
   """
+  def list_goals(user = %User{}, params) do
+    Goal
+    |> where(user_id: ^user.id)
+    |> Flop.validate_and_run(params, for: Goal)
+  end
+
   def list_goals(user = %User{}) do
     Repo.all(from g in Goal, where: g.user_id == ^user.id)
   end

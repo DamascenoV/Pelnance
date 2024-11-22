@@ -19,8 +19,14 @@ defmodule Pelnance.Transactions do
       [%Transaction{}, ...]
 
   """
-  def list_transactions do
-    Repo.all(Transaction)
+  def list_transactions(user = %User{}, params) do
+    Transaction
+    |> join(:left, [t], a in assoc(t, :account), as: :account)
+    |> join(:left, [t, a], c in assoc(t, :category), as: :category)
+    |> join(:left, [t, a, c], ty in assoc(t, :type), as: :type)
+    |> preload([t, a, c, ty], [:account, :category, :type])
+    |> where([t, a, c, ty], a.user_id == ^user.id)
+    |> Flop.validate_and_run(params, for: Transaction)
   end
 
   @doc """
@@ -33,7 +39,12 @@ defmodule Pelnance.Transactions do
 
   """
   def list_transactions(user = %User{}) do
-    Repo.all(from t in Transaction, join: a in assoc(t, :account), where: a.user_id == ^user.id)
+    Repo.all(
+      from t in Transaction,
+        join: a in assoc(t, :account),
+        where: a.user_id == ^user.id,
+        preload: [:type, :category, :account]
+    )
   end
 
   @doc """
@@ -63,7 +74,8 @@ defmodule Pelnance.Transactions do
       ** (Ecto.NoResultsError)
 
   """
-  def get_transaction!(id), do: Repo.get!(Transaction, id)
+  def get_transaction!(id),
+    do: Repo.get!(Transaction, id) |> Repo.preload([:type, :category, :account])
 
   @doc """
   Creates a transaction.
@@ -78,14 +90,21 @@ defmodule Pelnance.Transactions do
 
   """
   def create_transaction(attrs \\ %{}) do
-    {:ok, transaction} =
-      %Transaction{}
-      |> Transaction.changeset(attrs)
-      |> Repo.insert()
+    dbg(attrs)
+    account_balance = Accounts.get_account!(attrs["account_id"]).balance
 
-    Accounts.update_balance(:insert, transaction)
+    attrs =
+      attrs
+      |> Map.put("account_balance", account_balance)
 
-    {:ok, transaction}
+    case %Transaction{} |> Transaction.changeset(attrs) |> Repo.insert() do
+      {:ok, transaction} ->
+        Accounts.update_balance(:insert, transaction)
+        {:ok, transaction |> Repo.preload([:type, :category, :account])}
+
+      {:error, changeset} ->
+        {:error, changeset}
+    end
   end
 
   @doc """
@@ -101,9 +120,14 @@ defmodule Pelnance.Transactions do
 
   """
   def update_transaction(%Transaction{} = transaction, attrs) do
-    transaction
-    |> Transaction.changeset(attrs)
-    |> Repo.update()
+    case transaction |> Transaction.changeset(attrs) |> Repo.update() do
+      {:ok, transaction} ->
+        Accounts.update_balance(:edit, transaction)
+        {:ok, transaction |> Repo.preload([:type, :category, :account])}
+
+      {:error, changeset} ->
+        {:error, changeset}
+    end
   end
 
   @doc """
@@ -121,7 +145,7 @@ defmodule Pelnance.Transactions do
   def delete_transaction(%Transaction{} = transaction) do
     {:ok, transaction} = Repo.delete(transaction)
     Accounts.update_balance(:delete, transaction)
-    {:ok, transaction}
+    {:ok, transaction |> Repo.preload([:type, :category])}
   end
 
   @doc """

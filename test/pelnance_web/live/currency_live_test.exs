@@ -2,6 +2,7 @@ defmodule PelnanceWeb.CurrencyLiveTest do
   use PelnanceWeb.ConnCase
 
   import Phoenix.LiveViewTest
+  import Pelnance.UsersFixtures
   import Pelnance.CurrenciesFixtures
 
   @create_attrs %{name: "some name", symbol: "some symbol"}
@@ -9,22 +10,23 @@ defmodule PelnanceWeb.CurrencyLiveTest do
   @invalid_attrs %{name: nil, symbol: nil}
 
   defp create_currency(_) do
-    currency = currency_fixture()
-    %{currency: currency}
+    user = user_fixture()
+    currency = currency_fixture(user)
+    %{currency: currency, user: user}
   end
 
   describe "Index" do
     setup [:create_currency]
 
-    test "lists all currencies", %{conn: conn, currency: currency} do
-      {:ok, _index_live, html} = live(conn, ~p"/currencies")
+    test "lists all currencies", %{conn: conn, currency: currency, user: user} do
+      {:ok, _index_live, html} = live(conn |> log_in_user(user), ~p"/currencies")
 
       assert html =~ "Listing Currencies"
       assert html =~ currency.name
     end
 
-    test "saves new currency", %{conn: conn} do
-      {:ok, index_live, _html} = live(conn, ~p"/currencies")
+    test "saves new currency", %{conn: conn, user: user} do
+      {:ok, index_live, _html} = live(conn |> log_in_user(user), ~p"/currencies")
 
       assert index_live |> element("a", "New Currency") |> render_click() =~
                "New Currency"
@@ -46,8 +48,8 @@ defmodule PelnanceWeb.CurrencyLiveTest do
       assert html =~ "some name"
     end
 
-    test "updates currency in listing", %{conn: conn, currency: currency} do
-      {:ok, index_live, _html} = live(conn, ~p"/currencies")
+    test "updates currency in listing", %{conn: conn, currency: currency, user: user} do
+      {:ok, index_live, _html} = live(conn |> log_in_user(user), ~p"/currencies")
 
       assert index_live |> element("#currencies-#{currency.id} a", "Edit") |> render_click() =~
                "Edit Currency"
@@ -69,8 +71,8 @@ defmodule PelnanceWeb.CurrencyLiveTest do
       assert html =~ "some updated name"
     end
 
-    test "deletes currency in listing", %{conn: conn, currency: currency} do
-      {:ok, index_live, _html} = live(conn, ~p"/currencies")
+    test "deletes currency in listing", %{conn: conn, currency: currency, user: user} do
+      {:ok, index_live, _html} = live(conn |> log_in_user(user), ~p"/currencies")
 
       assert index_live |> element("#currencies-#{currency.id} a", "Delete") |> render_click()
       refute has_element?(index_live, "#currencies-#{currency.id}")
@@ -80,15 +82,15 @@ defmodule PelnanceWeb.CurrencyLiveTest do
   describe "Show" do
     setup [:create_currency]
 
-    test "displays currency", %{conn: conn, currency: currency} do
-      {:ok, _show_live, html} = live(conn, ~p"/currencies/#{currency}")
+    test "displays currency", %{conn: conn, currency: currency, user: user} do
+      {:ok, _show_live, html} = live(conn |> log_in_user(user), ~p"/currencies/#{currency}")
 
       assert html =~ "Show Currency"
       assert html =~ currency.name
     end
 
-    test "updates currency within modal", %{conn: conn, currency: currency} do
-      {:ok, show_live, _html} = live(conn, ~p"/currencies/#{currency}")
+    test "updates currency within modal", %{conn: conn, currency: currency, user: user} do
+      {:ok, show_live, _html} = live(conn |> log_in_user(user), ~p"/currencies/#{currency}")
 
       assert show_live |> element("a", "Edit") |> render_click() =~
                "Edit Currency"

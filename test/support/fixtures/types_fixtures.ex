@@ -8,12 +8,15 @@ defmodule Pelnance.TypesFixtures do
   Generate a type.
   """
   def type_fixture(attrs \\ %{}) do
-    {:ok, type} =
+    attrs =
       attrs
       |> Enum.into(%{
-        name: "some name"
+        name: "some name",
+        subtraction: true
       })
-      |> Pelnance.Types.create_type()
+
+    {:ok, type} =
+      Pelnance.Types.create_type(attrs)
 
     type
   end

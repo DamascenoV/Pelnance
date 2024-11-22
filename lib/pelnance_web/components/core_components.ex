@@ -676,4 +676,67 @@ defmodule PelnanceWeb.CoreComponents do
   def translate_errors(errors, field) when is_list(errors) do
     for {^field, {msg, opts}} <- errors, do: translate_error({msg, opts})
   end
+
+  attr :step_number, :integer, default: 0
+
+  def progress_bar(assigns) do
+    ~H"""
+    <div>
+      <p class="text-sm text-gray-500">
+        <%= gettext("Step") %> <%= @step_number %> <%= gettext("of") %> 4
+      </p>
+      <div class="w-full h-2 my-2 bg-gray-200 rounded-full">
+        <div class="h-2 bg-blue-600 rounded-full" style={"width: #{@step_number * 25}%"}></div>
+      </div>
+    </div>
+    """
+  end
+
+  attr :title, :string, required: true
+  attr :description, :string, required: true
+  slot :inner_block
+
+  def dashboard_card(assigns) do
+    ~H"""
+    <div class="rounded-lg border text-card-foreground bg-background shadow-lg">
+      <div class="flex flex-col space-y-1.5 p-6">
+        <h3 class="whitespace-nowrap text-2xl font-semibold leading-none tracking-tight">
+          <%= @title %>
+        </h3>
+        <p class="text-sm text-muted-foreground"><%= @description %></p>
+      </div>
+      <%= render_slot(@inner_block) %>
+    </div>
+    """
+  end
+
+  attr :fields, :list, required: true
+  attr :meta, Flop.Meta, required: true
+  attr :id, :string, default: nil
+  attr :on_change, :string, default: "update-filter"
+  attr :target, :string, default: nil
+
+  def filter_form(%{meta: meta} = assigns) do
+    assigns = assign(assigns, form: Phoenix.Component.to_form(meta), meta: nil)
+
+    ~H"""
+    <.form
+      for={@form}
+      id={@id}
+      phx-target={@target}
+      phx-change={@on_change}
+      phx-submit={@on_change}
+      class="border rounded-lg border-zinc-200 p-4 mt-4"
+    >
+      <label class="flex items-center gap-4 text-lg leading-6 text-zinc-600 mt-2">
+        <%= gettext("Filter") %>
+      </label>
+      <div class="grid grid-cols-5 gap-4">
+        <Flop.Phoenix.filter_fields :let={i} form={@form} fields={@fields}>
+          <.input field={i.field} label={i.label} type={i.type} phx-debounce={120} {i.rest} />
+        </Flop.Phoenix.filter_fields>
+      </div>
+    </.form>
+    """
+  end
 end

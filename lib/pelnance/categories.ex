@@ -8,6 +8,7 @@ defmodule Pelnance.Categories do
 
   alias Pelnance.Users.User
   alias Pelnance.Categories.Category
+  alias Flop
 
   @doc """
   Returns the list of categories.
@@ -20,6 +21,13 @@ defmodule Pelnance.Categories do
   """
   def list_categories(user = %User{}) do
     Repo.all(from c in Category, where: c.user_id == ^user.id)
+  end
+
+  def list_categories(user = %User{}, params) do
+    Category
+    |> where(user_id: ^user.id)
+    |> preload([:type])
+    |> Flop.validate_and_run(params, for: Category)
   end
 
   @doc """
@@ -36,7 +44,7 @@ defmodule Pelnance.Categories do
       ** (Ecto.NoResultsError)
 
   """
-  def get_category!(id), do: Repo.get!(Category, id)
+  def get_category!(id), do: Repo.get!(Category, id) |> Repo.preload([:type])
 
   @doc """
   Creates a category.
@@ -51,10 +59,16 @@ defmodule Pelnance.Categories do
 
   """
   def create_category(user = %User{}, attrs \\ %{}) do
-    user
-    |> Ecto.build_assoc(:categories)
-    |> Category.changeset(attrs)
-    |> Repo.insert()
+    category =
+      user
+      |> Ecto.build_assoc(:categories)
+      |> Category.changeset(attrs)
+      |> Repo.insert()
+
+    case category do
+      {:ok, category} -> {:ok, category |> Repo.preload([:type])}
+      {:error, changeset} -> {:error, changeset}
+    end
   end
 
   @doc """
@@ -70,9 +84,10 @@ defmodule Pelnance.Categories do
 
   """
   def update_category(%Category{} = category, attrs) do
-    category
-    |> Category.changeset(attrs)
-    |> Repo.update()
+    case category |> Category.changeset(attrs) |> Repo.update() do
+      {:ok, category} -> {:ok, category |> Repo.preload([:type])}
+      {:error, changeset} -> {:error, changeset}
+    end
   end
 
   @doc """

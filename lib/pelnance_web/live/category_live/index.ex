@@ -17,12 +17,27 @@ defmodule PelnanceWeb.CategoryLive.Index do
       </:actions>
     </.header>
 
-    <.table id="categories" rows={@streams.categories}>
-      <:col :let={{_id, category}} label={gettext("Name")}><%= category.name %></:col>
-      <:col :let={{_id, category}} label={gettext("Type")}>
-        <%= Pelnance.Types.get_type!(category.type_id).name %>
+    <.filter_form
+      fields={[
+        name: [
+          label: gettext("Name"),
+          op: :like,
+          type: "text"
+        ]
+      ]}
+      meta={@meta}
+    />
+
+    <Flop.Phoenix.table
+      items={@streams.categories}
+      meta={@meta}
+      path={~p"/categories"}
+    >
+      <:col :let={{_id, category}} label={gettext("Name")} field={:name}><%= category.name %></:col>
+      <:col :let={{_id, category}} label={gettext("Type")} field={:age}>
+        <%= Gettext.gettext(PelnanceWeb.Gettext, category.type.name) %>
       </:col>
-      <:action :let={{id, category}}>
+      <:col :let={{id, category}} label={gettext("Actions")}>
         <.link navigate={~p"/categories/#{category}"}>
           <.icon name="hero-eye" />
         </.link>
@@ -36,8 +51,10 @@ defmodule PelnanceWeb.CategoryLive.Index do
         >
           <.icon name="hero-trash" class="text-red-700" />
         </.link>
-      </:action>
-    </.table>
+      </:col>
+    </Flop.Phoenix.table>
+
+    <Flop.Phoenix.pagination meta={@meta} path={~p"/categories"} />
 
     <.modal
       :if={@live_action in [:new, :edit]}
@@ -60,14 +77,6 @@ defmodule PelnanceWeb.CategoryLive.Index do
   end
 
   @impl true
-  def mount(_params, _session, socket) do
-    {:ok,
-     socket
-     |> stream(:categories, Categories.list_categories(socket.assigns.current_user))
-     |> assign(:types, Types.list_types(socket.assigns.current_user))}
-  end
-
-  @impl true
   def handle_params(params, _url, socket) do
     {:noreply, apply_action(socket, socket.assigns.live_action, params)}
   end
@@ -84,15 +93,28 @@ defmodule PelnanceWeb.CategoryLive.Index do
     |> assign(:category, %Category{})
   end
 
-  defp apply_action(socket, :index, _params) do
-    socket
-    |> assign(:page_title, gettext("Listing Categories"))
-    |> assign(:category, nil)
+  defp apply_action(socket, :index, params) do
+    case Categories.list_categories(socket.assigns.current_user, params) do
+      {:ok, {categories, meta}} ->
+        socket
+        |> stream(:categories, categories, reset: true)
+        |> assign(:meta, meta)
+        |> assign(:types, Types.list_types())
+
+      {:error, _meta} ->
+        redirect(socket, to: ~p"/categories")
+    end
   end
 
   @impl true
   def handle_info({PelnanceWeb.CategoryLive.FormComponent, {:saved, category}}, socket) do
     {:noreply, stream_insert(socket, :categories, category)}
+  end
+
+  @impl true
+  def handle_event("update-filter", params, socket) do
+    params = Map.delete(params, "_target")
+    {:noreply, apply_action(socket, :index, params)}
   end
 
   @impl true

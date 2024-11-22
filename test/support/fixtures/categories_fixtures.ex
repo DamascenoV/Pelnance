@@ -7,13 +7,15 @@ defmodule Pelnance.CategoriesFixtures do
   @doc """
   Generate a category.
   """
-  def category_fixture(attrs \\ %{}) do
-    {:ok, category} =
+  def category_fixture(user, attrs \\ %{}) do
+    attrs =
       attrs
       |> Enum.into(%{
         name: "some name"
       })
-      |> Pelnance.Categories.create_category()
+
+    {:ok, category} =
+      Pelnance.Categories.create_category(user, attrs)
 
     category
   end

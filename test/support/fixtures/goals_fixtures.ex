@@ -7,14 +7,17 @@ defmodule Pelnance.GoalsFixtures do
   @doc """
   Generate a goal.
   """
-  def goal_fixture(attrs \\ %{}) do
-    {:ok, goal} =
+  def goal_fixture(user = %Pelnance.Users.User{}, attrs \\ %{}) do
+    attrs =
       attrs
       |> Enum.into(%{
         done: true,
-        name: "some name"
+        name: "some name",
+        description: "some description"
       })
-      |> Pelnance.Goals.create_goal()
+
+    {:ok, goal} =
+      Pelnance.Goals.create_goal(user, attrs)
 
     goal
   end

@@ -9,10 +9,13 @@ defmodule PelnanceWeb.TypeLive.FormComponent do
     <div>
       <.header>
         <%= @title %>
-        <:subtitle>
-          <%= gettext("You can find icons here:") %> <a href="https://heroicons.com/" target="_blank">Heroicons</a>.
-        </:subtitle>
       </.header>
+
+      <div class="flex flex-col gap-4">
+        <.button phx-disabled-with="Generating..." class="text-xs" phx-click="generate">
+          <%= gettext("Auto Generate Types") %>
+        </.button>
+      </div>
 
       <.simple_form
         for={@form}
@@ -22,12 +25,6 @@ defmodule PelnanceWeb.TypeLive.FormComponent do
         phx-submit="save"
       >
         <.input field={@form[:name]} type="text" label={gettext("Name")} />
-        <.input
-          field={@form[:icon]}
-          type="text"
-          label={gettext("Icon")}
-          placeholder="hero-arrow-path"
-        />
         <.input field={@form[:subtraction]} type="checkbox" label={gettext("Subtraction")} />
         <:actions>
           <.button phx-disable-with="Saving..."><%= gettext("Save Type") %></.button>
@@ -77,7 +74,7 @@ defmodule PelnanceWeb.TypeLive.FormComponent do
   end
 
   defp save_type(socket, :new, type_params) do
-    case Types.create_type(socket.assigns.current_user, type_params) do
+    case Types.create_type(type_params) do
       {:ok, type} ->
         notify_parent({:saved, type})
 

@@ -10,7 +10,6 @@ defmodule Pelnance.Users.User do
     field :confirmed_at, :naive_datetime
     field :locale, :string, default: "en"
     has_many :currencies, Pelnance.Currencies.Currency
-    has_many :types, Pelnance.Types.Type
     has_many :accounts, Pelnance.Accounts.Account
     has_many :categories, Pelnance.Categories.Category
     has_many :goals, Pelnance.Goals.Goal

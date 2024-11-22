@@ -6,9 +6,7 @@ defmodule Pelnance.Types.Type do
   @foreign_key_type :binary_id
   schema "types" do
     field :name, :string
-    field :icon, :string
     field :subtraction, :boolean, default: false
-    belongs_to :user, Pelnance.Users.User
 
     timestamps(type: :utc_datetime)
   end
@@ -16,9 +14,7 @@ defmodule Pelnance.Types.Type do
   @doc false
   def changeset(type, attrs) do
     type
-    |> cast(attrs, [:name, :icon, :subtraction, :user_id])
-    |> validate_required([:name, :icon, :subtraction, :user_id])
-    |> validate_format(:icon, ~r/^hero-/)
-    |> foreign_key_constraint(:user_id)
+    |> cast(attrs, [:name, :subtraction])
+    |> validate_required([:name, :subtraction])
   end
 end

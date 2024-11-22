@@ -16,24 +16,50 @@ defmodule PelnanceWeb.CurrencyLive.Index do
       </:actions>
     </.header>
 
-    <.table id="currencies" rows={@streams.currencies}>
-      <:col :let={{_id, currency}} label={gettext("Name")}><%= currency.name %></:col>
-      <:col :let={{_id, currency}} label={gettext("Symbol")}><%= currency.symbol %></:col>
-      <:action :let={{id, currency}}>
+    <.filter_form
+      fields={[
+        name: [
+          label: gettext("Name"),
+          op: :like,
+          type: "text"
+        ],
+        symbol: [
+          label: gettext("Symbol"),
+          op: :like,
+          type: "text"
+        ]
+      ]}
+      meta={@meta}
+    />
+
+    <Flop.Phoenix.table
+      items={@streams.currencies}
+      meta={@meta}
+      path={~p"/currencies"}
+    >
+      <:col :let={{_id, currency}} label={gettext("Name")} field={:name}><%= currency.name %></:col>
+      <:col :let={{_id, currency}} label={gettext("Symbol")} field={:symbol}>
+        <%= currency.symbol %>
+      </:col>
+      <:col :let={{id, currency}} label={gettext("Actions")}>
         <.link navigate={~p"/currencies/#{currency}"}>
           <.icon name="hero-eye" />
         </.link>
         <.link patch={~p"/currencies/#{currency}/edit"}>
+          <span class="hidden">Edit</span>
           <.icon name="hero-pencil-square" />
         </.link>
         <.link
           phx-click={JS.push("delete", value: %{id: currency.id}) |> hide("##{id}")}
           data-confirm="Are you sure?"
         >
+          <span class="hidden">Delete</span>
           <.icon name="hero-trash" class="text-red-700" />
         </.link>
-      </:action>
-    </.table>
+      </:col>
+    </Flop.Phoenix.table>
+
+    <Flop.Phoenix.pagination meta={@meta} path={~p"/currencies"} />
 
     <.modal
       :if={@live_action in [:new, :edit]}
@@ -55,11 +81,6 @@ defmodule PelnanceWeb.CurrencyLive.Index do
   end
 
   @impl true
-  def mount(_params, _session, socket) do
-    {:ok, stream(socket, :currencies, Currencies.list_currencies(socket.assigns.current_user))}
-  end
-
-  @impl true
   def handle_params(params, _url, socket) do
     {:noreply, apply_action(socket, socket.assigns.live_action, params)}
   end
@@ -77,15 +98,28 @@ defmodule PelnanceWeb.CurrencyLive.Index do
     |> assign(:current_user, socket.assigns.current_user)
   end
 
-  defp apply_action(socket, :index, _params) do
-    socket
-    |> assign(:page_title, gettext("Listing Currencies"))
-    |> assign(:currency, nil)
+  defp apply_action(socket, :index, params) do
+    case Currencies.list_currencies(socket.assigns.current_user, params) do
+      {:ok, {currencies, meta}} ->
+        socket
+        |> assign(:page_title, gettext("Listing Currencies"))
+        |> assign(:meta, meta)
+        |> stream(:currencies, currencies, reset: true)
+
+      {:error, _meta} ->
+        redirect(socket, to: ~p"/currencies")
+    end
   end
 
   @impl true
   def handle_info({PelnanceWeb.CurrencyLive.FormComponent, {:saved, currency}}, socket) do
     {:noreply, stream_insert(socket, :currencies, currency)}
+  end
+
+  @impl true
+  def handle_event("update-filter", params, socket) do
+    params = Map.delete(params, "_target")
+    {:noreply, apply_action(socket, :index, params)}
   end
 
   @impl true

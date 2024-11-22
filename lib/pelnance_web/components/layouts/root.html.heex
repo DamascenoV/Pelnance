@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="csrf-token" content={get_csrf_token()} />
-    <.live_title suffix=" · Phoenix Framework">
+    <.live_title suffix=" · Personal Finances">
       <%= assigns[:page_title] || "Pelnance" %>
     </.live_title>
     <link phx-track-static rel="stylesheet" href={~p"/assets/app.css"} />
@@ -12,10 +12,10 @@
     </script>
   </head>
   <body class="bg-white antialiased">
-    <div
+    <%= if assigns[:current_user] do %>
+    <aside
       id="sidebar"
-      class="fixed top-0 left-0 h-screen w-full overflow-y-auto backdrop-blur-md bg-white/30 border flex flex-col justify-between p-4 transition duration-300 lg:w-64 md:w-64 hidden rounded-lg z-10"
-      phx-click-away={JS.hide(to: "#sidebar")}
+      class="fixed top-0 left-0 h-screen w-full overflow-y-auto backdrop-blur-md bg-white/30 border flex flex-col justify-between p-4 transition duration-300 lg:w-64 md:w-64 hidden rounded-lg z-10 md:block"
     >
       <div>
         <div class="flex items-center justify-between mb-4">
@@ -31,44 +31,48 @@
             href={~p"/dashboard"}
             class="flex items-center p-2 rounded-lg hover:bg-gray-200 py-2"
           >
-            <.icon name="hero-home" class="w-6 h-6 mr-2" /> <%= gettext "Dashboard" %>
+            <.icon name="hero-home" class="w-6 h-6 mr-2" /> <%= gettext("Dashboard") %>
           </.link>
           <.link
             href={~p"/accounts"}
             class="flex items-center p-2 rounded-lg hover:bg-gray-200 py-2"
           >
-            <.icon name="hero-wallet" class="w-6 h-6 mr-2" /> <%= gettext "Accounts" %>
+            <.icon name="hero-wallet" class="w-6 h-6 mr-2" /> <%= gettext("Accounts") %>
           </.link>
           <.link
             href={~p"/transactions"}
             class="flex items-center p-2 rounded-lg hover:bg-gray-200 py-2"
           >
-            <.icon name="hero-arrows-right-left" class="w-6 h-6 mr-2" /> <%= gettext "Transactions" %>
+            <.icon name="hero-arrows-right-left" class="w-6 h-6 mr-2" /> <%= gettext(
+              "Transactions"
+            ) %>
           </.link>
           <.link href={~p"/goals"} class="flex items-center p-2 rounded-lg hover:bg-gray-200 py-2">
-            <.icon name="hero-clipboard-document-check" class="w-6 h-6 mr-2" /> <%= gettext "Goals" %>
+            <.icon name="hero-clipboard-document-check" class="w-6 h-6 mr-2" /> <%= gettext(
+              "Goals"
+            ) %>
           </.link>
           <.link href={~p"/types"} class="flex items-center p-2 rounded-lg hover:bg-gray-200 py-2">
-            <.icon name="hero-banknotes" class="w-6 h-6 mr-2" /> <%= gettext "Types" %>
+            <.icon name="hero-banknotes" class="w-6 h-6 mr-2" /> <%= gettext("Types") %>
           </.link>
           <.link
             href={~p"/categories"}
             class="flex items-center p-2 rounded-lg hover:bg-gray-200 py-2"
           >
-            <.icon name="hero-tag" class="w-6 h-6 mr-2" /> <%= gettext "Categories" %>
+            <.icon name="hero-tag" class="w-6 h-6 mr-2" /> <%= gettext("Categories") %>
           </.link>
           <.link
             href={~p"/currencies"}
             class="flex items-center p-2 rounded-lg hover:bg-gray-200 py-2"
           >
-            <.icon name="hero-currency-euro" class="w-6 h-6 mr-2" /> <%= gettext "Currencies" %>
+            <.icon name="hero-currency-euro" class="w-6 h-6 mr-2" /> <%= gettext("Currencies") %>
           </.link>
           <div class="absolute bottom-4">
             <.link
               href={~p"/users/settings"}
               class="flex items-center p-2 rounded-lg hover:bg-gray-200 py-2"
             >
-              <.icon name="hero-user" class="w-6 h-6 mr-2" /> <%= gettext "Profile" %>
+              <.icon name="hero-user" class="w-6 h-6 mr-2" /> <%= gettext("Profile") %>
             </.link>
             <.link
               href={~p"/users/log_out"}
@@ -80,9 +84,10 @@
           </div>
         </nav>
       </div>
-    </div>
+    </aside>
+    <% end %>
 
-    <div class="flex-1 p-4">
+    <div class="">
       <%= @inner_content %>
     </div>
   </body>

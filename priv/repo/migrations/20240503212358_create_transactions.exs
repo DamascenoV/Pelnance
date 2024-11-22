@@ -7,6 +7,7 @@ defmodule Pelnance.Repo.Migrations.CreateTransactions do
       add :date, :date
       add :amount, :decimal
       add :description, :string
+      add :account_balance, :decimal
       add :type_id, references(:types, on_delete: :nothing, type: :binary_id)
       add :category_id, references(:categories, on_delete: :nothing, type: :binary_id)
       add :account_id, references(:accounts, on_delete: :nothing, type: :binary_id)

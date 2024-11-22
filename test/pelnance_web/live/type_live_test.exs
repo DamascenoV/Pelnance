@@ -16,15 +16,15 @@ defmodule PelnanceWeb.TypeLiveTest do
   describe "Index" do
     setup [:create_type]
 
-    test "lists all types", %{conn: conn, type: type} do
-      {:ok, _index_live, html} = live(conn, ~p"/types")
+    test "lists all types", %{conn: conn, type: type, user: user} do
+      {:ok, _index_live, html} = live(conn |> log_in_user(user), ~p"/types")
 
       assert html =~ "Listing Types"
       assert html =~ type.name
     end
 
-    test "saves new type", %{conn: conn} do
-      {:ok, index_live, _html} = live(conn, ~p"/types")
+    test "saves new type", %{conn: conn, user: user} do
+      {:ok, index_live, _html} = live(conn |> log_in_user(user), ~p"/types")
 
       assert index_live |> element("a", "New Type") |> render_click() =~
                "New Type"
@@ -46,8 +46,8 @@ defmodule PelnanceWeb.TypeLiveTest do
       assert html =~ "some name"
     end
 
-    test "updates type in listing", %{conn: conn, type: type} do
-      {:ok, index_live, _html} = live(conn, ~p"/types")
+    test "updates type in listing", %{conn: conn, type: type, user: user} do
+      {:ok, index_live, _html} = live(conn |> log_in_user(user), ~p"/types")
 
       assert index_live |> element("#types-#{type.id} a", "Edit") |> render_click() =~
                "Edit Type"
@@ -69,8 +69,8 @@ defmodule PelnanceWeb.TypeLiveTest do
       assert html =~ "some updated name"
     end
 
-    test "deletes type in listing", %{conn: conn, type: type} do
-      {:ok, index_live, _html} = live(conn, ~p"/types")
+    test "deletes type in listing", %{conn: conn, type: type, user: user} do
+      {:ok, index_live, _html} = live(conn |> log_in_user(user), ~p"/types")
 
       assert index_live |> element("#types-#{type.id} a", "Delete") |> render_click()
       refute has_element?(index_live, "#types-#{type.id}")
@@ -80,15 +80,15 @@ defmodule PelnanceWeb.TypeLiveTest do
   describe "Show" do
     setup [:create_type]
 
-    test "displays type", %{conn: conn, type: type} do
-      {:ok, _show_live, html} = live(conn, ~p"/types/#{type}")
+    test "displays type", %{conn: conn, type: type, user: user} do
+      {:ok, _show_live, html} = live(conn |> log_in_user(user), ~p"/types/#{type}")
 
       assert html =~ "Show Type"
       assert html =~ type.name
     end
 
-    test "updates type within modal", %{conn: conn, type: type} do
-      {:ok, show_live, _html} = live(conn, ~p"/types/#{type}")
+    test "updates type within modal", %{conn: conn, type: type, user: user} do
+      {:ok, show_live, _html} = live(conn |> log_in_user(user), ~p"/types/#{type}")
 
       assert show_live |> element("a", "Edit") |> render_click() =~
                "Edit Type"
