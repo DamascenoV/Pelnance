@@ -18,6 +18,7 @@ defmodule PelnanceWeb.CategoryLive.Index do
     </.header>
 
     <.filter_form
+    id="category_filter"
       fields={[
         name: [
           label: gettext("Name"),

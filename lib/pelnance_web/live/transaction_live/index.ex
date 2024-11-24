@@ -23,6 +23,7 @@ defmodule PelnanceWeb.TransactionLive.Index do
     </.header>
 
     <.filter_form
+      id="transaction_filter"
       fields={[
         type_name: [
           label: gettext("Type"),
@@ -53,11 +54,7 @@ defmodule PelnanceWeb.TransactionLive.Index do
       meta={@meta}
     />
 
-    <Flop.Phoenix.table
-      items={@streams.transactions}
-      meta={@meta}
-      path={~p"/transactions"}
-    >
+    <Flop.Phoenix.table items={@streams.transactions} meta={@meta} path={~p"/transactions"}>
       <:col :let={{_id, transaction}} label={gettext("Type")} field={:type_name}>
         <%= if transaction.type.subtraction == true do %>
           <.icon name="hero-arrow-trending-down text-red-500" />

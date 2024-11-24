@@ -712,7 +712,7 @@ defmodule PelnanceWeb.CoreComponents do
 
   attr :fields, :list, required: true
   attr :meta, Flop.Meta, required: true
-  attr :id, :string, default: nil
+  attr :id, :string, required: true
   attr :on_change, :string, default: "update-filter"
   attr :target, :string, default: nil
 
@@ -720,17 +720,21 @@ defmodule PelnanceWeb.CoreComponents do
     assigns = assign(assigns, form: Phoenix.Component.to_form(meta), meta: nil)
 
     ~H"""
+    <button id={"toggle-#{@id}"} phx-click={toggle_filter(@id)} class="flex">
+      <%= gettext("Filter") %>
+      <span id={"chevron-#{@id}"} class="flex transition duration-200">
+        <.icon name="hero-chevron-down" />
+      </span>
+    </button>
     <.form
       for={@form}
       id={@id}
       phx-target={@target}
       phx-change={@on_change}
       phx-submit={@on_change}
-      class="border rounded-lg border-zinc-200 p-4 mt-4"
+      class="border rounded-lg border-zinc-200 p-4 mt-4 hidden"
     >
-      <label class="flex items-center gap-4 text-lg leading-6 text-zinc-600 mt-2">
-        <%= gettext("Filter") %>
-      </label>
+      <label class="flex items-center gap-4 text-lg leading-6 text-zinc-600 mt-2"></label>
       <div class="grid grid-cols-5 gap-4">
         <Flop.Phoenix.filter_fields :let={i} form={@form} fields={@fields}>
           <.input field={i.field} label={i.label} type={i.type} phx-debounce={120} {i.rest} />
@@ -738,5 +742,15 @@ defmodule PelnanceWeb.CoreComponents do
       </div>
     </.form>
     """
+  end
+
+  defp toggle_filter(js \\ %JS{}, id) do
+    js
+    |> JS.toggle(
+      to: "##{id}",
+      in: {"transition ease-in-out duration-200", "opacity-0", "opacity-100"},
+      out: {"transition ease-in-out duration-200", "opacity-100", "opacity-0"}
+    )
+    |> JS.toggle_class("rotate-180", to: "#chevron-#{id}")
   end
 end

@@ -17,6 +17,7 @@ defmodule PelnanceWeb.GoalLive.Index do
     </.header>
 
     <.filter_form
+    id="goal_filter"
       fields={[
         name: [
           label: gettext("Name"),

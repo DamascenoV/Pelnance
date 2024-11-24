@@ -17,6 +17,7 @@ defmodule PelnanceWeb.CurrencyLive.Index do
     </.header>
 
     <.filter_form
+    id="currency_filter"
       fields={[
         name: [
           label: gettext("Name"),

@@ -18,6 +18,7 @@ defmodule PelnanceWeb.AccountLive.Index do
     </.header>
 
     <.filter_form
+      id="account_filter"
       fields={[
         name: [
           label: gettext("Name"),
