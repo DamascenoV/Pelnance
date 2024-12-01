@@ -19,7 +19,8 @@ defmodule Pelnance.Application do
       # Start a worker by calling: Pelnance.Worker.start_link(arg)
       # {Pelnance.Worker, arg},
       # Start to serve requests, typically the last entry
-      PelnanceWeb.Endpoint
+      PelnanceWeb.Endpoint,
+      TwMerge.Cache
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
