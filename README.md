@@ -57,3 +57,4 @@ Ready to run in production? Please [check our deployment guides](https://hexdocs
  * [] - Charts
  * [] - API? (Future Mobile App)
  * [] - Change DB to PostgreSQL
+ * [] - Use Salad UI
