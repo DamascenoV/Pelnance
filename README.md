@@ -56,3 +56,4 @@ Ready to run in production? Please [check our deployment guides](https://hexdocs
  * [] - Dark mode
  * [] - Charts
  * [] - API? (Future Mobile App)
+ * [] - Change DB to PostgreSQL
