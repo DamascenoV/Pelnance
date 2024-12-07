@@ -25,8 +25,8 @@ defmodule PelnanceWeb.FlopConfig do
 
   def table_opts do
     [
-        table_attrs: [class: "table table-sm table-zebra"],
-        tbody_td_attrs: [class: "cursor-pointer"]
+      table_attrs: [class: "table table-sm table-zebra"],
+      tbody_td_attrs: [class: "cursor-pointer"]
     ]
   end
 end

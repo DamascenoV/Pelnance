@@ -8,16 +8,16 @@ defmodule PelnanceWeb.GoalLive.Index do
   def render(assigns) do
     ~H"""
     <.header>
-      <%= gettext("Listing Goals") %>
+      {gettext("Listing Goals")}
       <:actions>
         <.link patch={~p"/goals/new"}>
-          <.button><%= gettext("New Goal") %></.button>
+          <.button>{gettext("New Goal")}</.button>
         </.link>
       </:actions>
     </.header>
 
     <.filter_form
-    id="goal_filter"
+      id="goal_filter"
       fields={[
         name: [
           label: gettext("Name"),
@@ -33,16 +33,12 @@ defmodule PelnanceWeb.GoalLive.Index do
       meta={@meta}
     />
 
-    <Flop.Phoenix.table
-      items={@streams.goals}
-      meta={@meta}
-      path={~p"/goals"}
-    >
-      <:col :let={{_id, goal}} label={gettext("Name")} field={:name}><%= goal.name %></:col>
+    <Flop.Phoenix.table items={@streams.goals} meta={@meta} path={~p"/goals"}>
+      <:col :let={{_id, goal}} label={gettext("Name")} field={:name}>{goal.name}</:col>
       <:col :let={{_id, goal}} label={gettext("Description")} field={:description}>
-        <%= goal.description %>
+        {goal.description}
       </:col>
-      <:col :let={{_id, goal}} label={gettext("Amount")} field={:amount}><%= goal.amount %></:col>
+      <:col :let={{_id, goal}} label={gettext("Amount")} field={:amount}>{goal.amount}</:col>
       <:col :let={{_id, goal}} label={gettext("Done")} field={:done}>
         <%= if goal.done do %>
           <div class="h-2.5 w-2.5 rounded-full bg-green-500 me-2"></div>

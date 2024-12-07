@@ -10,12 +10,12 @@ defmodule PelnanceWeb.TransactionLive.Index do
   def render(assigns) do
     ~H"""
     <.header>
-      <%= gettext("Listing Transactions") %> <.icon name="hero-arrows-right-left" />
+      {gettext("Listing Transactions")} <.icon name="hero-arrows-right-left" />
       <:actions>
         <%= for type <- Pelnance.Types.list_types() do %>
           <.link patch={~p"/transactions/new?type=#{type.id}"}>
             <.button class="text-xs">
-              <%= gettext("New") %> <%= Gettext.gettext(PelnanceWeb.Gettext, type.name) %>
+              {gettext("New")} {Gettext.gettext(PelnanceWeb.Gettext, type.name)}
             </.button>
           </.link>
         <% end %>
@@ -61,25 +61,25 @@ defmodule PelnanceWeb.TransactionLive.Index do
         <% else %>
           <.icon name="hero-arrow-trending-up text-green-500" />
         <% end %>
-        - <%= transaction.type.name %>
+        - {transaction.type.name}
       </:col>
       <:col :let={{_id, transaction}} label={gettext("Account")} field={:account_name}>
-        <%= transaction.account.name %>
+        {transaction.account.name}
       </:col>
       <:col :let={{_id, transaction}} label={gettext("Category")} field={:category_name}>
-        <%= transaction.category.name %>
+        {transaction.category.name}
       </:col>
       <:col :let={{_id, transaction}} label={gettext("Description")} field={:description}>
-        <%= transaction.description %>
+        {transaction.description}
       </:col>
       <:col :let={{_id, transaction}} label={gettext("Amount")} field={:amount}>
-        <%= transaction.amount %> €
+        {transaction.amount} €
       </:col>
       <:col :let={{_id, transaction}} label={gettext("Balance")} field={:account_balance}>
-        <%= transaction.account_balance %> €
+        {transaction.account_balance} €
       </:col>
       <:col :let={{_id, transaction}} label={gettext("Date")} field={:date}>
-        <%= transaction.date %>
+        {transaction.date}
       </:col>
       <:col :let={{id, transaction}} label={gettext("Actions")}>
         <.link navigate={~p"/transactions/#{transaction}"}>

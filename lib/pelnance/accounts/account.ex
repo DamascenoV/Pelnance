@@ -6,14 +6,14 @@ defmodule Pelnance.Accounts.Account do
     Flop.Schema,
     filterable: [
       :name,
-      :balance,
+      :balance
     ],
     sortable: [
       :name,
-      :balance,
+      :balance
     ],
     max_limit: 5,
-    default_limit: 5,
+    default_limit: 5
   }
 
   @primary_key {:id, :binary_id, autogenerate: true}

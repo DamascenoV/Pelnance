@@ -8,7 +8,7 @@ defmodule PelnanceWeb.AccountLive.FormComponent do
     ~H"""
     <div>
       <.header>
-        <%= @title %>
+        {@title}
       </.header>
 
       <.simple_form
@@ -27,7 +27,7 @@ defmodule PelnanceWeb.AccountLive.FormComponent do
           options={@currencies |> Enum.map(&{&1.name, &1.id})}
         />
         <:actions>
-          <.button phx-disable-with="Saving..."><%= gettext("Save Account") %></.button>
+          <.button phx-disable-with="Saving...">{gettext("Save Account")}</.button>
         </:actions>
       </.simple_form>
     </div>

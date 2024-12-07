@@ -7,7 +7,7 @@ defmodule PelnanceWeb.CategoryLive.Show do
   def render(assigns) do
     ~H"""
     <.header>
-      <%= gettext("Category") %> <%= @category.name %>
+      {gettext("Category")} {@category.name}
       <:actions>
         <.link patch={~p"/categories/#{@category}/show/edit"} phx-click={JS.push_focus()}>
           <.button>Edit category</.button>
@@ -16,7 +16,7 @@ defmodule PelnanceWeb.CategoryLive.Show do
     </.header>
 
     <.list>
-      <:item title={gettext("Name")}><%= @category.name %></:item>
+      <:item title={gettext("Name")}>{@category.name}</:item>
     </.list>
 
     <.back navigate={~p"/categories"}>Back to categories</.back>

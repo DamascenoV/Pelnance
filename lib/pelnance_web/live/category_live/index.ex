@@ -9,16 +9,16 @@ defmodule PelnanceWeb.CategoryLive.Index do
   def render(assigns) do
     ~H"""
     <.header>
-      <%= gettext("Listing Categories") %> <.icon name="hero-tag" />
+      {gettext("Listing Categories")} <.icon name="hero-tag" />
       <:actions>
         <.link patch={~p"/categories/new"}>
-          <.button><%= gettext("New Category") %></.button>
+          <.button>{gettext("New Category")}</.button>
         </.link>
       </:actions>
     </.header>
 
     <.filter_form
-    id="category_filter"
+      id="category_filter"
       fields={[
         name: [
           label: gettext("Name"),
@@ -29,14 +29,10 @@ defmodule PelnanceWeb.CategoryLive.Index do
       meta={@meta}
     />
 
-    <Flop.Phoenix.table
-      items={@streams.categories}
-      meta={@meta}
-      path={~p"/categories"}
-    >
-      <:col :let={{_id, category}} label={gettext("Name")} field={:name}><%= category.name %></:col>
+    <Flop.Phoenix.table items={@streams.categories} meta={@meta} path={~p"/categories"}>
+      <:col :let={{_id, category}} label={gettext("Name")} field={:name}>{category.name}</:col>
       <:col :let={{_id, category}} label={gettext("Type")} field={:age}>
-        <%= Gettext.gettext(PelnanceWeb.Gettext, category.type.name) %>
+        {Gettext.gettext(PelnanceWeb.Gettext, category.type.name)}
       </:col>
       <:col :let={{id, category}} label={gettext("Actions")}>
         <.link navigate={~p"/categories/#{category}"}>

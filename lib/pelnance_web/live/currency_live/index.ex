@@ -8,16 +8,16 @@ defmodule PelnanceWeb.CurrencyLive.Index do
   def render(assigns) do
     ~H"""
     <.header>
-      <%= gettext("Listing Currencies") %> <.icon name="hero-currency-euro " />
+      {gettext("Listing Currencies")} <.icon name="hero-currency-euro " />
       <:actions>
         <.link patch={~p"/currencies/new"}>
-          <.button><%= gettext("New Currency") %></.button>
+          <.button>{gettext("New Currency")}</.button>
         </.link>
       </:actions>
     </.header>
 
     <.filter_form
-    id="currency_filter"
+      id="currency_filter"
       fields={[
         name: [
           label: gettext("Name"),
@@ -33,14 +33,10 @@ defmodule PelnanceWeb.CurrencyLive.Index do
       meta={@meta}
     />
 
-    <Flop.Phoenix.table
-      items={@streams.currencies}
-      meta={@meta}
-      path={~p"/currencies"}
-    >
-      <:col :let={{_id, currency}} label={gettext("Name")} field={:name}><%= currency.name %></:col>
+    <Flop.Phoenix.table items={@streams.currencies} meta={@meta} path={~p"/currencies"}>
+      <:col :let={{_id, currency}} label={gettext("Name")} field={:name}>{currency.name}</:col>
       <:col :let={{_id, currency}} label={gettext("Symbol")} field={:symbol}>
-        <%= currency.symbol %>
+        {currency.symbol}
       </:col>
       <:col :let={{id, currency}} label={gettext("Actions")}>
         <.link navigate={~p"/currencies/#{currency}"}>

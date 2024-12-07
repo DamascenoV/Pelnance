@@ -22,9 +22,12 @@ defmodule PelnanceWeb.DashboardLive.Index do
     }
 
     transactions_info = %{
-      total: Enum.reduce(transactions, 0, fn transaction, acc -> acc + Decimal.to_float(transaction.amount) end),
+      total:
+        Enum.reduce(transactions, 0, fn transaction, acc ->
+          acc + Decimal.to_float(transaction.amount)
+        end),
       total_expenses: Enum.count(transactions, fn x -> x.type.subtraction == true end),
-      total_income: Enum.count(transactions, fn x -> x.type.subtraction == false end),
+      total_income: Enum.count(transactions, fn x -> x.type.subtraction == false end)
     }
 
     {

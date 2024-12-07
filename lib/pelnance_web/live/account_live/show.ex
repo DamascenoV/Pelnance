@@ -9,23 +9,23 @@ defmodule PelnanceWeb.AccountLive.Show do
   def render(assigns) do
     ~H"""
     <.header>
-      <%= gettext("Account") %> <%= @account.name %>
+      {gettext("Account")} {@account.name}
       <:actions>
         <.link patch={~p"/accounts/#{@account}/show/edit"} phx-click={JS.push_focus()}>
-          <.button><%= "Edit account" %></.button>
+          <.button>{gettext("Edit account")}</.button>
         </.link>
       </:actions>
     </.header>
 
     <.list>
-      <:item title={gettext("Name")}><%= @account.name %></:item>
-      <:item title={gettext("Balance")}><%= @account.balance %></:item>
+      <:item title={gettext("Name")}>{@account.name}</:item>
+      <:item title={gettext("Balance")}>{@account.balance}</:item>
       <:item title={gettext("Currency")}>
-        <%= Pelnance.Currencies.get_currency!(@account.currency_id).name %>
+        {Pelnance.Currencies.get_currency!(@account.currency_id).name}
       </:item>
     </.list>
 
-    <.back navigate={~p"/accounts"}><%= gettext("Back to accounts") %></.back>
+    <.back navigate={~p"/accounts"}>{gettext("Back to accounts")}></.back>
 
     <hr class="my-5" />
 
@@ -35,16 +35,16 @@ defmodule PelnanceWeb.AccountLive.Show do
 
     <.table id="transactions" rows={@streams.transactions}>
       <:col :let={{_id, transaction}} label={gettext("Type")}>
-        <%= Pelnance.Types.get_type!(transaction.type_id).name %>
+        {Pelnance.Types.get_type!(transaction.type_id).name}
       </:col>
       <:col :let={{_id, transaction}} label={gettext("Category")}>
-        <%= Pelnance.Categories.get_category!(transaction.category_id).name %>
+        {Pelnance.Categories.get_category!(transaction.category_id).name}
       </:col>
       <:col :let={{_id, transaction}} label={gettext("Description")}>
-        <%= transaction.description %>
+        {transaction.description}
       </:col>
-      <:col :let={{_id, transaction}} label={gettext("Amount")}><%= transaction.amount %></:col>
-      <:col :let={{_id, transaction}} label={gettext("Date")}><%= transaction.date %></:col>
+      <:col :let={{_id, transaction}} label={gettext("Amount")}>{transaction.amount}</:col>
+      <:col :let={{_id, transaction}} label={gettext("Date")}>{transaction.date}</:col>
     </.table>
 
     <.back navigate={~p"/transactions"}>Go to transactions</.back>

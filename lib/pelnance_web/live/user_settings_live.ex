@@ -6,8 +6,8 @@ defmodule PelnanceWeb.UserSettingsLive do
   def render(assigns) do
     ~H"""
     <.header class="text-center">
-      <%= gettext("Account Settings") %>
-      <:subtitle><%= gettext("Manage your account email address and password settings") %></:subtitle>
+      {gettext("Account Settings")}
+      <:subtitle>{gettext("Manage your account email address and password settings")}</:subtitle>
     </.header>
 
     <div class="space-y-12 divide-y">
@@ -29,7 +29,7 @@ defmodule PelnanceWeb.UserSettingsLive do
             required
           />
           <:actions>
-            <.button phx-disable-with="Changing..."><%= gettext("Change Email") %></.button>
+            <.button phx-disable-with="Changing...">{gettext("Change Email")}</.button>
           </:actions>
         </.simple_form>
       </div>
@@ -70,7 +70,7 @@ defmodule PelnanceWeb.UserSettingsLive do
             required
           />
           <:actions>
-            <.button phx-disable-with="Changing..."><%= gettext("Change Password") %></.button>
+            <.button phx-disable-with="Changing...">{gettext("Change Password")}</.button>
           </:actions>
         </.simple_form>
       </div>
@@ -84,7 +84,7 @@ defmodule PelnanceWeb.UserSettingsLive do
             required
           />
           <:actions>
-            <.button phx-disable-with="Changing..."><%= gettext("Change Locale") %></.button>
+            <.button phx-disable-with="Changing...">{gettext("Change Locale")}</.button>
           </:actions>
         </.simple_form>
       </div>

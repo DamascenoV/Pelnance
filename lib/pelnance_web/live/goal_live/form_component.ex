@@ -8,7 +8,7 @@ defmodule PelnanceWeb.GoalLive.FormComponent do
     ~H"""
     <div>
       <.header>
-        <%= @title %>
+        {@title}
       </.header>
 
       <.simple_form
@@ -23,7 +23,7 @@ defmodule PelnanceWeb.GoalLive.FormComponent do
         <.input field={@form[:amount]} type="number" step="0.0" label={gettext("Amount")} />
         <.input field={@form[:done]} type="checkbox" label={gettext("Done")} />
         <:actions>
-          <.button phx-disable-with="Saving..."><%= gettext("Save Goal") %></.button>
+          <.button phx-disable-with="Saving...">{gettext("Save Goal")}</.button>
         </:actions>
       </.simple_form>
     </div>

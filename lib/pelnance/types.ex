@@ -18,7 +18,7 @@ defmodule Pelnance.Types do
 
   """
   def list_types() do
-    Repo.all(from t in Type)
+    Repo.all(from(t in Type))
   end
 
   @doc """

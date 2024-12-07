@@ -7,21 +7,21 @@ defmodule PelnanceWeb.TransactionLive.Show do
   def render(assigns) do
     ~H"""
     <.header>
-      <%= gettext("Transaction") %> Transaction <%= @transaction.id %>
+      {gettext("Transaction")} Transaction {@transaction.id}
       <:actions>
         <.link patch={~p"/transactions/#{@transaction}/show/edit"} phx-click={JS.push_focus()}>
-          <.button><%= gettext("Edit transaction") %></.button>
+          <.button>{gettext("Edit transaction")}</.button>
         </.link>
       </:actions>
     </.header>
 
     <.list>
-      <:item title={gettext("Date")}><%= @transaction.date %></:item>
-      <:item title={gettext("Amount")}><%= @transaction.amount %></:item>
-      <:item title={gettext("Description")}><%= @transaction.description %></:item>
+      <:item title={gettext("Date")}>{@transaction.date}</:item>
+      <:item title={gettext("Amount")}>{@transaction.amount}</:item>
+      <:item title={gettext("Description")}>{@transaction.description}</:item>
     </.list>
 
-    <.back navigate={~p"/transactions"}><%= gettext("Back to transactions") %></.back>
+    <.back navigate={~p"/transactions"}>{gettext("Back to transactions")}</.back>
 
     <.modal
       :if={@live_action == :edit}

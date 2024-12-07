@@ -8,7 +8,7 @@ defmodule PelnanceWeb.CategoryLive.FormComponent do
     ~H"""
     <div>
       <.header>
-        <%= @title %>
+        {@title}
       </.header>
 
       <.simple_form
@@ -26,7 +26,7 @@ defmodule PelnanceWeb.CategoryLive.FormComponent do
           options={@types |> Enum.map(&{&1.name, &1.id})}
         />
         <:actions>
-          <.button phx-disable-with="Saving..."><%= gettext("Save Category") %></.button>
+          <.button phx-disable-with="Saving...">{gettext("Save Category")}</.button>
         </:actions>
       </.simple_form>
     </div>

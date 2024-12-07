@@ -17,7 +17,6 @@ defmodule Pelnance.Categories.Category do
         ]
       ]
     ]
-
   }
 
   @primary_key {:id, :binary_id, autogenerate: true}

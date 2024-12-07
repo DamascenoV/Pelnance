@@ -7,14 +7,14 @@ const path = require("path")
 
 module.exports = {
   content: [
+"../deps/salad_ui/lib/**/*.ex",
     "./js/**/*.js",
     "../lib/pelnance_web.ex",
     "../lib/pelnance_web/**/*.*ex"
   ],
   theme: {
     extend: {
-      colors: require("./tailwind.colors.json")
-    },
+      colors: require("./tailwind.colors.json")},
   },
   plugins: [
     require("@tailwindcss/typography"),

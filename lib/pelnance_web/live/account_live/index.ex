@@ -9,10 +9,10 @@ defmodule PelnanceWeb.AccountLive.Index do
   def render(assigns) do
     ~H"""
     <.header>
-      <%= gettext("Listing Accounts") %> <.icon name="hero-wallet" />
+      {gettext("Listing Accounts")} <.icon name="hero-wallet" />
       <:actions>
         <.link patch={~p"/accounts/new"}>
-          <.button><%= gettext("New Account") %></.button>
+          <.button>{gettext("New Account")}</.button>
         </.link>
       </:actions>
     </.header>
@@ -35,12 +35,12 @@ defmodule PelnanceWeb.AccountLive.Index do
     />
 
     <Flop.Phoenix.table items={@streams.accounts} meta={@meta} path={~p"/accounts"}>
-      <:col :let={{_id, account}} field={:name} label={gettext("Name")}><%= account.name %></:col>
+      <:col :let={{_id, account}} field={:name} label={gettext("Name")}>{account.name}</:col>
       <:col :let={{_id, account}} field={:balance} label={gettext("Balance")}>
-        <%= account.balance %> <%= account.currency.symbol %>
+        {account.balance} {account.currency.symbol}
       </:col>
       <:col :let={{_id, account}} label={gettext("Currency")}>
-        <%= Pelnance.Currencies.get_currency!(account.currency_id).name %>
+        {Pelnance.Currencies.get_currency!(account.currency_id).name}
       </:col>
       <:col :let={{id, account}}>
         <.link navigate={~p"/accounts/#{account}"}>

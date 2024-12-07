@@ -7,20 +7,20 @@ defmodule PelnanceWeb.CurrencyLive.Show do
   def render(assigns) do
     ~H"""
     <.header>
-      <%= gettext("Currency") %> Currency <%= @currency.id %>
+      {gettext("Currency")} Currency {@currency.id}
       <:actions>
         <.link patch={~p"/currencies/#{@currency}/show/edit"} phx-click={JS.push_focus()}>
-          <.button><%= "Edit currency" %></.button>
+          <.button>{gettext("Edit currency")}</.button>
         </.link>
       </:actions>
     </.header>
 
     <.list>
-      <:item title={gettext("Name")}><%= @currency.name %></:item>
-      <:item title={gettext("Symbol")}><%= @currency.symbol %></:item>
+      <:item title={gettext("Name")}>{@currency.name}</:item>
+      <:item title={gettext("Symbol")}>{@currency.symbol}</:item>
     </.list>
 
-    <.back navigate={~p"/currencies"}><%= gettext("Back to currencies") %></.back>
+    <.back navigate={~p"/currencies"}>{gettext("Back to currencies")}</.back>
 
     <.modal
       :if={@live_action == :edit}

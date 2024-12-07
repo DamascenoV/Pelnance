@@ -14,7 +14,7 @@
 
 types = [
   %{name: "Income", subtraction: false},
-  %{name: "Expense", subtraction: true},
+  %{name: "Expense", subtraction: true}
 ]
 
-Enum.each(types, &(Pelnance.Types.create_type(&1)))
+Enum.each(types, &Pelnance.Types.create_type(&1))

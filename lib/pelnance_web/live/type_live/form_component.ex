@@ -8,12 +8,12 @@ defmodule PelnanceWeb.TypeLive.FormComponent do
     ~H"""
     <div>
       <.header>
-        <%= @title %>
+        {@title}
       </.header>
 
       <div class="flex flex-col gap-4">
         <.button phx-disabled-with="Generating..." class="text-xs" phx-click="generate">
-          <%= gettext("Auto Generate Types") %>
+          {gettext("Auto Generate Types")}
         </.button>
       </div>
 
@@ -27,7 +27,7 @@ defmodule PelnanceWeb.TypeLive.FormComponent do
         <.input field={@form[:name]} type="text" label={gettext("Name")} />
         <.input field={@form[:subtraction]} type="checkbox" label={gettext("Subtraction")} />
         <:actions>
-          <.button phx-disable-with="Saving..."><%= gettext("Save Type") %></.button>
+          <.button phx-disable-with="Saving...">{gettext("Save Type")}</.button>
         </:actions>
       </.simple_form>
     </div>

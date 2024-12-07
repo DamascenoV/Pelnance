@@ -7,11 +7,11 @@ defmodule PelnanceWeb.TypeLive.Index do
   def render(assigns) do
     ~H"""
     <.header>
-      <%= gettext("Listing Types") %> <.icon name="hero-banknotes" />
+      {gettext("Listing Types")} <.icon name="hero-banknotes" />
     </.header>
 
     <.table id="types" rows={@streams.types}>
-      <:col :let={{_id, type}} label={gettext("Name")}><%= type.name %></:col>
+      <:col :let={{_id, type}} label={gettext("Name")}>{type.name}</:col>
       <:col :let={{_id, type}} label={gettext("Subtraction")}>
         <%= if type.subtraction do %>
           <div class="h-2.5 w-2.5 rounded-full bg-green-500 me-2"></div>

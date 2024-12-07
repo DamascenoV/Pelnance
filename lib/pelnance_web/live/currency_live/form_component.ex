@@ -8,7 +8,7 @@ defmodule PelnanceWeb.CurrencyLive.FormComponent do
     ~H"""
     <div>
       <.header>
-        <%= @title %>
+        {@title}
       </.header>
 
       <.simple_form
@@ -21,7 +21,7 @@ defmodule PelnanceWeb.CurrencyLive.FormComponent do
         <.input field={@form[:name]} type="text" label={gettext("Name")} />
         <.input field={@form[:symbol]} type="text" label={gettext("Symbol")} />
         <:actions>
-          <.button phx-disable-with="Saving..."><%= gettext("Save Currency") %></.button>
+          <.button phx-disable-with="Saving...">{gettext("Save Currency")}</.button>
         </:actions>
       </.simple_form>
     </div>

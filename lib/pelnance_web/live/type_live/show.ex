@@ -7,15 +7,15 @@ defmodule PelnanceWeb.TypeLive.Show do
   def render(assigns) do
     ~H"""
     <.header>
-      <%= gettext("Type") %> Type <%= @type.name %>
+      {gettext("Type")} Type {@type.name}
     </.header>
 
     <.list>
-      <:item title={gettext("Name")}><%= @type.name %></:item>
-      <:item title={gettext("Subtraction")}><%= @type.subtraction %></:item>
+      <:item title={gettext("Name")}>{@type.name}</:item>
+      <:item title={gettext("Subtraction")}>{@type.subtraction}</:item>
     </.list>
 
-    <.back navigate={~p"/types"}><%= gettext("Back to types") %></.back>
+    <.back navigate={~p"/types"}>{gettext("Back to types")}</.back>
 
     <.modal :if={@live_action == :edit} id="type-modal" show on_cancel={JS.patch(~p"/types/#{@type}")}>
       <.live_component

@@ -9,6 +9,5 @@ defmodule Pelnance.Repo.Migrations.CreateTypes do
 
       timestamps(type: :utc_datetime)
     end
-
   end
 end

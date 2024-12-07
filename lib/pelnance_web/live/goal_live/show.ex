@@ -7,21 +7,21 @@ defmodule PelnanceWeb.GoalLive.Show do
   def render(assigns) do
     ~H"""
     <.header>
-      <%= gettext("Goal") %> Goal <%= @goal.id %>
+      {gettext("Goal")} Goal {@goal.id}
       <:actions>
         <.link patch={~p"/goals/#{@goal}/show/edit"} phx-click={JS.push_focus()}>
-          <.button><%= gettext("Edit goal") %></.button>
+          <.button>{gettext("Edit goal")}</.button>
         </.link>
       </:actions>
     </.header>
 
     <.list>
-      <:item title={gettext("Name")}><%= @goal.name %></:item>
-      <:item title={gettext("Amount")}><%= @goal.amount %></:item>
-      <:item title={gettext("Done")}><%= @goal.done %></:item>
+      <:item title={gettext("Name")}>{@goal.name}</:item>
+      <:item title={gettext("Amount")}>{@goal.amount}</:item>
+      <:item title={gettext("Done")}>{@goal.done}</:item>
     </.list>
 
-    <.back navigate={~p"/goals"}><%= gettext("Back to goals") %></.back>
+    <.back navigate={~p"/goals"}>{gettext("Back to goals")}</.back>
 
     <.modal :if={@live_action == :edit} id="goal-modal" show on_cancel={JS.patch(~p"/goals/#{@goal}")}>
       <.live_component

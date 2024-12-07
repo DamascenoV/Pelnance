@@ -4,10 +4,7 @@ defmodule Pelnance.Currencies.Currency do
 
   @derive {
     Flop.Schema,
-    filterable: [:name, :symbol],
-    sortable: [:name, :symbol],
-    max_limit: 5,
-    default_limit: 5,
+    filterable: [:name, :symbol], sortable: [:name, :symbol], max_limit: 5, default_limit: 5
   }
 
   @primary_key {:id, :binary_id, autogenerate: true}
