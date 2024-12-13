@@ -39,7 +39,7 @@ defmodule Pelnance.MixProject do
       {:ecto_sqlite3, ">= 0.0.0"},
       {:phoenix_html, "~> 4.0"},
       {:phoenix_live_reload, "~> 1.2", only: :dev},
-      {:phoenix_live_view, "~> 1.0.0-rc.6"},
+      {:phoenix_live_view, "~> 1.0.0"},
       {:floki, ">= 0.30.0", only: :test},
       # {:phoenix_live_dashboard, "~> 0.8.3"},
       {:esbuild, "~> 0.8", runtime: Mix.env() == :dev},
@@ -60,7 +60,7 @@ defmodule Pelnance.MixProject do
       {:dns_cluster, "~> 0.1.1"},
       {:bandit, "~> 1.2"},
       {:flop, "~> 0.26.1"},
-      {:flop_phoenix, "~> 0.23.0"}
+      {:flop_phoenix, "~> 0.23.1"}
     ]
   end
 

@@ -5,6 +5,7 @@ defmodule PelnanceWeb.AccountLive.Index do
   alias Pelnance.Accounts.Account
   alias Pelnance.Currencies
 
+
   @impl true
   def render(assigns) do
     ~H"""
@@ -76,6 +77,23 @@ defmodule PelnanceWeb.AccountLive.Index do
       />
     </.modal>
     """
+  end
+
+  @impl true
+  def mount(params, _session, socket) do
+    case Accounts.list_accounts(socket.assigns.current_user, params) do
+      {:ok, {_, meta}} ->
+        {:ok, socket
+          |> assign(:page_title, gettext("Listing Accounts"))
+          |> assign(:currencies, Currencies.list_currencies(socket.assigns.current_user))
+          |> assign(:user, socket.assigns.current_user)
+          |> assign(:meta, meta)
+          |> stream(:accounts, [], reset: true)
+        }
+
+      {:error, _meta} ->
+        redirect(socket, to: ~p"/accounts")
+    end
   end
 
   @impl true

@@ -97,6 +97,8 @@ defmodule PelnanceWeb.TransactionLive.Index do
       </:col>
     </Flop.Phoenix.table>
 
+    <Flop.Phoenix.pagination meta={@meta} path={~p"/transactions"} />
+
     <.modal
       :if={@live_action in [:new, :edit]}
       id="transaction-modal"
